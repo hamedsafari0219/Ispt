@@ -1,0 +1,28 @@
+--- server.ts
++++ server.ts
+@@ -650,21 +650,26 @@
+   }
+ 
+   try {
++    const controller = new AbortController();
++    const timeoutId = setTimeout(() => controller.abort(), 45000); // 45s timeout
+     const response = await fetch(`${baseUrl}/chat/completions`, {
+       method: 'POST',
+       headers: {
+         'Authorization': `Bearer ${apiKey}`,
+         'Content-Type': 'application/json'
+       },
++      signal: controller.signal,
+       body: JSON.stringify({
+         model: model,
+         messages: [
+           { role: 'system', content: systemPrompt },
+           { role: 'user', content: contentPayload }
+         ],
+         temperature: 0.2
+       })
+     });
++    clearTimeout(timeoutId);
+ 
+     if (!response.ok) {
+       const errText = await response.text();

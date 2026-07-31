@@ -1,0 +1,8 @@
+{
+  "name": "Remix: F\u0026G Intelligent Management System",
+  "description": "سامانه هوشمند و یکپارچه مدیریت تجهیزات اعلام و اطفاء حریق بر اساس استاندارد مراجع مهندسی و هوش مصنوعی",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

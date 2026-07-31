@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Vazirmatn", "Inter", sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+
+  /* Apple Store Color Palette */
+  --color-apple-bg: #f5f5f7;
+  --color-apple-card: #ffffff;
+  --color-apple-dark: #1d1d1f;
+  --color-apple-gray: #86868b;
+  --color-apple-lightgray: #e5e5e7;
+  --color-apple-blue: #0071e3;
+  --color-apple-blue-hover: #0077ed;
+}
+
+/* Custom scrollbars - Minimal Apple style */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f5f5f7;
+}
+::-webkit-scrollbar-thumb {
+  background: #d2d2d7;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a6;
+}
+
+/* Global Apple Body Background */
+body {
+  background-color: #f5f5f7 !important;
+  color: #1d1d1f !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Vazirmatn", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Apple Store Navbar */
+.apple-nav {
+  background-color: rgba(245, 245, 247, 0.82) !important;
+  backdrop-filter: saturate(180%) blur(20px) !important;
+  border-bottom: 1px solid #e5e5e7 !important;
+}
+
+/* Apple Card Container */
+.apple-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e5e5e7 !important;
+  border-radius: 18px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Apple Primary Button */
+.apple-btn-primary {
+  background-color: #0071e3 !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  padding: 8px 20px !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.apple-btn-primary:hover {
+  background-color: #0077ed !important;
+  transform: scale(1.02);
+}
+
+/* Apple Secondary Pill Button */
+.apple-btn-secondary {
+  background-color: #e8e8ed !important;
+  color: #1d1d1f !important;
+  border-radius: 9999px !important;
+  padding: 8px 18px !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  transition: all 0.2s ease !important;
+}
+.apple-btn-secondary:hover {
+  background-color: #d2d2d7 !important;
+}
+
+/* Apple Pill Badge */
+.apple-badge {
+  background-color: #e8e8ed !important;
+  color: #1d1d1f !important;
+  border-radius: 9999px !important;
+  padding: 4px 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+/* Accent highlight indicators */
+.system-alarm-badge {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.system-fighting-badge {
+  background-color: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+}
+
+/* Scrollbars inside chat */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* Persian RTL alignments */
+[dir="rtl"] {
+  letter-spacing: normal;
+}

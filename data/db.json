@@ -1,0 +1,879 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "passwordHash": "b3f509173bc67b2337a8b0cd5b6168893297f945679eea2a1f1c8a91de6cec19",
+      "role": "admin",
+      "system_access": "both",
+      "price_access": 1
+    }
+  ],
+  "equipment": [
+    {
+      "id": 1,
+      "part_number": "FX-350",
+      "brand": "Notifier",
+      "equipment_type": "پنل مرکزی اعلام حریق",
+      "price": 1250,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "پنل مرکزی آدرس‌پذیر اعلام حریق دارای صفحه نمایش ال‌سی‌دی و پشتیبانی از دو لوپ آدرس‌پذیر مجزا.",
+      "source_file": "notifier_datasheet.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/10",
+      "created_by": "admin"
+    },
+    {
+      "id": 2,
+      "part_number": "FM-200-CYL",
+      "brand": "Fike",
+      "equipment_type": "سیلندر اطفاء حریق گازی",
+      "price": 3400,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 2001",
+      "technical_specifications": "سیلندر اطفاء حریق با گاز تمیز FM-200 حجم ۸۰ لیتر تحت فشار ۲۵ بار به همراه شیر برقی کنترل خودکار.",
+      "source_file": "fike_fm200_spec.pdf",
+      "system_type": "fighting",
+      "created_at": "1405/04/10",
+      "created_by": "admin"
+    },
+    {
+      "brand": "Oggioni",
+      "equipment_type": "Gas Detector",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "N/A (Complies with ATEX and SIL 2)",
+      "technical_specifications": "Microprocessor based, 4-20 mA output, 3 voltage free relay contacts, RS-485 MODBUS RTU, LCD Display 8x2, ATEX II 2G Ex d IIC T6, IP65, 12-30 Vdc, 1W power consumption, Aluminium or Stainless Steel Explosion Proof housing.",
+      "source_file": "20260702122602_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/11",
+      "created_by": "admin",
+      "part_number": "RAS/AD",
+      "id": 3
+    },
+    {
+      "brand": "Oggioni",
+      "equipment_type": "Gas Detector with Display",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "N/A (Complies with ATEX and SIL 2)",
+      "technical_specifications": "Aluminium or Stainless Steel Explosion Proof housing with display, Built-in or remote sensor transmitter, Built-in relays for stand-alone capability, Magnetic Keypad, ATEX II 2G Ex d IIC T6, IP65.",
+      "source_file": "20260702122602_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/11",
+      "created_by": "admin",
+      "part_number": "RAS/DY",
+      "id": 4
+    },
+    {
+      "brand": "Oggioni",
+      "equipment_type": "Methane Gas Detector (Catalytic)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "ATEX II 2G Ex d IIC T6, SIL 2 (NFPA not explicitly referenced in document)",
+      "technical_specifications": "General purpose catalytic sensor for Methane (CH4) 0-100% L.E.L., AAS output configuration (Analog 4-20mA + RS485 Modbus), 3 conductors cable, ATEX II 2G Ex d IIC T6 certified.",
+      "source_file": "20260702120154_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/11",
+      "created_by": "admin",
+      "part_number": "RAS/AD/101/AAS",
+      "id": 5
+    },
+    {
+      "brand": "Oggioni",
+      "equipment_type": "Ammonia Gas Detector (Electrochemical)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "ATEX II 2G Ex d IIC T6, SIL 2 (NFPA not explicitly referenced in document)",
+      "technical_specifications": "Electrochemical cell for Ammonia (NH3) 0-100/500/1000/5000 PPM, CAS output configuration (3 Relays + 4-20mA + RS485 Modbus), LCD display, magnetic keypad, ATEX II 2G Ex d IIC T6 certified.",
+      "source_file": "20260702120154_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/11",
+      "created_by": "admin",
+      "part_number": "RAS/DY/340/CAS",
+      "id": 6
+    },
+    {
+      "brand": "Oggioni",
+      "equipment_type": "Gas Detector (Methane - Catalytic)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "N/A (Complies with ATEX and SIL 2)",
+      "technical_specifications": "General purpose catalytic sensor for fixed detecting systems of explosive substances 0-100% L.E.L.",
+      "source_file": "20260702122602_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/11",
+      "created_by": "admin",
+      "part_number": "RAS/AD/101/...",
+      "id": 7
+    },
+    {
+      "brand": "Oggioni",
+      "equipment_type": "Gas Detector (Methane - Infrared)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "N/A (Complies with ATEX and SIL 2)",
+      "technical_specifications": "Infrared sensor for fixed detecting systems of explosive substances 0-100% L.E.L.",
+      "source_file": "20260702122602_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/11",
+      "created_by": "admin",
+      "part_number": "RAS/AD/201/...",
+      "id": 8
+    },
+    {
+      "brand": "Oggioni",
+      "equipment_type": "Gas Detector (Oxygen - Electrochemical)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "N/A (Complies with ATEX and SIL 2)",
+      "technical_specifications": "Electrochemical Cell for O2 0-25% Vol.",
+      "source_file": "20260702122602_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/11",
+      "created_by": "admin",
+      "part_number": "RAS/AD/361/...",
+      "id": 9
+    },
+    {
+      "brand": "Oggioni",
+      "equipment_type": "Gas Detector (Ammonia - Chemical Absorption)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "N/A (Complies with ATEX and SIL 2)",
+      "technical_specifications": "Chemical absorption sensor optimised for NH3 0-1.000 PPM.",
+      "source_file": "20260702122602_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/11",
+      "created_by": "admin",
+      "part_number": "RAS/AD/440/...",
+      "id": 10
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Suppression Releasing Panel",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72, NFPA 70, NFPA 780",
+      "technical_specifications": "Basic Releasing Panel; operates with AC input of: 120/220/230/240 VAC, 50/60 Hz; includes: four IDCs, two NACs, two SPMs, two RACs, 3 auxiliary relays, 3 A power supply with battery charger, and NEMA 1/IP30 rated cabinet and door.",
+      "source_file": "20260708060257_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4004-9301 / 4004-9302",
+      "id": 11
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Auxiliary Relay Module",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Four dual contact relays selectable N.O./N.C. Rated 7A @ 120VAC resistive, 5A @ 30VDC 0.35 p.f. inductive. Unsupervised contacts. Max 2 modules per panel. 12mA standby, 70mA all relays energized.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4004-9860",
+      "id": 12
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Dual Circuit Class A Adapter Module",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Converts two Class B circuits to Class A. Compatible with IDCs, SPMs, NACs. No additional current consumption. Max 4 modules per cabinet.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4004-9864",
+      "id": 13
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Coil Supervision Module",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72, NFPA 2001",
+      "technical_specifications": "One required per RAC. Epoxy encapsulated, 2A max (internally fused 3A). Wired before actuator in junction box. Required for coil supervision of releasing actuators.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "2081-9046",
+      "id": 14
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Abort Supervision Module",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Encapsulated 560Ω, 1/2W resistor. For Dual Hazard SPM; allows non-current limited Abort and Manual Release stations on same circuit.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "2081-9048",
+      "id": 15
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "SmartSync Strobe Synchronization Module (Class B)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Required for synchronized strobe operation on NAC. Dedicated NAC with non-coded output required. Up to 33 strobes per 4004R.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4905-9914",
+      "id": 16
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "SmartSync Strobe Synchronization Module (Class A)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Class A version of strobe synchronization module.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4905-9922",
+      "id": 17
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Sealed Lead Acid Battery (6.2 Ah, 12V)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Mounts in 4004R cabinet. Two required per system. For standby requirements per NFPA 72.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "2081-9272",
+      "id": 18
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Sealed Lead Acid Battery (10 Ah, 12V)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Mounts in 4004R cabinet. Two required per system.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "2081-9274",
+      "id": 19
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Sealed Lead Acid Battery (12.7 Ah, 12V)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Mounts in 4004R cabinet. Two required per system. Maximum capacity for internal mounting.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "2081-9288",
+      "id": 20
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Manual Release Station (Standard)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72, NFPA 2001",
+      "technical_specifications": "Double action push, N.O. contact. Selectable release labels. For releasing applications.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "2099-9149",
+      "id": 21
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Manual Release Station (Style C, 560Ω internal resistor)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72, NFPA 2001",
+      "technical_specifications": "Style C version with internal resistor for supervision.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "2099-9152",
+      "id": 22
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Photoelectric Smoke Detector (UL)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "2-wire, compatible with 4004R IDCs. Up to 30 per IDC. Requires compatible base (4098-5207, 5261, 5680, 5682).",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4098-5601",
+      "id": 23
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Heat Detector (135°F Fixed Temp & Rate-of-Rise)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "2-wire electronic heat detector. 135°F / 57.2°C.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4098-5610",
+      "id": 24
+    },
+    {
+      "brand": "Simplex (Tyco/Johnson Controls)",
+      "equipment_type": "Suppression Releasing Panel (Beige)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72, NFPA 13, NFPA 2001, UL 864, ULC S527, FM Approved",
+      "technical_specifications": "4 IDCs, 2 NACs, 2 SPMs, 2 RACs, 3 Aux Relays, 3A Power Supply/Battery Charger, 120/220/230/240 VAC Auto-select, NEMA 1/IP30 Cabinet. Supports 13 Application Modes including Cross-Zoned, Single/Dual Hazard, Agent Release, Deluge, Preaction, Combined Agent/Preaction.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4004-9301",
+      "id": 25
+    },
+    {
+      "brand": "Simplex (Tyco/Johnson Controls)",
+      "equipment_type": "Suppression Releasing Panel (Red)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72, NFPA 13, NFPA 2001, UL 864, ULC S527, FM Approved, MEA (NYC) Acceptance",
+      "technical_specifications": "Identical to 4004-9301 but Red color with MEA NYC Acceptance.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4004-9302",
+      "id": 26
+    },
+    {
+      "brand": "ASCO",
+      "equipment_type": "Solenoid Valve / Actuator",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72, FM Approval Guide",
+      "technical_specifications": "FM Approved Group B; 24VDC, 16.8W, 700mA; 0.5in NPS, 0.625in orifice; compatible with 4004R RACs (requires 2081-9046 coil supervision)",
+      "source_file": "20260708060505_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "8210A107",
+      "id": 27
+    },
+    {
+      "brand": "ANSUL",
+      "equipment_type": "Electric Actuator",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72, UL 864",
+      "technical_specifications": "UL Listed; 24VDC, 250mA; compatible with 4004R RACs; requires 2081-9046 coil supervision module",
+      "source_file": "20260708060505_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "570537",
+      "id": 28
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "End-of-Line Resistor Harness",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Various resistor values for circuit supervision; refer to datasheet S4081-0003.",
+      "source_file": "20260708060552_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4081 Series",
+      "id": 29
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Maintenance Switch",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Keyswitch controlled. Initiates supervisory condition in disconnect position. Required per NFPA 72 per RAC for testing/servicing without actuation. Surface/flush mount, lamp models require 24VDC.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "2080-Series",
+      "id": 30
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Photo/Heat Detector (UL)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Combined photoelectric and heat detection. UL listed.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4098-5602",
+      "id": 31
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Photo/Heat Detector (ULC)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "ULC listed version.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4098-5604",
+      "id": 32
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Photoelectric Smoke Detector (ULC)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "ULC listed version.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4098-5603",
+      "id": 33
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Heat Detector (135°F Fixed Temp)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Fixed temperature only.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4098-5611",
+      "id": 34
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Heat Detector (200°F Fixed Temp)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "High temperature fixed heat detector. 200°F / 93.3°C.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4098-5612",
+      "id": 35
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "Heat Detector (200°F Fixed Temp & Rate-of-Rise)",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "High temperature with rate-of-rise.",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4098-5613",
+      "id": 36
+    },
+    {
+      "brand": "Simplex",
+      "equipment_type": "End-of-Line Resistor Harnesses",
+      "price": null,
+      "currency": "USD",
+      "nfpa_reference": "NFPA 72",
+      "technical_specifications": "Various EOL resistor assemblies for circuit supervision (3.3kΩ for IDCs/SPMs, 10kΩ for NACs/RACs).",
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "created_at": "1405/04/17",
+      "created_by": "admin",
+      "part_number": "4081-Series",
+      "id": 37
+    }
+  ],
+  "knowledge_base": [
+    {
+      "id": 1,
+      "source_file": "system_init",
+      "system_type": "alarm",
+      "concept": "نصب دتکتور دودی بر اساس NFPA 72",
+      "details": "دتکتورهای دودی نقطه‌ای باید در فواصل افقی حداکثر ۹ متری (۳۰ فوت) از یکدیگر نصب گردند. در سقف‌های شیب‌دار فواصل نصب تغییر می‌کند.",
+      "keywords": "دتکتور, دودی, فاصله, nfpa 72, سقف"
+    },
+    {
+      "id": 2,
+      "source_file": "system_init",
+      "system_type": "fighting",
+      "concept": "زمان تخلیه مجاز گاز اطفاء FM-200 بر اساس NFPA 2001",
+      "details": "سیستم‌های اطفاء با گازهای تمیز (Clean Agent) نظیر FM-200 باید به گونه‌ای طراحی شوند که کل حجم گاز ظرف حداکثر ۱۰ ثانیه تخلیه و غلظت طراحی ایجاد گردد.",
+      "keywords": "تخلیه, گاز, fm-200, ثانیه, غلظت, nfpa 2001"
+    },
+    {
+      "source_file": "20260701200246_RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "concept": "انتخاب فناوری سنسور در سیستم‌های تشخیص گاز",
+      "details": "برای تشخیص گازهای قابل اشتعال معمولاً از سنسورهای کاتالیزوری (Catalytic) یا مادون قرمز (IR) استفاده می‌شود. برای گازهای سمی، سنسورهای الکتروشیمیایی (Electrochemical) یا جذب شیمیایی (Chemical absorption) کاربرد دارند. انتخاب سنسور باید بر اساس نوع گاز، محدوده اندازه‌گیری و مقاومت در برابر مسموم‌شدن سنسور (Poison resistance) انجام شود.",
+      "keywords": "Gas Detection, Sensor Technology, Catalytic, Electrochemical, Infrared, Toxic Gas, Combustible Gas",
+      "id": 3
+    },
+    {
+      "source_file": "20260701200246_RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "concept": "الزامات گواهینامه‌های مناطق خطرناک و یکپارچگی ایمنی",
+      "details": "تجهیزات تشخیص گاز نصب شده در مناطق خطرناک باید دارای گواهینامه‌های ضد انفجار مانند ATEX (مثلاً II 2G Ex d IIC T6) باشند. علاوه بر این، اگر سیستم به عنوان بخشی از یک سیستم ایمنی (Safety System) عمل می‌کند، باید الزامات یکپارچگی ایمنی (SIL) مانند SIL 2 را برآورده کند تا از عملکرد قابل اعتماد در شرایط اضطراری اطمینان حاصل شود.",
+      "keywords": "Hazardous Area, ATEX, Explosion Proof, SIL 2, Safety Integrity Level, F&G System",
+      "id": 4
+    },
+    {
+      "source_file": "20260701200246_RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "concept": "پیکربندی خروجی‌ها و ارتباطات در سیستم‌های F&G",
+      "details": "سیستم‌های تشخیص گاز باید خروجی‌های استانداردی برای یکپارچگی با پنل‌های F&G و سیستم‌های کنترل داشته باشند. خروجی آنالوگ 4-20 میلی‌آمپر برای انتقال پیوسته غلظت گاز، رابط سریال RS-485 (Modbus RTU) برای پیکربندی از راه دور و عیب‌یابی، و کنتاکت‌های رله بدون ولتاژ برای ایجاد آلارم‌های محلی و قطع و وصل تجهیزات استفاده می‌شوند.",
+      "keywords": "4-20mA, RS-485, Modbus, Relay Contacts, F&G Panel, Signal Output",
+      "id": 5
+    },
+    {
+      "source_file": "20260702120154_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "concept": "Output Configuration and Communication Protocols in Gas Detectors",
+      "details": "در سیستم‌های تشخیص گاز و آتش، دتکتورها می‌توانند دارای پیکربندی‌های خروجی مختلفی باشند. خروجی آنالوگ 4-20 میلی‌آمپر برای انتقال پیوسته داده، کنتاکت‌های رله بدون ولتاژ (Voltage free) برای کنترل محلی و آلارم‌ها، و رابط سریالی RS-485 با پروتکل MODBUS RTU برای ارتباط راه دور و نگهداری استفاده می‌شوند. ترکیب این خروجی‌ها (مانند کدهای AAS, CCS, CAS) قابلیت‌های سیستم را برای یکپارچگی با سیستم‌های کنترل و کنترل محلی تعیین می‌کند.",
+      "keywords": "Gas Detector, Output Configuration, 4-20mA, RS-485, Modbus RTU, Relay Contacts",
+      "id": 6
+    },
+    {
+      "source_file": "20260702120154_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "concept": "Hazardous Area Certifications and Sensor Technologies",
+      "details": "تجهیزات تشخیص گاز در مناطق خطرناک باید دارای گواهینامه‌های ضد انفجار مانند ATEX (مثلاً II 2G Ex d IIC T6) باشند تا از اشتعال گازهای قابل انفجار جلوگیری کنند. همچنین، برای استفاده در سیستم‌های ایمنی (SIS)، تجهیزات باید مطابق با استاندارد SIL 2 طراحی شوند. فناوری‌های سنسور شامل کاتالیتیک (برای گازهای قابل احتراق)، الکتروشیمیایی و جذب شیمیایی (برای گازهای سمی)، و مادون قرمز (IR) است که هر کدام برای گازهای خاصی بهینه شده‌اند.",
+      "keywords": "ATEX, Ex d IIC T6, SIL 2, Hazardous Area, Catalytic Sensor, Electrochemical, Infrared",
+      "id": 7
+    },
+    {
+      "source_file": "20260702120154_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "concept": "Non-Intrusive Calibration and Maintenance via Digital Protocols",
+      "details": "استفاده از پروتکل‌های دیجیتال مانند Modbus یا Bluetooth در دتکتورهای گاز هوشمند، امکان کالیبراسیون بدون نیاز به باز کردن محفظه تجهیزات (Non-Intrusive 'One Person' calibration) را فراهم می‌کند. این ویژگی اجازه می‌دهد تا پارامترهای عملکردی مانند Zero، Span، حساسیت، آستانه‌های آلارم (TWA, STEL) و گزارش‌های نگهداری از طریق PC یا دستگاه‌های موبایل به صورت ایمن و سریع تنظیم و دانلود شوند.",
+      "keywords": "Non-Intrusive Calibration, Modbus, Bluetooth, TWA, STEL, Maintenance, Zero, Span",
+      "id": 8
+    },
+    {
+      "source_file": "20260702122602_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "concept": "ATEX Certification for Hazardous Areas",
+      "details": "تجهیزات تشخیص گاز برای نصب در مناطق خطرناک باید دارای گواهینامه‌های ضد انفجار مانند ATEX باشند. برای مثال، استاندارد ATEX II 2G Ex d IIC T6 نشان‌دهنده مناسب بودن تجهیزات برای مناطق با گازهای انفجاری گروه IIC و حداکثر دمای سطح T6 است.",
+      "keywords": "ATEX, Hazardous Area, Explosion Proof, Ex d IIC T6, Gas Detector",
+      "id": 9
+    },
+    {
+      "source_file": "20260702122602_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "concept": "Safety Integrity Level (SIL) in F&G Systems",
+      "details": "سیستم‌های تشخیص گاز باید مطابق با سطح یکپارچگی ایمنی (SIL) طراحی شوند تا قابلیت اطمینان آن‌ها در سیستم‌های ایمنی تضمین گردد. گواهینامه SIL 2 نشان می‌دهد که تجهیزات برای استفاده در سیستم‌های ایمنی با ریسک متوسط تا بالا مناسب بوده و الزامات عملکردی خاصی را برآورده می‌کنند.",
+      "keywords": "SIL 2, Safety Integrity Level, F&G System, Safety System, Reliability",
+      "id": 10
+    },
+    {
+      "source_file": "20260702122602_998661712-RAS-Datasheet.pdf",
+      "system_type": "alarm",
+      "concept": "Communication Protocols in F&G Alarm Systems",
+      "details": "در سیستم‌های اعلام و تشخیص گاز، استفاده از پروتکل‌های استاندارد مانند 4-20mA برای انتقال آنالوگ و RS-485 MODBUS RTU برای ارتباط دیجیتال و پیکربندی از راه دور ضروری است. این پروتکل‌ها امکان مانیتورینگ پیوسته، کالیبراسیون و دریافت گزارش‌های نگهداری را بدون نیاز به باز کردن محفظه تجهیزات (Non-Intrusive) فراهم می‌کنند.",
+      "keywords": "4-20mA, MODBUS RTU, RS-485, Communication Protocol, Non-Intrusive Calibration",
+      "id": 11
+    },
+    {
+      "source_file": "20260708060257_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "Maintenance Switch Requirement",
+      "details": "برای هر مدار دستگاه رهاسازی (RAC) یک کلید تعمیر و نگهداری (Maintenance Switch) الزامی است. طبق کد NFPA 72، این کلیدها باید امکان تست و سرویس سیستم را بدون فعال کردن سیستم اطفای حریق فراهم کنند. در صورت استفاده، کلیدهای نگهداری Simplex باید به گونه‌ای باشند که عملکرد آنها یک وضعیت نظارتی (Supervisory condition) را ایجاد کند.",
+      "keywords": "Maintenance Switch, RAC, NFPA 72, Suppression System, Supervisory Condition",
+      "id": 12
+    },
+    {
+      "source_file": "20260708060257_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "System Grounding Requirement",
+      "details": "سیستم باید دارای اتصال زمین (System Ground) برای تشخیص زمین و محافظت در برابر ولتاژهای گذرا (Transient protection) باشد. این اتصال باید طبق ماده 250 استاندارد NFPA 70 و استاندارد NFPA 780 به یک اتصال زمین اختصاصی و تایید شده متصل شود.",
+      "keywords": "System Ground, Earth Detection, NFPA 70, NFPA 780, Transient Protection",
+      "id": 13
+    },
+    {
+      "source_file": "20260708060257_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "Deluge vs Preaction Sprinkler Systems",
+      "details": "سیستم‌های اسپرینکلر Deluge از سرشیرهای باز استفاده می‌کنند و با فعال شدن سیستم تشخیص حریق، جریان آب را از طریق یک شیر کنترل آب مشترک فراهم می‌کنند. سیستم‌های Preaction مشابه Deluge هستند با این تفاوت که از سرشیرهای معمولاً بسته استفاده می‌کنند و فشار هوای نظارتی در لوله حفظ می‌شود. عملکرد سیستم Preaction هم به فعال شدن سرشیر و هم به فعال شدن دستگاه آغازگر هشدار حریق نیاز دارد.",
+      "keywords": "Deluge System, Preaction System, Sprinkler, Water Control Valve, Fire Detection",
+      "id": 14
+    },
+    {
+      "source_file": "20260708060505_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "Coil Supervision Module Requirement",
+      "details": "هر مدار رهاکننده (RAC) باید یک ماژول نظارت سولنوئید (Coil Supervision Module) مدل 2081-9046 داشته باشد که بلافاصله قبل از آکتواتور و در جعبه اتصال سیم‌کشی آکتواتور قرار گیرد تا نظارت بر قطع سیم و سولنوئید فراهم شود. این ماژول دارای فیوز داخلی ۳ آمپر غیرقابل تعویض است و جریان حداکثر ۲ آمپر را پشتیبانی می‌کند.",
+      "keywords": "coil supervision, RAC, actuator, NFPA 72, 2081-9046, supervision module",
+      "id": 15
+    },
+    {
+      "source_file": "20260708060505_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "FM Approved Deluge/Preaction Wiring and Power Requirements",
+      "details": "برای سیستم‌های دالوژ و پیش‌اکشن تایید شده FM، تمام مدارهای آغازگر (IDC) باید به صورت کلاس A سیم‌کشی شده و به دستگاه‌های لیست/تایید شده متصل باشند. ظرفیت باتری ثانویه حداقل ۹۰ ساعت استندبی با ۱۰ دقیقه آلارم مورد نیاز است. همچنین باید شیرهای کنترل آب اتوماتیک تایید شده FM (مانند گروه‌های A تا K در دیتاشیت) استفاده شوند.",
+      "keywords": "FM approval, deluge, preaction, Class A wiring, battery standby, 90 hours, water control valves",
+      "id": 16
+    },
+    {
+      "source_file": "20260708060505_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "Abort Switch Operation and Dual Hazard Requirements",
+      "details": "سوئیچ لغو (Abort Switch) در حین فشرده نگه‌داشتن رهایش را متوقف می‌کند و پس از رها کردن سوئیچ، عملیات رهایش پس از تاخیر زمان‌بندی قابل انتخاب (Abort Release Time Delay) انجام می‌شود. برای کاربردهای دوخطره (Dual Hazard) عملیات لغو با محدودیت جریان (current limited) الزامی است، که نیازمند مقاومت ۱.۲ کیلوهم ۱ وات یا ماژول نظارت لغو (2081-9048) است. ورودی رهایش دستی (Manual Release) اولویت بر سوئیچ لغو دارد و پس از تاخیر ۰ تا ۳۰ ثانیه (به گام ۵ ثانیه) رهایش را فعال می‌کند.",
+      "keywords": "abort switch, manual release, dual hazard, current limited, abort delay, 2081-9048, NFPA 72",
+      "id": 17
+    },
+    {
+      "source_file": "20260708060552_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "Coil Supervision Module Requirement",
+      "details": "طبقه استاندارد NFPA 72 و دستورالعمل‌های سیستم 4004R، برای هر مدار رهاکننده دستگاه (RAC) باید یک ماژول نظارت بر کویل (Coil Supervision Module) مدل 2081-9046 نصب شود. این ماژول باید به صورت الکتریکی قبل از آکچوییتور و در جعبه اتصال سیم‌کشی آکچوییتور قرار گیرد تا نظارت بر قطع و وصل کویل آکچوییتور تضمین گردد.",
+      "keywords": "Coil Supervision Module, RAC, NFPA 72, Actuator Supervision, 2081-9046",
+      "id": 18
+    },
+    {
+      "source_file": "20260708060552_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "Battery Standby Requirements for Different Standards",
+      "details": "نیازهای توان باتری ثانویه بسته به استاندارد اعمال شده متفاوت است: برای سیستم‌های رهاکننده مواد خاموش‌کننده (Automatic Extinguishing) طبق UL، حداقل ۲۴ ساعت استندبای با ۵ دقیقه آلارم لازم است. برای سیستم‌های دالوژ و پیش‌اکشن (Deluge/Preaction) طبق FM، حداقل ۹۰ ساعت استندبای با ۱۰ دقیقه آلارم الزامی است. پنل 4004R با شارژر جبران دمایی برای باتری‌های تا ۱۲.۷ آمپر-ساعت طراحی شده و برای ظرفیت بیشتر کابینت باتری خارجی 4081 Series مورد نیاز است.",
+      "keywords": "Battery Standby, UL 864, FM Approval, Deluge, Preaction, Automatic Extinguishing, 90 hours, 24 hours",
+      "id": 19
+    },
+    {
+      "source_file": "20260708060552_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "Abort Switch Operation and Priority",
+      "details": "سویچ لغو (Abort Switch) در سیستم‌های رهاکننده 4004R به دو صورت کار می‌کند: ۱) لغو فعالیت (Activity Abort): تا زمانی که سوئیچ فشرده است و پس از رها کردن برای مدت زمان تاخیر لغو رها (Abort Release Time Delay) انتخاب شده، رها متوقف می‌ماند. ۲) اولویت رها دستی: ورودی‌های رها دستی (Manual Release) بر سوئیچ‌های لغو اولویت دارند و پس از تاخیرهای قابل انتخاب ۰ تا ۳۰ ثانیه (به گام ۵ ثانیه) رها را فعال می‌کنند. برای کاربردهای دو خطره (Dual Hazard) عملیات لغو با محدودیت جریان (Current Limited) الزامی است.",
+      "keywords": "Abort Switch, Manual Release, Activity Abort, Abort Release Time Delay, Dual Hazard, SPM, NFPA 72",
+      "id": 20
+    },
+    {
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "Suppression Release Panel Application Modes & Cross-Zoning Logic",
+      "details": "پنل 4004R از 13 حالت برنامه‌ریزی (Application Modes) پشتیبانی می‌کند که شامل موارد زیر است: ۱) حفاظت از یک یا دو ناحیه خطر (Single/Dual Hazard). ۲) عملیات متقاطع (Cross-Zoned) که نیاز به دو ورودی آژیر برای فعال‌سازی رها کردن دارد، یا عملیات تک‌منطقه (Either Zone) که یک ورودی کافی است. ۳) رها کردن عامل خاموش‌کننده (Agent Release)، کنترل دلو (Deluge) و پیش‌عمل (Preaction). ۴) عملیات ترکیبی Agent Release و Preaction (حالت 10 و 11) که در آن RAC 1 برای رها کردن عامل و RAC 2 برای کنترل پیش‌عمل اختصاص داده شده است. انتخاب بین عملیات 'Original' و 'Enhanced' برای رله‌های کمکی امکان‌پذیر است.",
+      "keywords": "Cross-Zoning, Single Hazard, Dual Hazard, Agent Release, Deluge, Preaction, Application Modes, RAC Assignment",
+      "id": 21
+    },
+    {
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "Battery Standby Requirements per Listing Agency (UL vs FM)",
+      "details": "نیازهای توان ثانویه (باتری) بسته به نوع لیستینگ و کاربرد متفاوت است: ۱) برای سیستم‌های رها کردن عامل خاموش‌کننده (Automatic Extinguishing) تحت لیست UL: حداقل ۲۴ ساعت استندبی و ۵ دقیقه آژیر. ۲) برای سیستم‌های دلو و پیش‌عمل (Deluge/Preaction) تحت تایید FM: حداقل ۹۰ ساعت استندبی و ۱۰ دقیقه آژیر. ۳) پنل 4004R با شارژر جبران دمایی باتری‌های تا ۱۲.۷ آمپر-ساعت سازگار است. برای ظرفیت بیشتر باید از کابینت باتری خارجی سری 4081 استفاده شود. ولتاژ باتری باید برای عملیات آکتویاتور (حداقل ۲۳ ولت DC بسته به نوع) محاسبه شود.",
+      "keywords": "Battery Standby, UL 864, FM Approval, Secondary Power, 24 Hours, 90 Hours, Battery Calculation, 2081-9288",
+      "id": 22
+    },
+    {
+      "source_file": "20260708061256_4004-0002.pdf",
+      "system_type": "alarm",
+      "concept": "Releasing Appliance Circuit (RAC) Supervision & Actuator Wiring Rules",
+      "details": "مدارات RAC باید به صورت کلاس B دو سیمه سیمی‌سازی شوند تا نظارت روی کویل (Coil Supervision) فراهم باشد. هر مدار RAC فقط می‌تواند یک آکتویاتور ۲۴ ولت DC داشته باشد؛ یا دو آکتویاتور ۱۲ ولت DC به صورت سری، یا یک آکتویاتور ۱۲ ولت با مقاومت سری سازنده. ماژول نظارت کویل (Model 2081-9046) باید بلافاصله قبل از آکتویاتور در جعبه اتصال سیم‌کشی قرار گیرد. تایمر قطع RAC (Cutout Timer) قابل انتخاب است: بدون قطع، ۴۵ ثانیه، یا ۱ تا ۶۴ دقیقه. سوئیچ نگهداری (Maintenance Switch) یک در هر RAC الزامی است طبق NFPA 72 برای تست ایمن.",
+      "keywords": "RAC Wiring, Class B, Coil Supervision Module 2081-9046, Actuator Compatibility, 24VDC/12VDC Series, Cutout Timer, Maintenance Switch, NFPA 72",
+      "id": 23
+    }
+  ],
+  "document_corpus": [
+    {
+      "id": 1,
+      "file_name": "20260701200246_RAS-Datasheet.pdf",
+      "extracted_text": "{\n  \"equipment_list\": [\n    {\n      \"part_number\": \"RAS/AD\",\n      \"brand\": \"OGGIONI\",\n      \"equipment_type\": \"Toxic and Explosive Gas Detector\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Microprocessor based, ATEX II 2G Ex d IIC T6, IP65, 12-30 Vdc, 4-20mA/RS-485/Relay outputs, SIL 2 certified, Aluminium or Stainless Steel Explosion Proof housing, Non-intrusive calibration.\"\n    },\n    {\n      \"part_number\": \"RAS/DY\",\n      \"brand\": \"OGGIONI\",\n      \"equipment_type\": \"Toxic and Explosive Gas Detector with Display\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Microprocessor based, ATEX II 2G Ex d IIC T6, IP65, 12-30 Vdc, 4-20mA/RS-485/Relay outputs, SIL 2 certified, Aluminium or Stainless Steel housing, LCD Display 8x2 characters, Magnetic Keypad.\"\n    },\n    {\n      \"part_number\": \"RAS/AD/101/AAS\",\n      \"brand\": \"OGGIONI\",\n      \"equipment_type\": \"Methane Gas Detector (Catalytic)\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Catalytic sensor for Methane (CH4) 0-100% L.E.L., ATEX II 2G Ex d IIC T6, Output configuration: Analog 4-20mA + RS485 Modbus, IP65, SIL 2.\"\n    },\n    {\n      \"part_number\": \"RAS/DY/340/CAS\",\n      \"brand\": \"OGGIONI\",\n      \"equipment_type\": \"Ammonia Gas Detector (Electrochemical)\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Electrochemical cell for Ammonia (NH3) 0-100/500/1000/5000 PPM, ATEX II 2G Ex d IIC T6, Output configuration: 3 Relays + 4-20mA + RS485 Modbus, LCD Display, IP65, SIL 2.\"\n    }\n  ],\n  \"knowledge_blocks\": [\n    {\n      \"concept\": \"انتخاب فناوری سنسور در سیستم‌های تشخیص گاز\",\n      \"details\": \"برای تشخیص گازهای قابل اشتعال معمولاً از سنسورهای کاتالیزوری (Catalytic) یا مادون قرمز (IR) استفاده می‌شود. برای گازهای سمی، سنسورهای الکتروشیمیایی (Electrochemical) یا جذب شیمیایی (Chemical absorption) کاربرد دارند. انتخاب سنسور باید بر اساس نوع گاز، محدوده اندازه‌گیری و مقاومت در برابر مسموم‌شدن سنسور (Poison resistance) انجام شود.\",\n      \"keywords\": \"Gas Detection, Sensor Technology, Catalytic, Electrochemical, Infrared, Toxic Gas, Combustible Gas\"\n    },\n    {\n      \"concept\": \"الزامات گواهینامه‌های مناطق خطرناک و یکپارچگی ایمنی\",\n      \"details\": \"تجهیزات تشخیص گاز نصب شده در مناطق خطرناک باید دارای گواهینامه‌های ضد انفجار مانند ATEX (مثلاً II 2G Ex d IIC T6) باشند. علاوه بر این، اگر سیستم به عنوان بخشی از یک سیستم ایمنی (Safety System) عمل می‌کند، باید الزامات یکپارچگی ایمنی (SIL) مانند SIL 2 را برآورده کند تا از عملکرد قابل اعتماد در شرایط اضطراری اطمینان حاصل شود.\",\n      \"keywords\": \"Hazardous Area, ATEX, Explosion Proof, SIL 2, Safety Integrity Level, F&G System\"\n    },\n    {\n      \"concept\": \"پیکربندی خروجی‌ها و ارتباطات در سیستم‌های F&G\",\n      \"details\": \"سیستم‌های تشخیص گاز باید خروجی‌های استانداردی برای یکپارچگی با پنل‌های F&G و سیستم‌های کنترل داشته باشند. خروجی آنالوگ 4-20 میلی‌آمپر برای انتقال پیوسته غلظت گاز، رابط سریال RS-485 (Modbus RTU) برای پیکربندی از راه دور و عیب‌یابی، و کنتاکت‌های رله بدون ولتاژ برای ایجاد آلارم‌های محلی و قطع و وصل تجهیزات استفاده می‌شوند.\",\n      \"keywords\": \"4-20mA, RS-485, Modbus, Relay Contacts, F&G Panel, Signal Output\"\n    }\n  ]\n}"
+    },
+    {
+      "id": 2,
+      "file_name": "20260702120154_998661712-RAS-Datasheet.pdf",
+      "extracted_text": "{\n  \"equipment_list\": [\n    {\n      \"part_number\": \"RAS/AD\",\n      \"brand\": \"Oggioni\",\n      \"equipment_type\": \"Explosive and Toxic Gas Detector\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"ATEX II 2G Ex d IIC T6, SIL 2 (NFPA not explicitly referenced in document)\",\n      \"technical_specifications\": \"Microprocessor based, 4-20 mA analog output, 3 voltage-free relay contacts, RS-485 MODBUS RTU serial interface, IP65 protection, 12-30 Vdc supply, 1W power consumption, Aluminium or Stainless Steel explosion proof housing, ATEX certified.\"\n    },\n    {\n      \"part_number\": \"RAS/DY\",\n      \"brand\": \"Oggioni\",\n      \"equipment_type\": \"Explosive and Toxic Gas Detector with Display\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"ATEX II 2G Ex d IIC T6, SIL 2 (NFPA not explicitly referenced in document)\",\n      \"technical_specifications\": \"Includes all RAS/AD features plus 8x2 characters LCD Display, magnetic keypad for settings, built-in relays for full stand-alone capability, CAS output configuration (3 Relays + 4-20mA + RS485), robust construction.\"\n    },\n    {\n      \"part_number\": \"RAS/AD/101/AAS\",\n      \"brand\": \"Oggioni\",\n      \"equipment_type\": \"Methane Gas Detector (Catalytic)\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"ATEX II 2G Ex d IIC T6, SIL 2 (NFPA not explicitly referenced in document)\",\n      \"technical_specifications\": \"General purpose catalytic sensor for Methane (CH4) 0-100% L.E.L., AAS output configuration (Analog 4-20mA + RS485 Modbus), 3 conductors cable, ATEX II 2G Ex d IIC T6 certified.\"\n    },\n    {\n      \"part_number\": \"RAS/DY/340/CAS\",\n      \"brand\": \"Oggioni\",\n      \"equipment_type\": \"Ammonia Gas Detector (Electrochemical)\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"ATEX II 2G Ex d IIC T6, SIL 2 (NFPA not explicitly referenced in document)\",\n      \"technical_specifications\": \"Electrochemical cell for Ammonia (NH3) 0-100/500/1000/5000 PPM, CAS output configuration (3 Relays + 4-20mA + RS485 Modbus), LCD display, magnetic keypad, ATEX II 2G Ex d IIC T6 certified.\"\n    }\n  ],\n  \"knowledge_blocks\": [\n    {\n      \"concept\": \"Output Configuration and Communication Protocols in Gas Detectors\",\n      \"details\": \"در سیستم‌های تشخیص گاز و آتش، دتکتورها می‌توانند دارای پیکربندی‌های خروجی مختلفی باشند. خروجی آنالوگ 4-20 میلی‌آمپر برای انتقال پیوسته داده، کنتاکت‌های رله بدون ولتاژ (Voltage free) برای کنترل محلی و آلارم‌ها، و رابط سریالی RS-485 با پروتکل MODBUS RTU برای ارتباط راه دور و نگهداری استفاده می‌شوند. ترکیب این خروجی‌ها (مانند کدهای AAS, CCS, CAS) قابلیت‌های سیستم را برای یکپارچگی با سیستم‌های کنترل و کنترل محلی تعیین می‌کند.\",\n      \"keywords\": \"Gas Detector, Output Configuration, 4-20mA, RS-485, Modbus RTU, Relay Contacts\"\n    },\n    {\n      \"concept\": \"Hazardous Area Certifications and Sensor Technologies\",\n      \"details\": \"تجهیزات تشخیص گاز در مناطق خطرناک باید دارای گواهینامه‌های ضد انفجار مانند ATEX (مثلاً II 2G Ex d IIC T6) باشند تا از اشتعال گازهای قابل انفجار جلوگیری کنند. همچنین، برای استفاده در سیستم‌های ایمنی (SIS)، تجهیزات باید مطابق با استاندارد SIL 2 طراحی شوند. فناوری‌های سنسور شامل کاتالیتیک (برای گازهای قابل احتراق)، الکتروشیمیایی و جذب شیمیایی (برای گازهای سمی)، و مادون قرمز (IR) است که هر کدام برای گازهای خاصی بهینه شده‌اند.\",\n      \"keywords\": \"ATEX, Ex d IIC T6, SIL 2, Hazardous Area, Catalytic Sensor, Electrochemical, Infrared\"\n    },\n    {\n      \"concept\": \"Non-Intrusive Calibration and Maintenance via Digital Protocols\",\n      \"details\": \"استفاده از پروتکل‌های دیجیتال مانند Modbus یا Bluetooth در دتکتورهای گاز هوشمند، امکان کالیبراسیون بدون نیاز به باز کردن محفظه تجهیزات (Non-Intrusive 'One Person' calibration) را فراهم می‌کند. این ویژگی اجازه می‌دهد تا پارامترهای عملکردی مانند Zero، Span، حساسیت، آستانه‌های آلارم (TWA, STEL) و گزارش‌های نگهداری از طریق PC یا دستگاه‌های موبایل به صورت ایمن و سریع تنظیم و دانلود شوند.\",\n      \"keywords\": \"Non-Intrusive Calibration, Modbus, Bluetooth, TWA, STEL, Maintenance, Zero, Span\"\n    }\n  ]\n}"
+    },
+    {
+      "id": 3,
+      "file_name": "20260702122602_998661712-RAS-Datasheet.pdf",
+      "extracted_text": "{\n  \"equipment_list\": [\n    {\n      \"part_number\": \"RAS/AD\",\n      \"brand\": \"Oggioni\",\n      \"equipment_type\": \"Gas Detector\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"N/A (Complies with ATEX and SIL 2)\",\n      \"technical_specifications\": \"Microprocessor based, 4-20 mA output, 3 voltage free relay contacts, RS-485 MODBUS RTU, LCD Display 8x2, ATEX II 2G Ex d IIC T6, IP65, 12-30 Vdc, 1W power consumption, Aluminium or Stainless Steel Explosion Proof housing.\"\n    },\n    {\n      \"part_number\": \"RAS/DY\",\n      \"brand\": \"Oggioni\",\n      \"equipment_type\": \"Gas Detector with Display\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"N/A (Complies with ATEX and SIL 2)\",\n      \"technical_specifications\": \"Aluminium or Stainless Steel Explosion Proof housing with display, Built-in or remote sensor transmitter, Built-in relays for stand-alone capability, Magnetic Keypad, ATEX II 2G Ex d IIC T6, IP65.\"\n    },\n    {\n      \"part_number\": \"RAS/AD/101/...\",\n      \"brand\": \"Oggioni\",\n      \"equipment_type\": \"Gas Detector (Methane - Catalytic)\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"N/A (Complies with ATEX and SIL 2)\",\n      \"technical_specifications\": \"General purpose catalytic sensor for fixed detecting systems of explosive substances 0-100% L.E.L.\"\n    },\n    {\n      \"part_number\": \"RAS/AD/201/...\",\n      \"brand\": \"Oggioni\",\n      \"equipment_type\": \"Gas Detector (Methane - Infrared)\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"N/A (Complies with ATEX and SIL 2)\",\n      \"technical_specifications\": \"Infrared sensor for fixed detecting systems of explosive substances 0-100% L.E.L.\"\n    },\n    {\n      \"part_number\": \"RAS/AD/361/...\",\n      \"brand\": \"Oggioni\",\n      \"equipment_type\": \"Gas Detector (Oxygen - Electrochemical)\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"N/A (Complies with ATEX and SIL 2)\",\n      \"technical_specifications\": \"Electrochemical Cell for O2 0-25% Vol.\"\n    },\n    {\n      \"part_number\": \"RAS/AD/440/...\",\n      \"brand\": \"Oggioni\",\n      \"equipment_type\": \"Gas Detector (Ammonia - Chemical Absorption)\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"N/A (Complies with ATEX and SIL 2)\",\n      \"technical_specifications\": \"Chemical absorption sensor optimised for NH3 0-1.000 PPM.\"\n    }\n  ],\n  \"knowledge_blocks\": [\n    {\n      \"concept\": \"ATEX Certification for Hazardous Areas\",\n      \"details\": \"تجهیزات تشخیص گاز برای نصب در مناطق خطرناک باید دارای گواهینامه‌های ضد انفجار مانند ATEX باشند. برای مثال، استاندارد ATEX II 2G Ex d IIC T6 نشان‌دهنده مناسب بودن تجهیزات برای مناطق با گازهای انفجاری گروه IIC و حداکثر دمای سطح T6 است.\",\n      \"keywords\": \"ATEX, Hazardous Area, Explosion Proof, Ex d IIC T6, Gas Detector\"\n    },\n    {\n      \"concept\": \"Safety Integrity Level (SIL) in F&G Systems\",\n      \"details\": \"سیستم‌های تشخیص گاز باید مطابق با سطح یکپارچگی ایمنی (SIL) طراحی شوند تا قابلیت اطمینان آن‌ها در سیستم‌های ایمنی تضمین گردد. گواهینامه SIL 2 نشان می‌دهد که تجهیزات برای استفاده در سیستم‌های ایمنی با ریسک متوسط تا بالا مناسب بوده و الزامات عملکردی خاصی را برآورده می‌کنند.\",\n      \"keywords\": \"SIL 2, Safety Integrity Level, F&G System, Safety System, Reliability\"\n    },\n    {\n      \"concept\": \"Communication Protocols in F&G Alarm Systems\",\n      \"details\": \"در سیستم‌های اعلام و تشخیص گاز، استفاده از پروتکل‌های استاندارد مانند 4-20mA برای انتقال آنالوگ و RS-485 MODBUS RTU برای ارتباط دیجیتال و پیکربندی از راه دور ضروری است. این پروتکل‌ها امکان مانیتورینگ پیوسته، کالیبراسیون و دریافت گزارش‌های نگهداری را بدون نیاز به باز کردن محفظه تجهیزات (Non-Intrusive) فراهم می‌کنند.\",\n      \"keywords\": \"4-20mA, MODBUS RTU, RS-485, Communication Protocol, Non-Intrusive Calibration\"\n    }\n  ]\n}"
+    },
+    {
+      "id": 4,
+      "file_name": "20260702130617_test.pdf",
+      "extracted_text": "```json\n{\n  \"equipment_list\": [],\n  \"knowledge_blocks\": []\n}\n```"
+    },
+    {
+      "id": 5,
+      "file_name": "20260708060257_4004-0002.pdf",
+      "extracted_text": "```json\n{\n  \"equipment_list\": [\n    {\n      \"part_number\": \"4004-9301 / 4004-9302\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Suppression Releasing Panel\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": \"NFPA 72, NFPA 70, NFPA 780\",\n      \"technical_specifications\": \"Basic Releasing Panel; operates with AC input of: 120/220/230/240 VAC, 50/60 Hz; includes: four IDCs, two NACs, two SPMs, two RACs, 3 auxiliary relays, 3 A power supply with battery charger, and NEMA 1/IP30 rated cabinet and door.\"\n    },\n    {\n      \"part_number\": \"4004-9860\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Auxiliary Relay Module\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Four dual contact relays selectable as N.O. or N.C.; rated 7 A at 120 VAC resistive, 5 A at 30 VDC, 0.35 p.f. inductive; unsupervised contacts.\"\n    },\n    {\n      \"part_number\": \"4004-9864\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Dual Circuit Class A Adapter Module\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Converts two Class B circuits to Class A operation for IDCs, SPMs, or NACs. Consumes no additional current.\"\n    },\n    {\n      \"part_number\": \"2081-9046\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Coil Supervision Module\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Epoxy encapsulated; 2 A maximum; internally fused at 3 A, non-replaceable; one required per RAC.\"\n    },\n    {\n      \"part_number\": \"2081-9048\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Abort Supervision Module\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Encapsulated 560Ω, 1/2 W resistor; for Dual Hazard SPM; allows non-current limited Abort and Manual Release stations to be on same circuit.\"\n    },\n    {\n      \"part_number\": \"4905-9914\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Strobe Synchronization Module\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"For Class B strobe synchronization.\"\n    },\n    {\n      \"part_number\": \"4905-9922\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Strobe Synchronization Module\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"For Class A strobe synchronization.\"\n    },\n    {\n      \"part_number\": \"2081-9272\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"System Battery\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"6.2 Ah battery, 12 V.\"\n    },\n    {\n      \"part_number\": \"2081-9274\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"System Battery\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"10 Ah battery, 12 V.\"\n    },\n    {\n      \"part_number\": \"2081-9288\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"System Battery\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"12.7 Ah battery, 12 V.\"\n    },\n    {\n      \"part_number\": \"2099-9149\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Manual Release Station\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Standard; double action push, N.O. contact with selectable release labels.\"\n    },\n    {\n      \"part_number\": \"2099-9152\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Manual Release Station\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Style C, with 560 Ω internal resistor; double action push, N.O. contact with selectable release labels.\"\n    },\n    {\n      \"part_number\": \"4098-5601\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Photo Detector\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Photo detector listed to UL.\"\n    },\n    {\n      \"part_number\": \"4098-5610\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Heat Detector\",\n      \"price\": null,\n      \"currency\": null,\n      \"nfpa_reference\": null,\n      \"technical_specifications\": \"Heat detector at a 135°F or 57.2°C fixed temperature and rate-of-rise.\"\n    }\n  ],\n  \"knowledge_blocks\": [\n    {\n      \"concept\": \"Maintenance Switch Requirement\",\n      \"details\": \"برای هر مدار دستگاه رهاسازی (RAC) یک کلید تعمیر و نگهداری (Maintenance Switch) الزامی است. طبق کد NFPA 72، این کلیدها باید امکان تست و سرویس سیستم را بدون فعال کردن سیستم اطفای حریق فراهم کنند. در صورت استفاده، کلیدهای نگهداری Simplex باید به گونه‌ای باشند که عملکرد آنها یک وضعیت نظارتی (Supervisory condition) را ایجاد کند.\",\n      \"keywords\": \"Maintenance Switch, RAC, NFPA 72, Suppression System, Supervisory Condition\"\n    },\n    {\n      \"concept\": \"System Grounding Requirement\",\n      \"details\": \"سیستم باید دارای اتصال زمین (System Ground) برای تشخیص زمین و محافظت در برابر ولتاژهای گذرا (Transient protection) باشد. این اتصال باید طبق ماده 250 استاندارد NFPA 70 و استاندارد NFPA 780 به یک اتصال زمین اختصاصی و تایید شده متصل شود.\",\n      \"keywords\": \"System Ground, Earth Detection, NFPA 70, NFPA 780, Transient Protection\"\n    },\n    {\n      \"concept\": \"Deluge vs Preaction Sprinkler Systems\",\n      \"details\": \"سیستم‌های اسپرینکلر Deluge از سرشیرهای باز استفاده می‌کنند و با فعال شدن سیستم تشخیص حریق، جریان آب را از طریق یک شیر کنترل آب مشترک فراهم می‌کنند. سیستم‌های Preaction مشابه Deluge هستند با این تفاوت که از سرشیرهای معمولاً بسته استفاده می‌کنند و فشار هوای نظارتی در لوله حفظ می‌شود. عملکرد سیستم Preaction هم به فعال شدن سرشیر و هم به فعال شدن دستگاه آغازگر هشدار حریق نیاز دارد.\",\n      \"keywords\": \"Deluge System, Preaction System, Sprinkler, Water Control Valve, Fire Detection\"\n    }\n  ]\n}\n```"
+    },
+    {
+      "id": 6,
+      "file_name": "20260708060505_4004-0002.pdf",
+      "extracted_text": "{\n  \"equipment_list\": [\n    {\n      \"part_number\": \"4004-9301\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Suppression Release Panel\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, NFPA 70, NFPA 780\",\n      \"technical_specifications\": \"Beige cabinet; 120/220/230/240 VAC auto-select; 4 IDCs, 2 NACs, 2 SPMs, 2 RACs, 3 auxiliary relays; 3A power supply with battery charger; NEMA 1/IP30; UL, ULC, FM, CSFM listed\"\n    },\n    {\n      \"part_number\": \"4004-9302\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Suppression Release Panel\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, NFPA 70, NFPA 780\",\n      \"technical_specifications\": \"Red cabinet; same electrical specs as 4004-9301; additional MEA (NYC) acceptance\"\n    },\n    {\n      \"part_number\": \"4004-9860\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Auxiliary Relay Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Four dual-contact relays selectable N.O./N.C.; rated 7A @120VAC resistive, 5A @30VDC 0.35pf inductive; 12mA standby, 70mA all relays energized; max 2 modules per panel\"\n    },\n    {\n      \"part_number\": \"4004-9864\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Class A Adapter Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Converts two Class B circuits to Class A; compatible with IDCs, SPMs, NACs; no additional current; max 4 modules per cabinet\"\n    },\n    {\n      \"part_number\": \"2081-9272\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Sealed Lead Acid Battery\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"6.2 Ah, 12 VDC; two required per panel; mountable in 4004R cabinet\"\n    },\n    {\n      \"part_number\": \"2081-9274\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Sealed Lead Acid Battery\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"10 Ah, 12 VDC; two required per panel; mountable in 4004R cabinet\"\n    },\n    {\n      \"part_number\": \"2081-9288\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Sealed Lead Acid Battery\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"12.7 Ah, 12 VDC; two required per panel; mountable in 4004R cabinet; supports up to 90hr standby\"\n    },\n    {\n      \"part_number\": \"2081-9046\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Coil Supervision Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"One required per RAC; epoxy encapsulated; 2A max (3A internal fuse); wired before actuator in junction box; provides coil supervision for releasing circuits\"\n    },\n    {\n      \"part_number\": \"2081-9048\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Abort Supervision Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Encapsulated 560Ω, 1/2W resistor; for dual hazard SPM; allows non-current limited abort and manual release stations on same circuit\"\n    },\n    {\n      \"part_number\": \"4905-9914\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Strobe Synchronization Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Class B SmartSync module; synchronizes up to 33 strobes per 4004R; requires dedicated NAC with non-coded output\"\n    },\n    {\n      \"part_number\": \"4905-9922\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Strobe Synchronization Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Class A SmartSync module; same capability as 4905-9914 for Class A wiring\"\n    },\n    {\n      \"part_number\": \"2099-9149\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Manual Release Station\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Standard double-action push, N.O. contact; selectable release labels; for releasing applications\"\n    },\n    {\n      \"part_number\": \"2099-9152\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Manual Release Station\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Style C with internal 560Ω resistor; double-action push, N.O. contact; selectable release labels\"\n    },\n    {\n      \"part_number\": \"4098-5601\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Photoelectric Smoke Detector\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"UL listed; 2-wire; compatible with 4004R IDCs (up to 30 per IDC); requires compatible base (4098-5207, 5261, 5680, 5682)\"\n    },\n    {\n      \"part_number\": \"4098-5610\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Heat Detector\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"135°F (57.2°C) fixed temperature and rate-of-rise; UL listed; 2-wire; compatible with 4004R IDCs\"\n    },\n    {\n      \"part_number\": \"8210A107\",\n      \"brand\": \"ASCO\",\n      \"equipment_type\": \"Solenoid Valve / Actuator\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, FM Approval Guide\",\n      \"technical_specifications\": \"FM Approved Group B; 24VDC, 16.8W, 700mA; 0.5in NPS, 0.625in orifice; compatible with 4004R RACs (requires 2081-9046 coil supervision)\"\n    },\n    {\n      \"part_number\": \"570537\",\n      \"brand\": \"ANSUL\",\n      \"equipment_type\": \"Electric Actuator\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, UL 864\",\n      \"technical_specifications\": \"UL Listed; 24VDC, 250mA; compatible with 4004R RACs; requires 2081-9046 coil supervision module\"\n    }\n  ],\n  \"knowledge_blocks\": [\n    {\n      \"concept\": \"Coil Supervision Module Requirement\",\n      \"details\": \"هر مدار رهاکننده (RAC) باید یک ماژول نظارت سولنوئید (Coil Supervision Module) مدل 2081-9046 داشته باشد که بلافاصله قبل از آکتواتور و در جعبه اتصال سیم‌کشی آکتواتور قرار گیرد تا نظارت بر قطع سیم و سولنوئید فراهم شود. این ماژول دارای فیوز داخلی ۳ آمپر غیرقابل تعویض است و جریان حداکثر ۲ آمپر را پشتیبانی می‌کند.\",\n      \"keywords\": \"coil supervision, RAC, actuator, NFPA 72, 2081-9046, supervision module\"\n    },\n    {\n      \"concept\": \"FM Approved Deluge/Preaction Wiring and Power Requirements\",\n      \"details\": \"برای سیستم‌های دالوژ و پیش‌اکشن تایید شده FM، تمام مدارهای آغازگر (IDC) باید به صورت کلاس A سیم‌کشی شده و به دستگاه‌های لیست/تایید شده متصل باشند. ظرفیت باتری ثانویه حداقل ۹۰ ساعت استندبی با ۱۰ دقیقه آلارم مورد نیاز است. همچنین باید شیرهای کنترل آب اتوماتیک تایید شده FM (مانند گروه‌های A تا K در دیتاشیت) استفاده شوند.\",\n      \"keywords\": \"FM approval, deluge, preaction, Class A wiring, battery standby, 90 hours, water control valves\"\n    },\n    {\n      \"concept\": \"Abort Switch Operation and Dual Hazard Requirements\",\n      \"details\": \"سوئیچ لغو (Abort Switch) در حین فشرده نگه‌داشتن رهایش را متوقف می‌کند و پس از رها کردن سوئیچ، عملیات رهایش پس از تاخیر زمان‌بندی قابل انتخاب (Abort Release Time Delay) انجام می‌شود. برای کاربردهای دوخطره (Dual Hazard) عملیات لغو با محدودیت جریان (current limited) الزامی است، که نیازمند مقاومت ۱.۲ کیلوهم ۱ وات یا ماژول نظارت لغو (2081-9048) است. ورودی رهایش دستی (Manual Release) اولویت بر سوئیچ لغو دارد و پس از تاخیر ۰ تا ۳۰ ثانیه (به گام ۵ ثانیه) رهایش را فعال می‌کند.\",\n      \"keywords\": \"abort switch, manual release, dual hazard, current limited, abort delay, 2081-9048, NFPA 72\"\n    }\n  ]\n}"
+    },
+    {
+      "id": 7,
+      "file_name": "20260708060552_4004-0002.pdf",
+      "extracted_text": "{\n  \"equipment_list\": [\n    {\n      \"part_number\": \"4004-9301\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Suppression Releasing Panel\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, NFPA 70, UL 864, ULC S527, FM Approved\",\n      \"technical_specifications\": \"Beige cabinet; 120/220/230/240 VAC auto-select; 4 IDCs, 2 NACs, 2 SPMs, 2 RACs, 3 auxiliary relays; 3A power supply with battery charger; NEMA 1/IP30 rated; supports up to 30 detectors per IDC; 2A per NAC/RAC; 750mA auxiliary power; 90hr standby/10min alarm battery capacity.\"\n    },\n    {\n      \"part_number\": \"4004-9302\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Suppression Releasing Panel\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, NFPA 70, UL 864, ULC S527, FM Approved, MEA (NYC)\",\n      \"technical_specifications\": \"Red cabinet; same electrical specs as 4004-9301; MEA acceptance for NYC.\"\n    },\n    {\n      \"part_number\": \"4004-9860\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Auxiliary Relay Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Four dual-contact relays selectable N.O./N.C.; rated 7A @ 120VAC resistive, 5A @ 30VDC 0.35 p.f. inductive; unsupervised contacts; 12mA standby, 70mA all relays energized; up to 2 modules per panel.\"\n    },\n    {\n      \"part_number\": \"4004-9864\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Class A Adapter Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Converts two Class B circuits to Class A; compatible with IDCs, SPMs, NACs; no additional current; up to 4 modules per cabinet.\"\n    },\n    {\n      \"part_number\": \"2081-9272\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Battery\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"6.2 Ah, 12 VDC; two required per panel; mountable in 4004R cabinet.\"\n    },\n    {\n      \"part_number\": \"2081-9274\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Battery\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"10 Ah, 12 VDC; two required per panel; mountable in 4004R cabinet.\"\n    },\n    {\n      \"part_number\": \"2081-9288\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Battery\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"12.7 Ah, 12 VDC; two required per panel; mountable in 4004R cabinet; supports 90hr standby/10min alarm.\"\n    },\n    {\n      \"part_number\": \"2081-9046\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Coil Supervision Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"One required per RAC; epoxy encapsulated; 2A max, internally fused at 3A non-replaceable; 18AWG color-coded leads; dimensions 34x62x27mm.\"\n    },\n    {\n      \"part_number\": \"2081-9048\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Abort Supervision Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Encapsulated 560Ω, 1/2W resistor; for dual hazard SPM; allows non-current limited abort and manual release stations on same circuit.\"\n    },\n    {\n      \"part_number\": \"4081 Series\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"End-of-Line Resistor Harness\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Various resistor values for circuit supervision; refer to datasheet S4081-0003.\"\n    },\n    {\n      \"part_number\": \"2099-9149\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Manual Release Station\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Standard double-action push, N.O. contact; selectable release labels.\"\n    },\n    {\n      \"part_number\": \"2099-9152\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Manual Release Station\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Style C with 560Ω internal resistor; double-action push, N.O. contact; selectable release labels.\"\n    },\n    {\n      \"part_number\": \"4905-9914\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Strobe Synchronization Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Class B SmartSync module for synchronized strobe operation; requires dedicated NAC with non-coded output; up to 33 strobes per panel.\"\n    },\n    {\n      \"part_number\": \"4905-9922\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Strobe Synchronization Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Class A SmartSync module for synchronized strobe operation; requires dedicated NAC with non-coded output; up to 33 strobes per panel.\"\n    },\n    {\n      \"part_number\": \"2080-Series\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Abort Switch\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Surface or flush mount; available standard or with 1.2kΩ 1W resistor; stainless steel plate; wired to SPM inputs; activity abort while pressed and continues after release for selected Abort Release Time Delay.\"\n    },\n    {\n      \"part_number\": \"2080-Series\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Maintenance Switch\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Keyswitch controlled; initiates supervisory condition in disconnect position; surface or flush mount; models with lamp require separate 24VDC wiring; one per RAC required per NFPA 72.\"\n    },\n    {\n      \"part_number\": \"4098-5602\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Photo-Heat Detector\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, UL 268\",\n      \"technical_specifications\": \"UL listed; compatible with bases 4098-5207, 4098-5261, 4098-5680, 4098-5682; up to 30 per IDC.\"\n    },\n    {\n      \"part_number\": \"4098-5604\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Photo-Heat Detector\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, ULC S529\",\n      \"technical_specifications\": \"ULC listed; compatible with same bases; up to 30 per IDC.\"\n    },\n    {\n      \"part_number\": \"4098-5601\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Photoelectric Smoke Detector\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, UL 268\",\n      \"technical_specifications\": \"UL listed; compatible with bases 4098-5207, 4098-5261, 4098-5680, 4098-5682; up to 30 per IDC.\"\n    },\n    {\n      \"part_number\": \"4098-5603\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Photoelectric Smoke Detector\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, ULC S529\",\n      \"technical_specifications\": \"ULC listed; compatible with same bases; up to 30 per IDC.\"\n    },\n    {\n      \"part_number\": \"4098-5610\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Heat Detector\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, UL 521\",\n      \"technical_specifications\": \"135°F (57.2°C) fixed temperature and rate-of-rise; compatible with same bases; up to 30 per IDC.\"\n    },\n    {\n      \"part_number\": \"4098-5611\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Heat Detector\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, UL 521\",\n      \"technical_specifications\": \"135°F (57.2°C) fixed temperature only; compatible with same bases; up to 30 per IDC.\"\n    },\n    {\n      \"part_number\": \"4098-5612\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Heat Detector\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, UL 521\",\n      \"technical_specifications\": \"200°F (93.3°C) fixed temperature only; compatible with same bases; up to 30 per IDC.\"\n    },\n    {\n      \"part_number\": \"4098-5613\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Heat Detector\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, UL 521\",\n      \"technical_specifications\": \"200°F (93.3°C) fixed temperature and rate-of-rise; compatible with same bases; up to 30 per IDC.\"\n    }\n  ],\n  \"knowledge_blocks\": [\n    {\n      \"concept\": \"Coil Supervision Module Requirement\",\n      \"details\": \"طبقه استاندارد NFPA 72 و دستورالعمل‌های سیستم 4004R، برای هر مدار رهاکننده دستگاه (RAC) باید یک ماژول نظارت بر کویل (Coil Supervision Module) مدل 2081-9046 نصب شود. این ماژول باید به صورت الکتریکی قبل از آکچوییتور و در جعبه اتصال سیم‌کشی آکچوییتور قرار گیرد تا نظارت بر قطع و وصل کویل آکچوییتور تضمین گردد.\",\n      \"keywords\": \"Coil Supervision Module, RAC, NFPA 72, Actuator Supervision, 2081-9046\"\n    },\n    {\n      \"concept\": \"Battery Standby Requirements for Different Standards\",\n      \"details\": \"نیازهای توان باتری ثانویه بسته به استاندارد اعمال شده متفاوت است: برای سیستم‌های رهاکننده مواد خاموش‌کننده (Automatic Extinguishing) طبق UL، حداقل ۲۴ ساعت استندبای با ۵ دقیقه آلارم لازم است. برای سیستم‌های دالوژ و پیش‌اکشن (Deluge/Preaction) طبق FM، حداقل ۹۰ ساعت استندبای با ۱۰ دقیقه آلارم الزامی است. پنل 4004R با شارژر جبران دمایی برای باتری‌های تا ۱۲.۷ آمپر-ساعت طراحی شده و برای ظرفیت بیشتر کابینت باتری خارجی 4081 Series مورد نیاز است.\",\n      \"keywords\": \"Battery Standby, UL 864, FM Approval, Deluge, Preaction, Automatic Extinguishing, 90 hours, 24 hours\"\n    },\n    {\n      \"concept\": \"Abort Switch Operation and Priority\",\n      \"details\": \"سویچ لغو (Abort Switch) در سیستم‌های رهاکننده 4004R به دو صورت کار می‌کند: ۱) لغو فعالیت (Activity Abort): تا زمانی که سوئیچ فشرده است و پس از رها کردن برای مدت زمان تاخیر لغو رها (Abort Release Time Delay) انتخاب شده، رها متوقف می‌ماند. ۲) اولویت رها دستی: ورودی‌های رها دستی (Manual Release) بر سوئیچ‌های لغو اولویت دارند و پس از تاخیرهای قابل انتخاب ۰ تا ۳۰ ثانیه (به گام ۵ ثانیه) رها را فعال می‌کنند. برای کاربردهای دو خطره (Dual Hazard) عملیات لغو با محدودیت جریان (Current Limited) الزامی است.\",\n      \"keywords\": \"Abort Switch, Manual Release, Activity Abort, Abort Release Time Delay, Dual Hazard, SPM, NFPA 72\"\n    }\n  ]\n}"
+    },
+    {
+      "id": 8,
+      "file_name": "20260708061256_4004-0002.pdf",
+      "extracted_text": "{\n  \"equipment_list\": [\n    {\n      \"part_number\": \"4004-9301\",\n      \"brand\": \"Simplex (Tyco/Johnson Controls)\",\n      \"equipment_type\": \"Suppression Releasing Panel (Beige)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, NFPA 13, NFPA 2001, UL 864, ULC S527, FM Approved\",\n      \"technical_specifications\": \"4 IDCs, 2 NACs, 2 SPMs, 2 RACs, 3 Aux Relays, 3A Power Supply/Battery Charger, 120/220/230/240 VAC Auto-select, NEMA 1/IP30 Cabinet. Supports 13 Application Modes including Cross-Zoned, Single/Dual Hazard, Agent Release, Deluge, Preaction, Combined Agent/Preaction.\"\n    },\n    {\n      \"part_number\": \"4004-9302\",\n      \"brand\": \"Simplex (Tyco/Johnson Controls)\",\n      \"equipment_type\": \"Suppression Releasing Panel (Red)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, NFPA 13, NFPA 2001, UL 864, ULC S527, FM Approved, MEA (NYC) Acceptance\",\n      \"technical_specifications\": \"Identical to 4004-9301 but Red color with MEA NYC Acceptance.\"\n    },\n    {\n      \"part_number\": \"4004-9860\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Auxiliary Relay Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Four dual contact relays selectable N.O./N.C. Rated 7A @ 120VAC resistive, 5A @ 30VDC 0.35 p.f. inductive. Unsupervised contacts. Max 2 modules per panel. 12mA standby, 70mA all relays energized.\"\n    },\n    {\n      \"part_number\": \"4004-9864\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Dual Circuit Class A Adapter Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Converts two Class B circuits to Class A. Compatible with IDCs, SPMs, NACs. No additional current consumption. Max 4 modules per cabinet.\"\n    },\n    {\n      \"part_number\": \"2081-9272\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Sealed Lead Acid Battery (6.2 Ah, 12V)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Mounts in 4004R cabinet. Two required per system. For standby requirements per NFPA 72.\"\n    },\n    {\n      \"part_number\": \"2081-9274\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Sealed Lead Acid Battery (10 Ah, 12V)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Mounts in 4004R cabinet. Two required per system.\"\n    },\n    {\n      \"part_number\": \"2081-9288\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Sealed Lead Acid Battery (12.7 Ah, 12V)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Mounts in 4004R cabinet. Two required per system. Maximum capacity for internal mounting.\"\n    },\n    {\n      \"part_number\": \"2081-9046\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Coil Supervision Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, NFPA 2001\",\n      \"technical_specifications\": \"One required per RAC. Epoxy encapsulated, 2A max (internally fused 3A). Wired before actuator in junction box. Required for coil supervision of releasing actuators.\"\n    },\n    {\n      \"part_number\": \"2081-9048\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Abort Supervision Module\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Encapsulated 560Ω, 1/2W resistor. For Dual Hazard SPM; allows non-current limited Abort and Manual Release stations on same circuit.\"\n    },\n    {\n      \"part_number\": \"4905-9914\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"SmartSync Strobe Synchronization Module (Class B)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Required for synchronized strobe operation on NAC. Dedicated NAC with non-coded output required. Up to 33 strobes per 4004R.\"\n    },\n    {\n      \"part_number\": \"4905-9922\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"SmartSync Strobe Synchronization Module (Class A)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Class A version of strobe synchronization module.\"\n    },\n    {\n      \"part_number\": \"2099-9149\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Manual Release Station (Standard)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, NFPA 2001\",\n      \"technical_specifications\": \"Double action push, N.O. contact. Selectable release labels. For releasing applications.\"\n    },\n    {\n      \"part_number\": \"2099-9152\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Manual Release Station (Style C, 560Ω internal resistor)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, NFPA 2001\",\n      \"technical_specifications\": \"Style C version with internal resistor for supervision.\"\n    },\n    {\n      \"part_number\": \"2080-Series\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Abort Switch\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72, NFPA 2001\",\n      \"technical_specifications\": \"Surface or flush mount. Available standard or with 1.2kΩ, 1W resistor. Stainless steel plate. Wired to SPM inputs. Activity abort while pushed + selectable delay after release.\"\n    },\n    {\n      \"part_number\": \"2080-Series\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Maintenance Switch\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Keyswitch controlled. Initiates supervisory condition in disconnect position. Required per NFPA 72 per RAC for testing/servicing without actuation. Surface/flush mount, lamp models require 24VDC.\"\n    },\n    {\n      \"part_number\": \"4098-5601\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Photoelectric Smoke Detector (UL)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"2-wire, compatible with 4004R IDCs. Up to 30 per IDC. Requires compatible base (4098-5207, 5261, 5680, 5682).\"\n    },\n    {\n      \"part_number\": \"4098-5603\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Photoelectric Smoke Detector (ULC)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"ULC listed version.\"\n    },\n    {\n      \"part_number\": \"4098-5602\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Photo/Heat Detector (UL)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Combined photoelectric and heat detection. UL listed.\"\n    },\n    {\n      \"part_number\": \"4098-5604\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Photo/Heat Detector (ULC)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"ULC listed version.\"\n    },\n    {\n      \"part_number\": \"4098-5610\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Heat Detector (135°F Fixed Temp & Rate-of-Rise)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"2-wire electronic heat detector. 135°F / 57.2°C.\"\n    },\n    {\n      \"part_number\": \"4098-5611\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Heat Detector (135°F Fixed Temp)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Fixed temperature only.\"\n    },\n    {\n      \"part_number\": \"4098-5612\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Heat Detector (200°F Fixed Temp)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"High temperature fixed heat detector. 200°F / 93.3°C.\"\n    },\n    {\n      \"part_number\": \"4098-5613\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"Heat Detector (200°F Fixed Temp & Rate-of-Rise)\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"High temperature with rate-of-rise.\"\n    },\n    {\n      \"part_number\": \"4081-Series\",\n      \"brand\": \"Simplex\",\n      \"equipment_type\": \"End-of-Line Resistor Harnesses\",\n      \"price\": null,\n      \"currency\": \"USD\",\n      \"nfpa_reference\": \"NFPA 72\",\n      \"technical_specifications\": \"Various EOL resistor assemblies for circuit supervision (3.3kΩ for IDCs/SPMs, 10kΩ for NACs/RACs).\"\n    }\n  ],\n  \"knowledge_blocks\": [\n    {\n      \"concept\": \"Suppression Release Panel Application Modes & Cross-Zoning Logic\",\n      \"details\": \"پنل 4004R از 13 حالت برنامه‌ریزی (Application Modes) پشتیبانی می‌کند که شامل موارد زیر است: ۱) حفاظت از یک یا دو ناحیه خطر (Single/Dual Hazard). ۲) عملیات متقاطع (Cross-Zoned) که نیاز به دو ورودی آژیر برای فعال‌سازی رها کردن دارد، یا عملیات تک‌منطقه (Either Zone) که یک ورودی کافی است. ۳) رها کردن عامل خاموش‌کننده (Agent Release)، کنترل دلو (Deluge) و پیش‌عمل (Preaction). ۴) عملیات ترکیبی Agent Release و Preaction (حالت 10 و 11) که در آن RAC 1 برای رها کردن عامل و RAC 2 برای کنترل پیش‌عمل اختصاص داده شده است. انتخاب بین عملیات 'Original' و 'Enhanced' برای رله‌های کمکی امکان‌پذیر است.\",\n      \"keywords\": \"Cross-Zoning, Single Hazard, Dual Hazard, Agent Release, Deluge, Preaction, Application Modes, RAC Assignment\"\n    },\n    {\n      \"concept\": \"Battery Standby Requirements per Listing Agency (UL vs FM)\",\n      \"details\": \"نیازهای توان ثانویه (باتری) بسته به نوع لیستینگ و کاربرد متفاوت است: ۱) برای سیستم‌های رها کردن عامل خاموش‌کننده (Automatic Extinguishing) تحت لیست UL: حداقل ۲۴ ساعت استندبی و ۵ دقیقه آژیر. ۲) برای سیستم‌های دلو و پیش‌عمل (Deluge/Preaction) تحت تایید FM: حداقل ۹۰ ساعت استندبی و ۱۰ دقیقه آژیر. ۳) پنل 4004R با شارژر جبران دمایی باتری‌های تا ۱۲.۷ آمپر-ساعت سازگار است. برای ظرفیت بیشتر باید از کابینت باتری خارجی سری 4081 استفاده شود. ولتاژ باتری باید برای عملیات آکتویاتور (حداقل ۲۳ ولت DC بسته به نوع) محاسبه شود.\",\n      \"keywords\": \"Battery Standby, UL 864, FM Approval, Secondary Power, 24 Hours, 90 Hours, Battery Calculation, 2081-9288\"\n    },\n    {\n      \"concept\": \"Releasing Appliance Circuit (RAC) Supervision & Actuator Wiring Rules\",\n      \"details\": \"مدارات RAC باید به صورت کلاس B دو سیمه سیمی‌سازی شوند تا نظارت روی کویل (Coil Supervision) فراهم باشد. هر مدار RAC فقط می‌تواند یک آکتویاتور ۲۴ ولت DC داشته باشد؛ یا دو آکتویاتور ۱۲ ولت DC به صورت سری، یا یک آکتویاتور ۱۲ ولت با مقاومت سری سازنده. ماژول نظارت کویل (Model 2081-9046) باید بلافاصله قبل از آکتویاتور در جعبه اتصال سیم‌کشی قرار گیرد. تایمر قطع RAC (Cutout Timer) قابل انتخاب است: بدون قطع، ۴۵ ثانیه، یا ۱ تا ۶۴ دقیقه. سوئیچ نگهداری (Maintenance Switch) یک در هر RAC الزامی است طبق NFPA 72 برای تست ایمن.\",\n      \"keywords\": \"RAC Wiring, Class B, Coil Supervision Module 2081-9046, Actuator Compatibility, 24VDC/12VDC Series, Cutout Timer, Maintenance Switch, NFPA 72\"\n    }\n  ]\n}"
+    }
+  ],
+  "chat_archives": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "title": "13",
+      "history": [
+        {
+          "role": "user",
+          "content": "13"
+        },
+        {
+          "role": "assistant",
+          "content": "کاربر گرامی، شما تنها عدد **«۱۳»** را ارسال کرده‌اید. به عنوان یک کارشناس سیستم‌های اعلام و اطفاء حریق (F&G)، برای اینکه بتوانم دقیق‌ترین و فنی‌ترین پاسخ را به شما ارائه دهم، لطفاً بفرمایید این عدد مربوط به کدام مورد از موارد زیر است یا سوال دقیق شما چیست؟\n\nآیا منظور شما یکی از موارد فنی زیر است؟\n\n۱. **استانداردهای NFPA:** آیا سوالی در مورد بند خاصی از استانداردهای NFPA (مانند NFPA 13 که مربوط به **سیستم‌های اسپرینکلر/پاشش خودکار** است) دارید؟\n۲. **آدرس‌دهی (Addressing):** آیا در مورد پیکربندی یا آدرس‌دهی ماژول یا دتکتور شماره ۱۳ در یک لوپ (Loop) خاص سوال دارید؟\n۳. **طراحی و محاسبات:** آیا این عدد مربوط به فشار (Pressure)، دبی (Flow) یا فاصله تجهیزات در یک نقشه مهندسی است؟\n۴. **کدهای خطا (Error Codes):** آیا پنل اعلام حریق شما کد خطای ۱۳ را نمایش می‌دهد؟\n\n**منتظر توضیحات تکمیلی شما هستم تا تحلیل مهندسی و راهکار اجرایی مربوطه را برایتان ارسال کنم.**"
+        }
+      ],
+      "updated_at": "2026-07-01T19:37:49.943Z"
+    },
+    {
+      "id": 2,
+      "user_id": 1,
+      "title": "1",
+      "history": [
+        {
+          "role": "user",
+          "content": "1"
+        },
+        {
+          "role": "assistant",
+          "content": "با سلام و احترام؛\n\nبه نظر می‌رسد پیام شما تنها شامل عدد «۱» بوده است. \n\nمن به عنوان مهندس ارشد و کارشناس سیستم‌های اعلام و اطفاء حریق و گاز (F&G) آماده‌ام تا به سوالات و چالش‌های فنی شما پاسخ دهم. حوزه‌های تخصصی من شامل موارد زیر است:\n\n* **طراحی و مهندسی سیستم‌های F&G:** جانمایی دتکتورها (شعله، دود، گازهای سمی و قابل اشتعال)، تهیه ماتریس علت و معلول (Cause & Effect Matrix) و طراحی منطق کنترل ایمنی (Safety Logic).\n* **سیستم‌های اطفاء حریق:** طراحی سیستم‌های مبتنی بر آب (اسپرینکلر، واتر میست، دلوج)، فوم، پودر و گازهای پاک‌کننده (FM200, Novec 1230, Inergen, CO2).\n* **ارزیابی ریسک و ایمنی فرآیند:** مشارکت در تحلیل‌های HAZOP، تعیین سطح یکپارچگی ایمنی (SIL Assessment) و محاسبات مربوط به محیط‌های انفجاری (ATEX/IECEx).\n* **استانداردها و کدها:** تسلط بر کدهای معتبر بین‌المللی نظیر NFPA (72, 20, 10, 15, 16, 2001)، API (521, 2510) و EN (54, 12094).\n\nلطفاً سوال، نیاز مهندسی یا موضوع مورد نظر خود را با جزئیات مطرح بفرمایید تا راهنمایی دقیق، کاربردی و منطبق بر استانداردهای روز مهندسی را در اختیار شما قرار دهم. \n\nدر انتظار پرسش فنی شما هستم."
+        },
+        {
+          "role": "user",
+          "content": "1"
+        },
+        {
+          "role": "assistant",
+          "content": "با سلام و احترام؛\n\nبه نظر می‌رسد پیام شما تنها شامل عدد «۱» بوده است. \n\nمن به عنوان دستیار مهندسی و کارشناس سیستم‌های اعلام و اطفاء حریق و نشت گاز (F&G) آماده‌ام تا در زمینه‌های تخصصی زیر به شما مشاوره و پشتیبانی فنی ارائه دهم:\n\n* **طراحی و مهندسی سیستم‌های F&G:** انتخاب و جانمایی دتکتورها (شعله UV/IR، دود، حرارت، گازهای سمی و قابل اشتعال) بر اساس استانداردهای NFPA، FM، API و EN.\n* **سیستم‌های اطفاء حریق:** طراحی و محاسبات سیستم‌های گازی (Novec 1230, FM200, Inergen)، آبی (Sprinkler, Deluge, Water Mist)، فومی و پودری.\n* **منطق کنترل و ایمنی (Safety & Control Logic):** تدوین ماتریس Cause & Effect، یکپارچگی با سیستم‌های کنترلی (DCS/PLC/ESD) و تحلیل لایه‌های حفاظتی (SIL, LOPA).\n* **نصب، راه‌اندازی، تست و نگهداری (Commissioning & Maintenance):** پروسیجرهای FAT/SAT، کالیبراسیون سنسورهای گاز، Loop Test و عیب‌یابی سیستم‌ها.\n\nلطفاً سوال، چالش فنی، سناریوی طراحی یا موضوع مورد نظر خود را به طور کامل مطرح فرمایید تا پاسخ دقیق، مهندسی و مبتنی بر استانداردهای روز را دریافت کنید. \n\nدر انتظار پرسش تخصصی شما هستم."
+        }
+      ],
+      "updated_at": "2026-07-02T12:28:52.264Z"
+    },
+    {
+      "id": 3,
+      "user_id": 1,
+      "title": "1",
+      "history": [
+        {
+          "role": "user",
+          "content": "ش"
+        },
+        {
+          "role": "assistant",
+          "content": "خطای شبکه: Failed to fetch"
+        },
+        {
+          "role": "user",
+          "content": "1"
+        },
+        {
+          "role": "assistant",
+          "content": "سلام و عرض ادب. به عنوان دستیار مهندسی سیستم‌های اعلام و اطفاء حریق (F&G) در خدمتم.\n\nشما عدد **۱** را ارسال کرده‌اید. لطفاً بفرمایید چگونه می‌توانم کمک کنم؟ مثلاً:\n\n۱. **مرور کدها و استانداردها** (NFPA 72, NFPA 70, EN 54, IEC 60079, API RP 14C و...)\n۲. **طراحی و محاسبات** (محاسبه پوشش دتکتورها، محاسبه باطری، محاسبه لوله‌کشی اطفاء، محاسبه فشار نیتروژن/هوا)\n۳. **مشخصات فنی و دیتاشیت** (دیتاشیت دتکتور دود/گرم/گاز، پنل کنترل، نوتیفایر، نازل‌های اطفاء)\n۴. **معماری سیستم و شبکه** (معماری آدرس‌آبل، پروتکل‌های ارتباطی، جداسازی ایمنی SIL، تقویت ذاتی)\n۵. **نصب، کمیسینینگ و تست** (چک‌لیست SAT/FAT، تست حساسیت، تست انژکتور گاز، تست پمپ اطفاء)\n۶. **مطالعه و تفسیر P&ID / Cause & Effect Matrix**\n۷. **سایر موارد تخصصی** (Hazardous Area Classification، SIL Assessment، مدیریت پروژه F&G)\n\nمنتظر دستور شما هستم."
+        }
+      ],
+      "updated_at": "2026-07-08T06:05:00.807Z"
+    },
+    {
+      "id": 4,
+      "user_id": 1,
+      "title": "ش",
+      "history": [
+        {
+          "role": "user",
+          "content": "ش"
+        },
+        {
+          "role": "assistant",
+          "content": "سلام!\nبه نظر می‌رسد پیام شما به صورت ناقص ارسال شده و تنها حرف «ش» دریافت شده است.\n\nبه عنوان یک متخصص و مهندس سیستم‌های اعلام و اطفاء حریق (F&G)، آماده پاسخگویی به سوالات فنی شما هستم. آیا منظور شما کلماتی مانند:\n*   **شعله‌یاب‌ها (Flame Detectors)** و انتخاب نوع مناسب (UV/IR یا IR3)؟\n*   **شیرهای اطفاء حریق (Fire Valves)** و عملکرد آن‌ها در شبکه‌های آبرسانی؟\n*   **شبکه لوله‌کشی (Piping Network)** سیستم‌های گاز اطفاء (مانند FM-200 یا CO2)؟\n*   **شاخص‌های طراحی (Design Indicators)** بر اساس استانداردهای NFPA یا F&G engineering؟\n\nبوده است؟ \nلطفاً سوال یا درخواست خود را به صورت کامل بیان کنید تا بتوانم راهنمایی‌های دقیق، تخصصی و مهندسی لازم را به شما ارائه دهم."
+        }
+      ],
+      "updated_at": "2026-07-08T06:05:22.942Z"
+    },
+    {
+      "id": 5,
+      "user_id": 1,
+      "title": "a",
+      "history": [
+        {
+          "role": "user",
+          "content": "a"
+        },
+        {
+          "role": "assistant",
+          "content": "سلام! چطور می‌توانم در حوزه مهندسی سیستم‌های اعلام و اطفاء حریق (F&G) به شما کمک کنم؟\n\nمیتوانید سوالات خود را در مورد موارد زیر (یا هر موضوع فنی دیگر) بپرسید:\n*   **استانداردها و کدها:** NFPA 72, NFPA 70 (NEC), IEC 60079, EN 54, API RP 14C, و...\n*   **طراحی و محاسبات:** محاسبه پوشش دتکتورها، محاسبه ولتاژ_drop کابل‌ها، محاسبه ظرفیت باتری (Battery Calculation)، طراحی شبکه‌های آدرس‌دهی (Addressable Loops).\n*   **انتخاب تجهیزات:** انواع دتکتورها (دودی، حرارتی، شعله، گازی)، پنل‌های کنترل (FACP/F&G Panel)، ماژول‌های ورودی/خروجی، و سایرن/فلاشرها.\n*   **منطقه‌بندی و کلاس‌بندی:** Zone Classification (Zone 0, 1, 2 / Class I Div 1, 2)، انتخاب تجهیزات Ex-proof (Ex d, Ex ia, Ex e).\n*   **ماتریس Cause & Effect:** منطق فعال‌سازی، تاخیرها، اینترلک‌ها (Interlocks) و ایمن‌سازی فرآیند (ESD/PSD).\n*   **نصب، کابل‌کشی و کمیسینینگ:** مسیریابی کابل، جداسازی سیگنال/قدرت، تست‌های FAT/SAT، و اسناد تحویل (As-built, Dossier).\n\nمنتظر سوال تخصصی شما هستم."
+        }
+      ],
+      "updated_at": "2026-07-08T06:16:56.377Z"
+    },
+    {
+      "id": 6,
+      "user_id": null,
+      "title": "سلام",
+      "history": [
+        {
+          "role": "user",
+          "content": "سلام"
+        },
+        {
+          "role": "assistant",
+          "content": "سلام و عرض ادب. به عنوان مشاور فنی سیستم‌های اعلام و اطفاء حریق (F&G) در خدمتم. چطور می‌توانم امروز به شما کمک کنم؟\n\nمی‌توانید در مورد موارد زیر (یا هر موضوع فنی دیگر) سوال بپرسید:\n*   **انتخاب و مشخصات تجهیزات** (دیتکتورها، پنل‌ها، نوتیفایرها، سیستم‌های اطفاء)\n*   **معماری سیستم و طراحی شبکه** (Addressable vs Conventional, Loop topology, Protocol selection)\n*   **استانداردها و کدها** (NFPA 72, NFPA 70, EN 54, ISIRI, API RP 14C)\n*   **نصب، کمیسینینگ و عیب‌یابی** (Ground faults, Communication errors, Sensitivity settings)\n*   **محاسبات فنی** (Voltage drop, Battery standby/alarm calculations, Hydraulic calculations)\n*   **بررسی دیتاشیت و مقایسه برندها** (Simplex, Notifier, Edwards, Siemens, Honeywell, Det-Tronics, MSA و...)\n\nلطفاً موضوع مورد نظرتان را طرح کنید."
+        }
+      ],
+      "updated_at": "2026-07-08T06:19:21.479Z"
+    }
+  ],
+  "ai_config": {
+    "api_key": "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",
+    "base_url": "https://openrouter.ai/api/v1",
+    "model_name": "nvidia/nemotron-3-ultra-550b-a55b:free"
+  }
+}
