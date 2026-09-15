@@ -1,6 +1,6 @@
 {
   "name": "Remix: F\u0026G Intelligent Management System",
-  "description": "سامانه هوشمند و یکپارچه مدیریت تجهیزات اعلام و اطفاء حریق بر اساس استاندارد مراجع مهندسی و هوش مصنوعی",
+  "description": "سامانه جامع و هوشمند مدیریت مهندسی F&G، کنترل مدارک و اسناد (EDMS/MDR)، ترانزمیتال، صدور پروپوزال و مکاتبات اداری بر پایه هوش مصنوعی",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
