@@ -13,9 +13,10 @@ import {
   Clock,
   DollarSign,
   BookOpen,
-  GitFork
+  GitFork,
+  Inbox
 } from 'lucide-react';
-import { EDMSDocument, EDMSTransmittal, EDMSComment, EDMSStats, User } from '../types';
+import { EDMSDocument, EDMSTransmittal, EDMSComment, EDMSStats, EDMSCirculationItem, User } from '../types';
 import { authenticatedFetch } from '../utils/api';
 import { EDMSDashboard } from './edms/EDMSDashboard';
 import { MDRTable } from './edms/MDRTable';
@@ -55,17 +56,20 @@ export const EDMSView: React.FC<EDMSViewProps> = ({
   const [documents, setDocuments] = useState<EDMSDocument[]>([]);
   const [transmittals, setTransmittals] = useState<EDMSTransmittal[]>([]);
   const [comments, setComments] = useState<EDMSComment[]>([]);
+  const [circulations, setCirculations] = useState<EDMSCirculationItem[]>([]);
+  const [preSelectedDocId, setPreSelectedDocId] = useState<number | undefined>(undefined);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const loadAllEDMSData = async (showLoadingSpinner = false) => {
     if (showLoadingSpinner) setLoading(true);
     setIsRefreshing(true);
     try {
-      const [statsRes, docsRes, transRes, commentsRes] = await Promise.all([
+      const [statsRes, docsRes, transRes, commentsRes, circRes] = await Promise.all([
         authenticatedFetch('/api/edms/stats'),
         authenticatedFetch('/api/edms/documents'),
         authenticatedFetch('/api/edms/transmittals'),
-        authenticatedFetch('/api/edms/comments')
+        authenticatedFetch('/api/edms/comments'),
+        authenticatedFetch('/api/edms/circulations')
       ]);
 
       if (statsRes.ok) {
@@ -84,6 +88,10 @@ export const EDMSView: React.FC<EDMSViewProps> = ({
         const commentsData = await commentsRes.json();
         setComments(commentsData);
       }
+      if (circRes.ok) {
+        const circData = await circRes.json();
+        setCirculations(circData);
+      }
     } catch (e) {
       console.error('Failed to load EDMS data:', e);
     } finally {
@@ -91,6 +99,14 @@ export const EDMSView: React.FC<EDMSViewProps> = ({
       setIsRefreshing(false);
     }
   };
+
+  const myUsername = currentUser.username.toLowerCase();
+  const myPendingCirculationsCount = circulations.filter(
+    c => c.status === 'in_progress' && (
+      c.assigned_to?.toLowerCase() === myUsername ||
+      c.assigned_to?.toLowerCase().includes(myUsername)
+    )
+  ).length;
 
   useEffect(() => {
     loadAllEDMSData(true);
@@ -163,17 +179,29 @@ export const EDMSView: React.FC<EDMSViewProps> = ({
           </span>
         </button>
 
-        {/* 3. Circulation & Workflow */}
+        {/* 3. Cartable & Document Circulation */}
         <button
-          onClick={() => setActiveSubTab('circulation')}
+          onClick={() => {
+            setActiveSubTab('circulation');
+            setPreSelectedDocId(undefined);
+          }}
           className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl transition-all cursor-pointer whitespace-nowrap ${
             activeSubTab === 'circulation'
-              ? 'bg-white text-blue-700 shadow-xs'
+              ? 'bg-white text-blue-700 shadow-xs ring-1 ring-blue-500/20'
               : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'
           }`}
         >
-          <Layers className="w-4 h-4 text-blue-600" />
-          <span>{lang === 'fa' ? 'گردش کار و ارجاعات (IDC)' : 'Circulation & IDC'}</span>
+          <Inbox className="w-4 h-4 text-blue-600" />
+          <span>{lang === 'fa' ? 'کارتابل و ارجاعات اسناد' : 'Cartable & Circulations'}</span>
+          {myPendingCirculationsCount > 0 ? (
+            <span className="px-2 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-mono font-bold animate-pulse">
+              {myPendingCirculationsCount}
+            </span>
+          ) : (
+            <span className="px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-700 text-[10px] font-mono">
+              {circulations.length}
+            </span>
+          )}
         </button>
 
         {/* 4. S-Curve Analytics */}
@@ -298,8 +326,13 @@ export const EDMSView: React.FC<EDMSViewProps> = ({
           {activeSubTab === 'mdr' && (
             <MDRTable
               documents={documents}
+              currentUser={currentUser}
               onRefresh={() => loadAllEDMSData(false)}
               lang={lang}
+              onReferDoc={(doc) => {
+                loadAllEDMSData(false);
+                setPreSelectedDocId(doc.id);
+              }}
             />
           )}
 
@@ -308,6 +341,8 @@ export const EDMSView: React.FC<EDMSViewProps> = ({
               documents={documents}
               currentUser={currentUser}
               lang={lang}
+              preSelectedDocId={preSelectedDocId}
+              onRefreshStats={() => loadAllEDMSData(false)}
             />
           )}
 
@@ -322,6 +357,7 @@ export const EDMSView: React.FC<EDMSViewProps> = ({
             <TransmittalManager
               transmittals={transmittals}
               documents={documents}
+              currentUser={currentUser}
               onRefresh={() => loadAllEDMSData(false)}
               lang={lang}
             />
@@ -331,6 +367,7 @@ export const EDMSView: React.FC<EDMSViewProps> = ({
             <CRSManager
               comments={comments}
               documents={documents}
+              currentUser={currentUser}
               onRefresh={() => loadAllEDMSData(false)}
               lang={lang}
             />

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import * as XLSX from 'xlsx';
 import { User, Equipment, ChatMessage, ChatArchive, AIConfig } from './types';
-import { Navbar } from './components/Navbar';
+import { RightSidebarNav } from './components/RightSidebarNav';
+import { TopHeader } from './components/TopHeader';
 import { Sidebar } from './components/Sidebar';
 import { LoginView } from './components/LoginView';
 import { DashboardView } from './components/DashboardView';
@@ -28,14 +29,17 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'dashboard' | 'assistant' | 'database' | 'users' | 'proposal' | 'letters' | 'admin-console' | 'edms'>('dashboard');
   const [systemFilter, setSystemFilter] = useState<'all' | 'alarm' | 'fighting'>('all');
   const [lang, setLang] = useState<'fa' | 'en'>('fa');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth >= 1024;
-    }
-    return false;
-  });
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aiConfigModalOpen, setAiConfigModalOpen] = useState(false);
   const [pwdModalOpen, setPwdModalOpen] = useState(false);
+
+  // Right Sidebar Navigation Mode: 'collapsible' (default for maximum workspace) or 'pinned' (fixed column)
+  const [sidebarMode, setSidebarMode] = useState<'pinned' | 'collapsible'>(() => {
+    const saved = localStorage.getItem('fg_sidebar_mode');
+    return (saved === 'pinned' || saved === 'collapsible') ? saved : 'collapsible';
+  });
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Global Data States
   const [equipment, setEquipment] = useState<Equipment[]>([]);
@@ -140,6 +144,18 @@ export default function App() {
       });
     };
   }, [currentUser, lang]);
+
+  // Close drawer with Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (isDrawerOpen) setIsDrawerOpen(false);
+        if (mobileMenuOpen) setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isDrawerOpen, mobileMenuOpen]);
 
   const loadAllData = async (showLoading = true) => {
     if (!currentUser) return;
@@ -471,11 +487,11 @@ export default function App() {
     }
   };
 
-  const handleToggleUserPermission = async (userId: number, field: 'system_access' | 'price_access', value: any) => {
+  const handleToggleUserPermission = async (userId: number, field: 'system_access' | 'price_access' | 'role', value: any) => {
     const targetUser = users.find(u => u.id === userId);
     if (!targetUser) return;
 
-    const updatedRole = targetUser.role;
+    const updatedRole = field === 'role' ? value : targetUser.role;
     const updatedSystem = field === 'system_access' ? value : targetUser.system_access;
     const updatedPrice = field === 'price_access' ? value : targetUser.price_access;
 
@@ -549,9 +565,12 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-slate-100 font-sans text-slate-900 overflow-x-hidden selection:bg-blue-500/20 selection:text-blue-700">
-      {/* Top Glass Header */}
-      <Navbar
+    <div 
+      className="min-h-screen w-full flex bg-slate-100 font-sans text-slate-900 selection:bg-blue-500/20 selection:text-blue-700"
+      dir={lang === 'fa' ? 'rtl' : 'ltr'}
+    >
+      {/* 1. Dedicated Column Navigation on the Right (منوی سمت راست: حالت کشویی انتخابی یا پین شده) */}
+      <RightSidebarNav
         currentUser={currentUser}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -564,35 +583,60 @@ export default function App() {
         onOpenAiModal={() => setAiConfigModalOpen(true)}
         onOpenPwdModal={() => setPwdModalOpen(true)}
         onLogout={handleLogout}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        sidebarMode={sidebarMode}
+        setSidebarMode={setSidebarMode}
+        isDrawerOpen={isDrawerOpen}
+        setIsDrawerOpen={setIsDrawerOpen}
       />
 
-      {/* Main Workspace */}
-      <div className="flex-1 flex w-full relative min-h-0">
-        {/* Drawer Sidebar */}
-        <AnimatePresence>
-          {isSidebarOpen && (
-            <Sidebar
-              currentUser={currentUser}
-              chatArchives={chatArchives}
-              currentChatId={currentChatId}
-              documents={documents}
-              uploadCategory={uploadCategory}
-              setUploadCategory={setUploadCategory}
-              feedFile={feedFile}
-              setFeedFile={setFeedFile}
-              isFeeding={isFeeding}
-              feedSuccessMsg={feedSuccessMsg}
-              feedErrorMsg={feedErrorMsg}
-              onSmartFeed={handleSmartFeed}
-              onStartNewChat={handleStartNewChat}
-              onLoadArchive={handleLoadArchive}
-              onDeleteArchive={handleDeleteArchive}
-              onSelectTab={(tab) => setActiveTab(tab)}
-              onCloseSidebar={() => setIsSidebarOpen(false)}
-              lang={lang}
-            />
-          )}
-        </AnimatePresence>
+      {/* 2. Main Workspace & View Container */}
+      <div className="flex-1 flex flex-col min-w-0 min-h-screen overflow-x-hidden">
+        {/* Top Header */}
+        <TopHeader
+          currentUser={currentUser}
+          activeTab={activeTab}
+          systemFilter={systemFilter}
+          lang={lang}
+          setLang={setLang}
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+          onOpenMobileMenu={() => setMobileMenuOpen(true)}
+          onLogout={handleLogout}
+          sidebarMode={sidebarMode}
+          setSidebarMode={setSidebarMode}
+          isDrawerOpen={isDrawerOpen}
+          onToggleDrawer={() => setIsDrawerOpen(prev => !prev)}
+        />
+
+        {/* View Stage */}
+        <div className="flex-1 flex w-full relative min-h-0">
+          {/* Secondary Drawer Sidebar for Archives & RAG Feeder */}
+          <AnimatePresence>
+            {isSidebarOpen && (
+              <Sidebar
+                currentUser={currentUser}
+                chatArchives={chatArchives}
+                currentChatId={currentChatId}
+                documents={documents}
+                uploadCategory={uploadCategory}
+                setUploadCategory={setUploadCategory}
+                feedFile={feedFile}
+                setFeedFile={setFeedFile}
+                isFeeding={isFeeding}
+                feedSuccessMsg={feedSuccessMsg}
+                feedErrorMsg={feedErrorMsg}
+                onSmartFeed={handleSmartFeed}
+                onStartNewChat={handleStartNewChat}
+                onLoadArchive={handleLoadArchive}
+                onDeleteArchive={handleDeleteArchive}
+                onSelectTab={(tab) => setActiveTab(tab)}
+                onCloseSidebar={() => setIsSidebarOpen(false)}
+                lang={lang}
+              />
+            )}
+          </AnimatePresence>
 
         {/* View Stage */}
         <main className="flex-1 flex flex-col min-w-0 p-4 sm:p-6 md:p-8 overflow-y-auto custom-scrollbar">
@@ -683,6 +727,7 @@ export default function App() {
             />
           )}
         </main>
+      </div>
       </div>
 
       {/* Modals */}

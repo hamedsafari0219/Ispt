@@ -48,6 +48,7 @@ export const AssistantView: React.FC<AssistantViewProps> = ({
   lang
 }) => {
   const chatBottomRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -58,6 +59,13 @@ export const AssistantView: React.FC<AssistantViewProps> = ({
     navigator.clipboard.writeText(text);
     setCopiedIndex(idx);
     setTimeout(() => setCopiedIndex(null), 2000);
+  };
+
+  const handleCardClick = (promptText: string) => {
+    setChatInput(promptText);
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 50);
   };
 
   // Gemini Style Prompt Cards
@@ -166,7 +174,7 @@ export const AssistantView: React.FC<AssistantViewProps> = ({
                   type="button"
                   whileHover={{ scale: 1.015, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => setChatInput(card.prompt)}
+                  onClick={() => handleCardClick(card.prompt)}
                   className="p-4 bg-white/90 hover:bg-slate-50 border border-slate-200/90 hover:border-blue-300 rounded-2xl text-right transition-all shadow-xs hover:shadow-md flex flex-col justify-between group cursor-pointer space-y-3"
                 >
                   <div className="flex items-center justify-between w-full">
@@ -320,6 +328,7 @@ export const AssistantView: React.FC<AssistantViewProps> = ({
           {/* Text Input */}
           <div className="flex items-center px-2">
             <input
+              ref={inputRef}
               dir="auto"
               type="text"
               value={chatInput}

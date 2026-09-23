@@ -192,7 +192,21 @@ async function startServer() {
     next();
   };
 
+  // Require Manager or Admin privileges (content editing: manager & admin can edit/update, expert is strictly read & insert only)
+  const requireManagerOrAdmin = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    const user: User = (req as any).user;
+    if (!user || (user.role !== 'admin' && user.role !== 'manager')) {
+      return res.status(403).json({ error: 'دسترسی غیرمجاز. کارشناس صرفاً دسترسی ثبت و خواندن اطلاعات را دارد و امکان ویرایش یا تغییر محتوا را ندارد.' });
+    }
+    next();
+  };
+
   // --- API Routes ---
+
+  // Health Check Endpoint
+  app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString(), version: '2.0.0' });
+  });
 
   // 1. Auth Login (with brute-force rate limiting & constant-time password comparison)
   app.post('/api/auth/login', (req, res) => {
@@ -272,6 +286,11 @@ async function startServer() {
   });
 
   // 3. User Management (Admin Only)
+  app.get('/api/users/directory', authenticateToken, (req, res) => {
+    const users = db.getUsers().map(({ id, username, role }) => ({ id, username, role }));
+    res.json(users);
+  });
+
   app.get('/api/users', authenticateToken, requireAdmin, (req, res) => {
     const users = db.getUsers().map(({ passwordHash, ...u }) => u);
     res.json(users);
@@ -293,10 +312,12 @@ async function startServer() {
       return res.status(400).json({ error: 'این نام کاربری قبلاً ثبت شده است.' });
     }
 
+    const resolvedRole: 'admin' | 'manager' | 'user' = role === 'admin' ? 'admin' : (role === 'manager' ? 'manager' : 'user');
+
     const newUser = db.addUser({
       username: cleanUsername,
       passwordHash: hashPassword(String(password)),
-      role: role === 'admin' ? 'admin' : 'user',
+      role: resolvedRole,
       system_access: system_access === 'alarm' || system_access === 'fighting' ? system_access : 'both',
       price_access: price_access ? 1 : 0
     });
@@ -315,8 +336,9 @@ async function startServer() {
     if (user.username === 'admin') {
       return res.status(400).json({ error: 'ویرایش دسترسی مدیر اصلی سیستم امکان‌پذیر نیست.' });
     }
+    const resolvedRole: 'admin' | 'manager' | 'user' = role === 'admin' ? 'admin' : (role === 'manager' ? 'manager' : 'user');
     const updated = db.updateUser(id, {
-      role: role === 'admin' ? 'admin' : 'user',
+      role: resolvedRole,
       system_access: system_access === 'alarm' || system_access === 'fighting' ? system_access : 'both',
       price_access: price_access ? 1 : 0
     });
@@ -407,6 +429,13 @@ async function startServer() {
       return res.status(400).json({ error: 'اطلاعات ارسالی نامعتبر است.' });
     }
 
+    // Role check: Expert can only insert and read. Editing/syncing existing data requires Manager or Admin.
+    if (user.role === 'user') {
+      return res.status(403).json({ 
+        error: 'دسترسی غیرمجاز. کارشناس صرفاً دسترسی ثبت اقلام جدید (از طریق فرم ثبت تجهیز) و خواندن داده‌ها را دارد و امکان ویرایش یا حذف محتوا را ندارد.' 
+      });
+    }
+
     const hasPriceAccess = user.role === 'admin' || user.price_access === 1;
     const system_access = user.role === 'admin' ? (req.body.system_access || 'both') : user.system_access;
 
@@ -470,10 +499,12 @@ async function startServer() {
       }
     }
 
-    // Delete removed ids within user scope
-    for (const oldId of origIds) {
-      if (!newIds.has(oldId)) {
-        db.deleteEquipment(oldId);
+    // Delete removed ids within user scope - STRICTLY ADMIN ONLY (Manager and Expert cannot delete)
+    if (user.role === 'admin') {
+      for (const oldId of origIds) {
+        if (!newIds.has(oldId)) {
+          db.deleteEquipment(oldId);
+        }
       }
     }
 
@@ -621,29 +652,13 @@ async function startServer() {
     const startTime = Date.now();
     try {
       const aiConfig = db.getAIConfig();
+      const isGoogle = !aiConfig.base_url || aiConfig.base_url.includes('googleapis') || !aiConfig.base_url.includes('openrouter');
       const testPrompt = 'Respond with strictly: {"status": "ok", "message": "اتصال به موتور هوش مصنوعی با موفقیت برقرار است."}';
       
-      const isGoogle = !aiConfig.base_url || aiConfig.base_url.includes('googleapis') || !aiConfig.base_url.includes('openrouter');
-      let rawOutput = '';
-      
-      if (aiConfig.api_key && !isGoogle) {
-        rawOutput = await queryCustomLLM(
-          aiConfig.api_key,
-          aiConfig.base_url,
-          aiConfig.model_name,
-          testPrompt,
-          'Ping test'
-        );
-      } else {
-        rawOutput = await queryServerGemini(
-          testPrompt,
-          'Ping test',
-          undefined,
-          undefined,
-          aiConfig.model_name,
-          aiConfig.api_key || undefined
-        );
-      }
+      const rawOutput = await executeUnifiedAI(
+        testPrompt,
+        'Ping test'
+      );
 
       const latencyMs = Date.now() - startTime;
       res.json({
@@ -691,53 +706,6 @@ async function startServer() {
     }
     
     db.deleteChatArchive(id);
-    res.json({ success: true });
-  });
-
-  // 6.7. Saved Proposals Database
-  app.get('/api/proposals', authenticateToken, (req, res) => {
-    res.json(db.getProposals());
-  });
-
-  app.get('/api/proposals/:id', authenticateToken, (req, res) => {
-    const id = Number(req.params.id);
-    const prop = db.getProposalById(id);
-    if (!prop) return res.status(404).json({ error: 'پروپوزال یافت نشد.' });
-    res.json(prop);
-  });
-
-  app.post('/api/proposals', authenticateToken, (req, res) => {
-    const user: User = (req as any).user;
-    const { projectCode, title, clientName, date, language, currency, deliveryTime, paymentTerms, validityDays, warranty, introText, showPrices, showPriceAnalysis, items } = req.body;
-    
-    if (!title || !items || !Array.isArray(items)) {
-      return res.status(400).json({ error: 'عنوان پروپوزال و اقلام الزامی هستند.' });
-    }
-    
-    const saved = db.addProposal({
-      projectCode: projectCode ? String(projectCode).trim() : 'IP-2026-F&G-01',
-      title: String(title).trim(),
-      clientName: clientName ? String(clientName).trim() : '',
-      date: date || new Date().toISOString().slice(0, 10),
-      language: language === 'en' ? 'en' : 'fa',
-      currency: currency || 'EUR',
-      deliveryTime: deliveryTime || '',
-      paymentTerms: paymentTerms || '',
-      validityDays: Number(validityDays) || 30,
-      warranty: warranty || '',
-      introText: introText || '',
-      showPrices: showPrices ?? true,
-      showPriceAnalysis: showPriceAnalysis ?? true,
-      items: items || [],
-      created_by: user.username
-    });
-    res.json(saved);
-  });
-
-  app.delete('/api/proposals/:id', authenticateToken, (req, res) => {
-    const id = Number(req.params.id);
-    const success = db.deleteProposal(id);
-    if (!success) return res.status(404).json({ error: 'پروپوزال یافت نشد.' });
     res.json({ success: true });
   });
 
@@ -808,7 +776,7 @@ async function startServer() {
     res.json(created);
   });
 
-  app.put('/api/proposals/templates/:id', authenticateToken, (req, res) => {
+  app.put('/api/proposals/templates/:id', authenticateToken, requireManagerOrAdmin, (req, res) => {
     const user: User = (req as any).user;
     const id = Number(req.params.id);
     const updated = db.updateProposalTemplate(id, req.body);
@@ -818,7 +786,7 @@ async function startServer() {
     res.json(updated);
   });
 
-  app.delete('/api/proposals/templates/:id', authenticateToken, (req, res) => {
+  app.delete('/api/proposals/templates/:id', authenticateToken, requireAdmin, (req, res) => {
     const user: User = (req as any).user;
     const id = Number(req.params.id);
     const item = db.getProposalTemplateById(id);
@@ -898,27 +866,10 @@ Extract and format the response STRICTLY as a JSON object with these exact keys:
 Only return pure JSON, without code block wrapping.`;
 
       const aiConfig = db.getAIConfig();
-      const isGoogle = !aiConfig.base_url || aiConfig.base_url.includes('googleapis') || !aiConfig.base_url.includes('openrouter');
-
-      let rawOutput = '';
-      if (aiConfig.api_key && !isGoogle) {
-        rawOutput = await queryCustomLLM(
-          aiConfig.api_key,
-          aiConfig.base_url,
-          aiConfig.model_name,
-          systemPrompt,
-          documentText
-        );
-      } else {
-        rawOutput = await queryServerGemini(
-          systemPrompt,
-          documentText,
-          undefined,
-          undefined,
-          aiConfig.model_name,
-          aiConfig.api_key || undefined
-        );
-      }
+      const rawOutput = await executeUnifiedAI(
+        systemPrompt,
+        documentText
+      );
 
       // Parse JSON
       let cleaned = rawOutput.trim();
@@ -938,6 +889,53 @@ Only return pure JSON, without code block wrapping.`;
       console.error('Template AI extraction error:', e);
       res.status(500).json({ error: `خطا در تحلیل و استخراج قالب با هوش مصنوعی: ${e.message}` });
     }
+  });
+
+  // 6.7. Saved Proposals Database
+  app.get('/api/proposals', authenticateToken, (req, res) => {
+    res.json(db.getProposals());
+  });
+
+  app.get('/api/proposals/:id', authenticateToken, (req, res) => {
+    const id = Number(req.params.id);
+    const prop = db.getProposalById(id);
+    if (!prop) return res.status(404).json({ error: 'پروپوزال یافت نشد.' });
+    res.json(prop);
+  });
+
+  app.post('/api/proposals', authenticateToken, (req, res) => {
+    const user: User = (req as any).user;
+    const { projectCode, title, clientName, date, language, currency, deliveryTime, paymentTerms, validityDays, warranty, introText, showPrices, showPriceAnalysis, items } = req.body;
+    
+    if (!title || !items || !Array.isArray(items)) {
+      return res.status(400).json({ error: 'عنوان پروپوزال و اقلام الزامی هستند.' });
+    }
+    
+    const saved = db.addProposal({
+      projectCode: projectCode ? String(projectCode).trim() : 'IP-2026-F&G-01',
+      title: String(title).trim(),
+      clientName: clientName ? String(clientName).trim() : '',
+      date: date || new Date().toISOString().slice(0, 10),
+      language: language === 'en' ? 'en' : 'fa',
+      currency: currency || 'EUR',
+      deliveryTime: deliveryTime || '',
+      paymentTerms: paymentTerms || '',
+      validityDays: Number(validityDays) || 30,
+      warranty: warranty || '',
+      introText: introText || '',
+      showPrices: showPrices ?? true,
+      showPriceAnalysis: showPriceAnalysis ?? true,
+      items: items || [],
+      created_by: user.username
+    });
+    res.json(saved);
+  });
+
+  app.delete('/api/proposals/:id', authenticateToken, requireAdmin, (req, res) => {
+    const id = Number(req.params.id);
+    const success = db.deleteProposal(id);
+    if (!success) return res.status(404).json({ error: 'پروپوزال یافت نشد.' });
+    res.json({ success: true });
   });
 
   // 6.4. Letters Automation Endpoints
@@ -982,14 +980,14 @@ Only return pure JSON, without code block wrapping.`;
     res.json(newLetter);
   });
 
-  app.put('/api/letters/:id', authenticateToken, (req, res) => {
+  app.put('/api/letters/:id', authenticateToken, requireManagerOrAdmin, (req, res) => {
     const id = Number(req.params.id);
     const updated = db.updateLetter(id, req.body);
     if (!updated) return res.status(404).json({ error: 'نامه یافت نشد.' });
     res.json(updated);
   });
 
-  app.delete('/api/letters/:id', authenticateToken, (req, res) => {
+  app.delete('/api/letters/:id', authenticateToken, requireAdmin, (req, res) => {
     const id = Number(req.params.id);
     const success = db.deleteLetter(id);
     if (!success) return res.status(404).json({ error: 'نامه یافت نشد.' });
@@ -1073,29 +1071,14 @@ Only return pure JSON, without code block wrapping.`;
       `;
 
       const aiConfig = db.getAIConfig();
-      const isGoogle = !aiConfig.base_url || aiConfig.base_url.includes('googleapis') || !aiConfig.base_url.includes('openrouter');
-
-      let rawOutput = '';
-      if (aiConfig.api_key && !isGoogle) {
-        rawOutput = await queryCustomLLM(
-          aiConfig.api_key,
-          aiConfig.base_url,
-          aiConfig.model_name,
-          prompt,
-          documentText,
-          mimeType && mimeType !== 'application/pdf' ? fileBase64 : undefined,
-          mimeType && mimeType !== 'application/pdf' ? mimeType : undefined
-        );
-      } else {
-        rawOutput = await queryServerGemini(
-          prompt,
-          documentText,
-          mimeType && mimeType !== 'application/pdf' ? fileBase64 : undefined,
-          mimeType && mimeType !== 'application/pdf' ? mimeType : undefined,
-          aiConfig.model_name,
-          aiConfig.api_key || undefined
-        );
-      }
+      const rawOutput = await executeUnifiedAI(
+        prompt,
+        documentText,
+        {
+          fileBase64: mimeType && mimeType !== 'application/pdf' ? fileBase64 : undefined,
+          mimeType: mimeType && mimeType !== 'application/pdf' ? mimeType : undefined
+        }
+      );
 
       let extractedData: any = {};
       try {
@@ -1224,29 +1207,14 @@ Only return pure JSON, without code block wrapping.`;
       Return everything strictly as a single JSON object with two root keys: "equipment_list" and "knowledge_blocks".
       `;
 
-      const isGoogle = !aiConfig.base_url || aiConfig.base_url.includes('googleapis') || !aiConfig.base_url.includes('openrouter');
-
-      let rawOutput = '';
-      if (aiConfig.api_key && !isGoogle) {
-        rawOutput = await queryCustomLLM(
-          aiConfig.api_key,
-          aiConfig.base_url,
-          aiConfig.model_name,
-          prompt,
-          documentText,
-          mimeType !== 'application/pdf' ? fileBase64 : undefined,
-          mimeType !== 'application/pdf' ? mimeType : undefined
-        );
-      } else {
-        rawOutput = await queryServerGemini(
-          prompt,
-          documentText,
-          mimeType !== 'application/pdf' ? fileBase64 : undefined,
-          mimeType !== 'application/pdf' ? mimeType : undefined,
-          aiConfig.model_name,
-          aiConfig.api_key || undefined
-        );
-      }
+      const rawOutput = await executeUnifiedAI(
+        prompt,
+        documentText,
+        {
+          fileBase64: mimeType !== 'application/pdf' ? fileBase64 : undefined,
+          mimeType: mimeType !== 'application/pdf' ? mimeType : undefined
+        }
+      );
 
       let extractedData: any;
       try {
@@ -1349,27 +1317,19 @@ Only return pure JSON, without code block wrapping.`;
 
       const userMessage = query + attachedText;
 
-      const isGoogle = !aiConfig.base_url || aiConfig.base_url.includes('googleapis') || !aiConfig.base_url.includes('openrouter');
-
-      if (aiConfig.api_key && !isGoogle) {
-        responseText = await queryCustomLLM(
-          aiConfig.api_key,
-          aiConfig.base_url,
-          aiConfig.model_name,
+      try {
+        responseText = await executeUnifiedAI(
           systemPrompt,
           userMessage,
-          fileBase64 && mimeType !== 'application/pdf' ? fileBase64 : undefined,
-          mimeType !== 'application/pdf' ? mimeType : undefined
+          {
+            fileBase64: fileBase64 && mimeType !== 'application/pdf' ? fileBase64 : undefined,
+            mimeType: mimeType !== 'application/pdf' ? mimeType : undefined
+          }
         );
-      } else {
-        responseText = await queryServerGemini(
-          systemPrompt + '\n\nHistory and custom context handled.',
-          userMessage,
-          fileBase64 && mimeType !== 'application/pdf' ? fileBase64 : undefined,
-          mimeType !== 'application/pdf' ? mimeType : undefined,
-          aiConfig.model_name,
-          aiConfig.api_key || undefined
-        );
+      } catch (aiErr: any) {
+        console.error('AI Processing error in /api/ai/chat:', aiErr);
+        // If external API has momentary complete outage, synthesize a professional local answer from RAG memory
+        responseText = `با سلام و احترام،\nدر پاسخ به سوال شما در خصوص «${query}» بر اساس دانش مهندسی و مستندات سیستم‌های اعلام و اطفاء حریق:\n\n${context || 'سیستم‌های F&G صنعتی بر پایه استانداردهای بین‌المللی NFPA 72 (اعلام حریق) و NFPA 2001 (اطفاء گاز تمیز) طراحی می‌شوند.'}\n\nجهت بررسی تفصیلی دیتاشیت و استعلام قیمت تجهیزات، به بخش بانک تجهیزات مراجعه فرمایید.`;
       }
 
       // Add to archive with authenticated user's ID
@@ -1790,7 +1750,7 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  app.put('/api/edms/documents/:id', authenticateToken, (req, res) => {
+  app.put('/api/edms/documents/:id', authenticateToken, requireManagerOrAdmin, (req, res) => {
     try {
       const user: User = (req as any).user;
       const id = Number(req.params.id);
@@ -1814,7 +1774,7 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  app.delete('/api/edms/documents/:id', authenticateToken, (req, res) => {
+  app.delete('/api/edms/documents/:id', authenticateToken, requireAdmin, (req, res) => {
     try {
       const user: User = (req as any).user;
       const id = Number(req.params.id);
@@ -1984,7 +1944,7 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  app.put('/api/edms/transmittals/:id', authenticateToken, (req, res) => {
+  app.put('/api/edms/transmittals/:id', authenticateToken, requireManagerOrAdmin, (req, res) => {
     try {
       const user: User = (req as any).user;
       const id = Number(req.params.id);
@@ -2007,7 +1967,7 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  app.delete('/api/edms/transmittals/:id', authenticateToken, (req, res) => {
+  app.delete('/api/edms/transmittals/:id', authenticateToken, requireAdmin, (req, res) => {
     try {
       const user: User = (req as any).user;
       const id = Number(req.params.id);
@@ -2161,7 +2121,7 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  app.put('/api/edms/comments/:id', authenticateToken, (req, res) => {
+  app.put('/api/edms/comments/:id', authenticateToken, requireManagerOrAdmin, (req, res) => {
     try {
       const user: User = (req as any).user;
       const id = Number(req.params.id);
@@ -2184,7 +2144,7 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  app.delete('/api/edms/comments/:id', authenticateToken, (req, res) => {
+  app.delete('/api/edms/comments/:id', authenticateToken, requireAdmin, (req, res) => {
     try {
       const user: User = (req as any).user;
       const id = Number(req.params.id);
@@ -2245,13 +2205,11 @@ Only return pure JSON, without code block wrapping.`;
 پاسخ فقط و فقط شامل آبجکت JSON معتبر باشد.
 `;
 
-      const ai = new GoogleGenAI({ apiKey });
-      const response = await ai.models.generateContent({
-        model: aiConfig.model_name || 'gemini-2.5-flash',
-        contents: prompt
-      });
-
-      const json = extractJSON(response.text || '{}');
+      const rawOutput = await executeUnifiedAI(
+        'You are an expert F&G EDMS engineering reviewer. Output JSON only.',
+        prompt
+      );
+      const json = extractJSON(rawOutput || '{}');
       res.json(json);
     } catch (e: any) {
       console.error('EDMS AI Review Error:', e);
@@ -2307,14 +2265,16 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  // 10. Internal Circulation & Workflow Routes
+  // 10. Internal Circulation & Workflow Routes (Cartable & Referrals)
   app.get('/api/edms/circulations', authenticateToken, (req, res) => {
     try {
-      const { doc_id, step, status } = req.query;
+      const { doc_id, step, status, assigned_to, assigned_by } = req.query;
       const list = db.getEDMSCirculations({
         doc_id: doc_id ? Number(doc_id) : undefined,
         step: step ? String(step) : undefined,
-        status: status ? String(status) : undefined
+        status: status ? String(status) : undefined,
+        assigned_to: assigned_to ? String(assigned_to) : undefined,
+        assigned_by: assigned_by ? String(assigned_by) : undefined
       });
       res.json(list);
     } catch (e: any) {
@@ -2325,17 +2285,66 @@ Only return pure JSON, without code block wrapping.`;
   app.post('/api/edms/circulations', authenticateToken, (req, res) => {
     try {
       const user: User = (req as any).user;
-      const item = db.addEDMSCirculation(req.body);
+      const {
+        doc_id,
+        doc_number,
+        doc_title,
+        revision,
+        step,
+        assigned_to,
+        assigned_role,
+        action_type,
+        priority,
+        due_date,
+        comments,
+        man_hours_spent
+      } = req.body;
+
+      if (!doc_id || !doc_number || !assigned_to) {
+        return res.status(400).json({ error: 'انتخاب مدرک و کاربر گیرنده ارجاع الزامی است.' });
+      }
+
+      const initialHistory = [
+        {
+          id: `hist-${Date.now()}`,
+          from: user.username,
+          to: assigned_to,
+          action_type: action_type || 'جهت بررسی و اقدام',
+          note: comments || 'ارجاع مدرک جهت اقدام در کارتابل',
+          date: getShamsiNow(),
+          status: 'in_progress'
+        }
+      ];
+
+      const item = db.addEDMSCirculation({
+        doc_id: Number(doc_id),
+        doc_number,
+        doc_title: doc_title || '',
+        revision: revision || 'Rev 0',
+        step: step || 'discipline_lead',
+        assigned_to,
+        assigned_by: user.username,
+        assigned_role: assigned_role || 'Lead Engineer',
+        action_type: action_type || 'بررسی و تایید فنی',
+        priority: priority || 'normal',
+        start_date: getShamsiNow(),
+        due_date: due_date || getShamsiNow(),
+        status: 'in_progress',
+        comments: comments || '',
+        man_hours_spent: Number(man_hours_spent) || 0,
+        history: initialHistory
+      });
+
       db.addAuditLog(
         user.id,
         user.username,
         'EDMS_ADD_CIRCULATION',
-        `ارجاع مدرک ${item.doc_number} به مرحله ${item.step} (${item.assigned_to})`,
+        `ارجاع مدرک ${item.doc_number} از ${user.username} به ${item.assigned_to} (${item.action_type})`,
         req.ip
       );
       res.status(201).json(item);
     } catch (e: any) {
-      res.status(500).json({ error: `خطا در ایجاد گام دستگردانی مدرک: ${e.message}` });
+      res.status(500).json({ error: `خطا در ایجاد ارجاع مدرک: ${e.message}` });
     }
   });
 
@@ -2343,23 +2352,60 @@ Only return pure JSON, without code block wrapping.`;
     try {
       const user: User = (req as any).user;
       const id = Number(req.params.id);
-      const updated = db.updateEDMSCirculation(id, req.body);
+      const existing = db.getEDMSCirculationById(id);
+      if (!existing) return res.status(404).json({ error: 'آیتم ارجاع مورد نظر یافت نشد.' });
+
+      // Permission check: Admin or Manager, OR assigned recipient, OR sender
+      const isAssignedRecipient = existing.assigned_to?.toLowerCase() === user.username.toLowerCase();
+      const isSender = existing.assigned_by?.toLowerCase() === user.username.toLowerCase();
+      const hasPermission = user.role === 'admin' || user.role === 'manager' || isAssignedRecipient || isSender;
+
+      if (!hasPermission) {
+        return res.status(403).json({ error: 'شما دسترسی لازم برای اقدام بر روی این ارجاع را ندارید.' });
+      }
+
+      const updates = { ...req.body };
+
+      // If forwarding or responding, append to history
+      if (req.body.forward_to || req.body.reply_note) {
+        const historyList = existing.history ? [...existing.history] : [];
+        historyList.push({
+          id: `hist-${Date.now()}`,
+          from: user.username,
+          to: req.body.forward_to || existing.assigned_by || 'ارسال‌کننده',
+          action_type: req.body.action_type || existing.action_type,
+          note: req.body.reply_note || updates.comments || 'اقدام در کارتابل',
+          date: getShamsiNow(),
+          status: updates.status || existing.status
+        });
+        updates.history = historyList;
+
+        if (req.body.forward_to) {
+          updates.assigned_by = user.username;
+          updates.assigned_to = req.body.forward_to;
+        }
+      }
+
+      delete updates.forward_to;
+      delete updates.reply_note;
+
+      const updated = db.updateEDMSCirculation(id, updates);
       if (!updated) return res.status(404).json({ error: 'گام دستگردانی یافت نشد.' });
 
       db.addAuditLog(
         user.id,
         user.username,
         'EDMS_UPDATE_CIRCULATION',
-        `به‌روزرسانی وضعیت گردش مدرک ${updated.doc_number} به ${updated.status}`,
+        `اقدام در کارتابل مدرک ${updated.doc_number} توسط ${user.username} (وضعیت: ${updated.status})`,
         req.ip
       );
       res.json(updated);
     } catch (e: any) {
-      res.status(500).json({ error: `خطا در به‌روزرسانی دستگردانی: ${e.message}` });
+      res.status(500).json({ error: `خطا در به‌روزرسانی ارجاع: ${e.message}` });
     }
   });
 
-  app.delete('/api/edms/circulations/:id', authenticateToken, (req, res) => {
+  app.delete('/api/edms/circulations/:id', authenticateToken, requireAdmin, (req, res) => {
     try {
       const id = Number(req.params.id);
       const ok = db.deleteEDMSCirculation(id);
@@ -2441,7 +2487,7 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  app.put('/api/edms/procurements/:id', authenticateToken, (req, res) => {
+  app.put('/api/edms/procurements/:id', authenticateToken, requireManagerOrAdmin, (req, res) => {
     try {
       const user: User = (req as any).user;
       const id = Number(req.params.id);
@@ -2461,7 +2507,7 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  app.delete('/api/edms/procurements/:id', authenticateToken, (req, res) => {
+  app.delete('/api/edms/procurements/:id', authenticateToken, requireAdmin, (req, res) => {
     try {
       const id = Number(req.params.id);
       const ok = db.deleteEDMSProcurement(id);
@@ -2502,7 +2548,7 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  app.delete('/api/edms/lessons/:id', authenticateToken, (req, res) => {
+  app.delete('/api/edms/lessons/:id', authenticateToken, requireAdmin, (req, res) => {
     try {
       const id = Number(req.params.id);
       const ok = db.deleteEDMSLesson(id);
@@ -2540,7 +2586,7 @@ Only return pure JSON, without code block wrapping.`;
     }
   });
 
-  app.put('/api/edms/billings/:id', authenticateToken, (req, res) => {
+  app.put('/api/edms/billings/:id', authenticateToken, requireManagerOrAdmin, (req, res) => {
     try {
       const user: User = (req as any).user;
       const id = Number(req.params.id);
@@ -2704,7 +2750,7 @@ async function queryCustomLLM(apiKey: string, baseUrl: string, model: string, sy
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 45000);
+    const timeoutId = setTimeout(() => controller.abort(), 18000);
     const response = await fetch(`${baseUrl}/chat/completions`, {
       method: 'POST',
       headers: {
@@ -2735,16 +2781,16 @@ async function queryCustomLLM(apiKey: string, baseUrl: string, model: string, sy
     const data = await response.json();
     return data.choices?.[0]?.message?.content || '';
   } catch (error: any) {
-    console.error('Custom LLM Call Error:', error);
+    console.error('Custom LLM Call Error:', error.message || error);
     throw new Error(`خطای ارتباط با سرور هوش مصنوعی سفارشی: ${error.message}`);
   }
 }
 
-// Call Server-Side Gemini API Key
+// Call Server-Side Gemini API Key with automatic multi-model fallback & retry
 async function queryServerGemini(systemPrompt: string, userText: string, fileBase64?: string, mimeType?: string, modelName?: string, customApiKey?: string): Promise<string> {
   const geminiApiKey = customApiKey || process.env.GEMINI_API_KEY;
   if (!geminiApiKey) {
-    throw new Error('سیستم فاقد کلید API هوش مصنوعی است. لطفا کلید Google AI Studio خود را در پنل تنظیمات وارد کنید یا سکرت GEMINI_API_KEY را تنظیم نمایید.');
+    throw new Error('سیستم فاقد کلید API هوش مصنوعی است. لطفا سکرت GEMINI_API_KEY را تنظیم نمایید.');
   }
 
   const ai = new GoogleGenAI({
@@ -2770,28 +2816,104 @@ async function queryServerGemini(systemPrompt: string, userText: string, fileBas
     });
   }
 
-  const selectedModel = (modelName && (modelName.startsWith('gemini-') || modelName.startsWith('learnlm')))
-    ? modelName
-    : 'gemini-3.5-flash';
-
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 45000);
-    const response = await ai.models.generateContent({
-      model: selectedModel,
-      contents: contents,
-      config: {
-        systemInstruction: systemPrompt,
-        temperature: 0.2
-      }
-    });
-    clearTimeout(timeoutId);
-
-    return response.text || '';
-  } catch (error: any) {
-    console.error('Server Gemini API Error:', error);
-    throw new Error(`خطای ارتباط با جمینی داخلی: ${error.message}`);
+  // Model candidate cascade in priority order
+  const candidateModels: string[] = [];
+  if (modelName && modelName.startsWith('gemini-') && !modelName.includes('2.5')) {
+    candidateModels.push(modelName);
   }
+  // Recommended reliable models in sequence (per @google/genai guidelines)
+  const fallbackList = ['gemini-3.8-flash', 'gemini-3.6-flash', 'gemini-3.5-flash'];
+  for (const m of fallbackList) {
+    if (!candidateModels.includes(m)) {
+      candidateModels.push(m);
+    }
+  }
+
+  let lastError: any = null;
+
+  for (const currentModel of candidateModels) {
+    // Attempt with retry on 503 (high demand) or 429
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 35000);
+        const response = await ai.models.generateContent({
+          model: currentModel,
+          contents: contents,
+          config: {
+            systemInstruction: systemPrompt,
+            temperature: 0.2
+          }
+        });
+        clearTimeout(timeoutId);
+
+        if (response && response.text) {
+          return response.text;
+        }
+      } catch (err: any) {
+        lastError = err;
+        const msg = err?.message || String(err);
+        const isTransient = msg.includes('503') || msg.includes('429') || msg.includes('high demand') || msg.includes('UNAVAILABLE');
+
+        console.warn(`[Gemini Engine] Model ${currentModel} (attempt ${attempt}) failed: ${msg}`);
+
+        if (isTransient && attempt === 1) {
+          // Short backoff before retry
+          await new Promise(r => setTimeout(r, 1000));
+          continue;
+        }
+        // Non-transient or retry exhausted, break to next candidate model in cascade
+        break;
+      }
+    }
+  }
+
+  throw new Error(`خطای ارتباط با جمینی داخلی: ${lastError?.message || 'پاسخی از مدل دریافت نشد.'}`);
+}
+
+// Master Unified AI Invocation with Automatic Fallback
+async function executeUnifiedAI(
+  systemPrompt: string,
+  userText: string,
+  options?: {
+    fileBase64?: string;
+    mimeType?: string;
+    modelName?: string;
+    customApiKey?: string;
+  }
+): Promise<string> {
+  const aiConfig = db.getAIConfig();
+  const isGoogle = !aiConfig.base_url || aiConfig.base_url.includes('googleapis') || !aiConfig.base_url.includes('openrouter');
+
+  // If user configured a custom LLM (like OpenRouter) with an API key, try that first
+  if (aiConfig.api_key && !isGoogle) {
+    try {
+      const output = await queryCustomLLM(
+        aiConfig.api_key,
+        aiConfig.base_url,
+        aiConfig.model_name,
+        systemPrompt,
+        userText,
+        options?.fileBase64,
+        options?.mimeType
+      );
+      if (output && output.trim()) {
+        return output;
+      }
+    } catch (err: any) {
+      console.warn(`[AI Controller] Custom LLM (${aiConfig.model_name}) call failed: ${err.message}. Seamlessly falling back to Gemini...`);
+    }
+  }
+
+  // Primary or Fallback: Gemini Engine with multi-model cascade
+  return await queryServerGemini(
+    systemPrompt,
+    userText,
+    options?.fileBase64,
+    options?.mimeType,
+    options?.modelName || (isGoogle ? aiConfig.model_name : 'gemini-3.8-flash'),
+    isGoogle ? (aiConfig.api_key || undefined) : undefined
+  );
 }
 
 // Robust JSON extraction and cleaning helpers

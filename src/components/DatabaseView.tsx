@@ -68,11 +68,16 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
   const [emailEquipment, setEmailEquipment] = useState<Equipment | null>(null);
   const ITEMS_PER_PAGE = 30;
 
+  const isFa = lang === 'fa';
+  const canEditContent = currentUser.role === 'admin' || currentUser.role === 'manager';
+  const canDelete = currentUser.role === 'admin';
+
   const totalPages = Math.ceil(editedEquipment.length / ITEMS_PER_PAGE);
   const paginatedEditedEquipment = editedEquipment.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   // Cell edit helper
   const handleCellEdit = (index: number, field: keyof Equipment, value: any) => {
+    if (!canEditContent) return;
     const updated = [...editedEquipment];
     if (field === 'price') {
       updated[index] = { ...updated[index], price: value === '' ? null : Number(value) };
@@ -84,6 +89,7 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
 
   // Delete Row
   const handleSpreadsheetDelete = (index: number) => {
+    if (!canDelete) return;
     const updated = [...editedEquipment];
     updated.splice(index, 1);
     setEditedEquipment(updated);
@@ -91,6 +97,7 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
 
   // Add Row
   const handleSpreadsheetAddRow = () => {
+    if (!canEditContent) return;
     const newRow: Equipment = {
       part_number: '',
       brand: '',
@@ -328,44 +335,59 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
                 <span>{lang === 'fa' ? 'ویرایشگر آنلاین پایگاه داده (Grid Editor)' : 'Live Grid Spreadsheet'}</span>
               </h3>
               <p className="text-xs text-slate-500 mt-0.5">
-                {lang === 'fa' ? 'ویرایش مستقیم سلول‌ها و همگام‌سازی یکباره با سرور' : 'Directly edit cells and synchronize with server'}
+                {canEditContent
+                  ? (lang === 'fa' ? 'ویرایش مستقیم سلول‌ها و همگام‌سازی یکباره با سرور' : 'Directly edit cells and synchronize with server')
+                  : (lang === 'fa' ? 'مشاهده مشخصات اقلام (دسترسی کارشناس: جهت ورود قلم جدید از زبانه «ثبت کالا به صورت دستی» استفاده نمایید)' : 'Read-only catalog grid. To enter new equipment, use Manual Entry tab.')}
               </p>
             </div>
 
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={handleSpreadsheetAddRow}
-                className="bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-semibold py-2 px-3 rounded-xl text-xs cursor-pointer transition-colors flex items-center gap-1"
-              >
-                <Plus className="w-4 h-4 text-blue-600" />
-                <span>{lang === 'fa' ? 'افزودن ردیف' : 'Add Row'}</span>
-              </button>
+            {canEditContent && (
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={handleSpreadsheetAddRow}
+                  className="bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-semibold py-2 px-3 rounded-xl text-xs cursor-pointer transition-colors flex items-center gap-1"
+                >
+                  <Plus className="w-4 h-4 text-blue-600" />
+                  <span>{lang === 'fa' ? 'افزودن ردیف' : 'Add Row'}</span>
+                </button>
 
-              <button
-                type="button"
-                onClick={onSpreadsheetSave}
-                disabled={isSavingDb}
-                className={`py-2 px-4 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                  isSavingDb 
-                    ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
-                    : 'bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/20 cursor-pointer'
-                }`}
-              >
-                {isSavingDb ? (
-                  <>
-                    <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                    <span>{lang === 'fa' ? 'در حال همگام‌سازی...' : 'Syncing...'}</span>
-                  </>
-                ) : (
-                  <>
-                    <Save className="w-3.5 h-3.5" />
-                    <span>{lang === 'fa' ? 'ذخیره و همگام‌سازی نهایی' : 'Save & Sync Grid'}</span>
-                  </>
-                )}
-              </button>
-            </div>
+                <button
+                  type="button"
+                  onClick={onSpreadsheetSave}
+                  disabled={isSavingDb}
+                  className={`py-2 px-4 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                    isSavingDb 
+                      ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
+                      : 'bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/20 cursor-pointer'
+                  }`}
+                >
+                  {isSavingDb ? (
+                    <>
+                      <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                      <span>{lang === 'fa' ? 'در حال همگام‌سازی...' : 'Syncing...'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Save className="w-3.5 h-3.5" />
+                      <span>{lang === 'fa' ? 'ذخیره و همگام‌سازی نهایی' : 'Save & Sync Grid'}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
           </div>
+
+          {!canEditContent && (
+            <div className="p-3 bg-blue-50/70 border border-blue-200/80 rounded-xl text-xs text-blue-800 flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 text-blue-600 shrink-0" />
+              <span>
+                {lang === 'fa' 
+                  ? 'سطح دسترسی شما «کارشناس» است: شما امکان مشاهده کلیه تجهیزات و ورود اطلاعات جدید را دارید. تغییر و ویرایش در اقلام قبلی منحصراً در اختیار مدیر و ادمین می‌باشد.'
+                  : 'Your role is Expert: You have Read and Data Input access. Editing existing catalog records is reserved for Manager and Admin.'}
+              </span>
+            </div>
+          )}
 
           {/* Spreadsheet Table */}
           <div className="overflow-x-auto border border-slate-200 bg-white rounded-xl shadow-2xs">
@@ -373,7 +395,9 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
               <thead className="bg-slate-50 text-slate-800 font-bold border-b border-slate-200">
                 <tr>
                   <th className="p-2.5 text-center border-x border-slate-200/50 w-10">#</th>
-                  <th className="p-2.5 text-center border-x border-slate-200/50 w-12">{lang === 'fa' ? 'حذف' : 'Del'}</th>
+                  {canDelete && (
+                    <th className="p-2.5 text-center border-x border-slate-200/50 w-12">{lang === 'fa' ? 'حذف' : 'Del'}</th>
+                  )}
                   <th className="p-2.5 text-center border-x border-slate-200/50 w-12">{lang === 'fa' ? 'ایمیل' : 'Email'}</th>
                   <th className="p-2.5 border-x border-slate-200/50 min-w-[130px]">{lang === 'fa' ? 'پارت نامبر' : 'Part Number'}</th>
                   <th className="p-2.5 border-x border-slate-200/50 min-w-[140px]">{lang === 'fa' ? 'شماره / رفرنس نقشه' : 'DWG Ref / Tag'}</th>
@@ -394,7 +418,7 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
               <tbody className="divide-y divide-slate-100 bg-white text-slate-700">
                 {editedEquipment.length === 0 ? (
                   <tr>
-                    <td colSpan={currentUser.price_access === 1 ? 11 : 9} className="p-8 text-center text-slate-400">
+                    <td colSpan={currentUser.price_access === 1 ? (canDelete ? 11 : 10) : (canDelete ? 9 : 8)} className="p-8 text-center text-slate-400">
                       {lang === 'fa' ? 'جدول خالی است.' : 'Grid is empty.'}
                     </td>
                   </tr>
@@ -404,15 +428,18 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
                     return (
                     <tr key={absoluteIdx} className="hover:bg-slate-50/80 transition-colors">
                       <td className="p-2 text-center font-bold text-slate-400">{absoluteIdx + 1}</td>
-                      <td className="p-2 text-center">
-                        <button
-                          type="button"
-                          onClick={() => handleSpreadsheetDelete(absoluteIdx)}
-                          className="text-slate-400 hover:text-rose-600 p-1 rounded-lg hover:bg-rose-50 cursor-pointer transition-colors"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </button>
-                      </td>
+                      {canDelete && (
+                        <td className="p-2 text-center">
+                          <button
+                            type="button"
+                            onClick={() => handleSpreadsheetDelete(absoluteIdx)}
+                            className="text-slate-400 hover:text-rose-600 p-1 rounded-lg hover:bg-rose-50 cursor-pointer transition-colors"
+                            title={lang === 'fa' ? 'حذف ردیف (ادمین)' : 'Delete Row'}
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </td>
+                      )}
                       <td className="p-2 text-center">
                         <button
                           type="button"
@@ -426,41 +453,66 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
                       <td className="p-1.5">
                         <input
                           type="text"
+                          disabled={!canEditContent}
                           value={eq.part_number}
                           onChange={(e) => handleCellEdit(absoluteIdx, 'part_number', e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-lg px-2 py-1 text-slate-900 font-bold font-mono text-xs"
+                          className={`w-full rounded-lg px-2 py-1 text-slate-900 font-bold font-mono text-xs border ${
+                            canEditContent 
+                              ? 'bg-slate-50 border-slate-200 focus:border-blue-500 focus:bg-white' 
+                              : 'bg-transparent border-transparent cursor-default'
+                          }`}
                         />
                       </td>
                       <td className="p-1.5">
                         <input
                           type="text"
+                          disabled={!canEditContent}
                           value={eq.drawing_ref || ''}
                           onChange={(e) => handleCellEdit(absoluteIdx, 'drawing_ref', e.target.value)}
-                          placeholder="DWG-101..."
-                          className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-lg px-2 py-1 text-indigo-700 font-mono text-xs"
+                          placeholder={canEditContent ? "DWG-101..." : "—"}
+                          className={`w-full rounded-lg px-2 py-1 text-indigo-700 font-mono text-xs border ${
+                            canEditContent 
+                              ? 'bg-slate-50 border-slate-200 focus:border-blue-500 focus:bg-white' 
+                              : 'bg-transparent border-transparent cursor-default'
+                          }`}
                         />
                       </td>
                       <td className="p-1.5">
                         <input
                           type="text"
+                          disabled={!canEditContent}
                           value={eq.brand}
                           onChange={(e) => handleCellEdit(absoluteIdx, 'brand', e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-lg px-2 py-1 text-blue-600 font-semibold text-xs"
+                          className={`w-full rounded-lg px-2 py-1 text-blue-600 font-semibold text-xs border ${
+                            canEditContent 
+                              ? 'bg-slate-50 border-slate-200 focus:border-blue-500 focus:bg-white' 
+                              : 'bg-transparent border-transparent cursor-default'
+                          }`}
                         />
                       </td>
                       <td className="p-1.5">
                         <input
                           type="text"
+                          disabled={!canEditContent}
                           value={eq.equipment_type}
                           onChange={(e) => handleCellEdit(absoluteIdx, 'equipment_type', e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-lg px-2 py-1 text-slate-800 text-xs"
+                          className={`w-full rounded-lg px-2 py-1 text-slate-800 text-xs border ${
+                            canEditContent 
+                              ? 'bg-slate-50 border-slate-200 focus:border-blue-500 focus:bg-white' 
+                              : 'bg-transparent border-transparent cursor-default'
+                          }`}
                         />
                       </td>
                       <td className="p-1.5 text-center">
                         <select
+                          disabled={!canEditContent}
                           value={eq.system_type}
                           onChange={(e) => handleCellEdit(absoluteIdx, 'system_type', e.target.value)}
-                          className="bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-lg px-1.5 py-1 text-slate-800 text-xs cursor-pointer font-medium"
+                          className={`rounded-lg px-1.5 py-1 text-slate-800 text-xs font-medium border ${
+                            canEditContent 
+                              ? 'bg-slate-50 border-slate-200 focus:border-blue-500 focus:bg-white cursor-pointer' 
+                              : 'bg-transparent border-transparent cursor-default appearance-none'
+                          }`}
                         >
                           <option value="alarm">{lang === 'fa' ? 'اعلام' : 'Alarm'}</option>
                           <option value="fighting">{lang === 'fa' ? 'اطفاء' : 'Fighting'}</option>
@@ -469,17 +521,27 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
                       <td className="p-1.5">
                         <input
                           type="text"
+                          disabled={!canEditContent}
                           value={eq.nfpa_reference}
                           onChange={(e) => handleCellEdit(absoluteIdx, 'nfpa_reference', e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-lg px-2 py-1 text-amber-700 font-bold text-xs"
+                          className={`w-full rounded-lg px-2 py-1 text-amber-700 font-bold text-xs border ${
+                            canEditContent 
+                              ? 'bg-slate-50 border-slate-200 focus:border-blue-500 focus:bg-white' 
+                              : 'bg-transparent border-transparent cursor-default'
+                          }`}
                         />
                       </td>
                       <td className="p-1.5">
                         <input
                           type="text"
+                          disabled={!canEditContent}
                           value={eq.technical_specifications}
                           onChange={(e) => handleCellEdit(absoluteIdx, 'technical_specifications', e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-lg px-2 py-1 text-slate-600 text-xs"
+                          className={`w-full rounded-lg px-2 py-1 text-slate-600 text-xs border ${
+                            canEditContent 
+                              ? 'bg-slate-50 border-slate-200 focus:border-blue-500 focus:bg-white' 
+                              : 'bg-transparent border-transparent cursor-default'
+                          }`}
                         />
                       </td>
                       {currentUser.price_access === 1 && (
@@ -487,17 +549,27 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
                           <td className="p-1.5">
                             <input
                               type="number"
+                              disabled={!canEditContent}
                               value={eq.price === null ? '' : eq.price}
                               onChange={(e) => handleCellEdit(absoluteIdx, 'price', e.target.value)}
                               placeholder="—"
-                              className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-lg px-2 py-1 text-emerald-700 font-bold text-left text-xs"
+                              className={`w-full rounded-lg px-2 py-1 text-emerald-700 font-bold text-left text-xs border ${
+                                canEditContent 
+                                  ? 'bg-slate-50 border-slate-200 focus:border-blue-500 focus:bg-white' 
+                                  : 'bg-transparent border-transparent cursor-default'
+                              }`}
                             />
                           </td>
                           <td className="p-1.5 text-center">
                             <select
+                              disabled={!canEditContent}
                               value={eq.currency}
                               onChange={(e) => handleCellEdit(absoluteIdx, 'currency', e.target.value)}
-                              className="bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-lg px-1 py-1 text-slate-800 text-xs cursor-pointer"
+                              className={`rounded-lg px-1 py-1 text-slate-800 text-xs border ${
+                                canEditContent 
+                                  ? 'bg-slate-50 border-slate-200 focus:border-blue-500 focus:bg-white cursor-pointer' 
+                                  : 'bg-transparent border-transparent cursor-default appearance-none'
+                              }`}
                             >
                               <option value="USD">USD</option>
                               <option value="EUR">EUR</option>
@@ -511,9 +583,14 @@ export const DatabaseView: React.FC<DatabaseViewProps> = ({
                       <td className="p-1.5 text-center">
                         <input
                           type="text"
+                          disabled={!canEditContent}
                           value={eq.created_at || ''}
                           onChange={(e) => handleCellEdit(absoluteIdx, 'created_at', e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-lg px-2 py-1 text-slate-400 text-center text-[10px]"
+                          className={`w-full rounded-lg px-2 py-1 text-slate-400 text-center text-[10px] border ${
+                            canEditContent 
+                              ? 'bg-slate-50 border-slate-200 focus:border-blue-500 focus:bg-white' 
+                              : 'bg-transparent border-transparent cursor-default'
+                          }`}
                           dir="ltr"
                         />
                       </td>

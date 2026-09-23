@@ -243,32 +243,42 @@ export const CBSBillingManager: React.FC<CBSBillingManagerProps> = ({
                   </div>
                 </div>
 
-                {/* Actions */}
-                <div className="flex items-center gap-2 self-end md:self-center">
-                  {cert.status === 'submitted' && (
-                    <button
-                      onClick={() => handleUpdateStatus(cert.id, 'certified')}
-                      className="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-2xs cursor-pointer"
-                    >
-                      تایید کارفرما (Certified)
-                    </button>
-                  )}
-                  {cert.status === 'certified' && (
-                    <button
-                      onClick={() => handleUpdateStatus(cert.id, 'paid')}
-                      className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-2xs cursor-pointer flex items-center gap-1"
-                    >
-                      <CreditCard className="w-3.5 h-3.5" />
-                      <span>ثبت وصول وجه (Paid)</span>
-                    </button>
-                  )}
-                  {cert.status === 'paid' && (
+                {/* Actions - Manager & Admin only */}
+                {(currentUser.role === 'admin' || currentUser.role === 'manager') && (
+                  <div className="flex items-center gap-2 self-end md:self-center">
+                    {cert.status === 'submitted' && (
+                      <button
+                        onClick={() => handleUpdateStatus(cert.id, 'certified')}
+                        className="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-2xs cursor-pointer"
+                      >
+                        تایید کارفرما (Certified)
+                      </button>
+                    )}
+                    {cert.status === 'certified' && (
+                      <button
+                        onClick={() => handleUpdateStatus(cert.id, 'paid')}
+                        className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-2xs cursor-pointer flex items-center gap-1"
+                      >
+                        <CreditCard className="w-3.5 h-3.5" />
+                        <span>ثبت وصول وجه (Paid)</span>
+                      </button>
+                    )}
+                    {cert.status === 'paid' && (
+                      <span className="flex items-center gap-1 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
+                        <CheckCircle2 className="w-4 h-4" />
+                        تسویه و وصول شده
+                      </span>
+                    )}
+                  </div>
+                )}
+                {currentUser.role === 'expert' && cert.status === 'paid' && (
+                  <div className="flex items-center gap-2 self-end md:self-center">
                     <span className="flex items-center gap-1 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
                       <CheckCircle2 className="w-4 h-4" />
                       تسویه و وصول شده
                     </span>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             );
           })

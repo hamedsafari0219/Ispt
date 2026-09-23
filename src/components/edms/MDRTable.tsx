@@ -18,23 +18,29 @@ import {
   ChevronDown,
   PauseCircle,
   PlayCircle,
-  Layers
+  Layers,
+  Send,
+  UserCheck
 } from 'lucide-react';
 import * as XLSX from 'xlsx';
-import { EDMSDocument, EDMSRevision, EDMSDocStatus, EDMSReviewCode } from '../../types';
+import { EDMSDocument, EDMSRevision, EDMSDocStatus, EDMSReviewCode, User } from '../../types';
 import { authenticatedFetch } from '../../utils/api';
 import { AIReviewModal } from './AIReviewModal';
 
 interface MDRTableProps {
   documents: EDMSDocument[];
+  currentUser: User;
   onRefresh: () => void;
   lang: 'fa' | 'en';
+  onReferDoc?: (doc: EDMSDocument) => void;
 }
 
 export const MDRTable: React.FC<MDRTableProps> = ({
   documents,
+  currentUser,
   onRefresh,
-  lang
+  lang,
+  onReferDoc
 }) => {
   const [search, setSearch] = useState('');
   const [disciplineFilter, setDisciplineFilter] = useState('all');
@@ -46,6 +52,83 @@ export const MDRTable: React.FC<MDRTableProps> = ({
   const [editingDoc, setEditingDoc] = useState<EDMSDocument | null>(null);
   const [aiReviewDoc, setAiReviewDoc] = useState<EDMSDocument | null>(null);
   const [revisionDoc, setRevisionDoc] = useState<EDMSDocument | null>(null);
+
+  // Quick Referral Modal State (Cartable)
+  const [referralDoc, setReferralDoc] = useState<EDMSDocument | null>(null);
+  const [referralTargetUser, setReferralTargetUser] = useState('');
+  const [referralTargetRole, setReferralTargetRole] = useState('Lead Engineer');
+  const [referralActionType, setReferralActionType] = useState('بررسی و تایید فنی مهندسی');
+  const [referralPriority, setReferralPriority] = useState<'normal' | 'urgent' | 'immediate'>('normal');
+  const [referralDueDate, setReferralDueDate] = useState('1405/06/25');
+  const [referralComments, setReferralComments] = useState('');
+  const [referralSubmitting, setReferralSubmitting] = useState(false);
+  const [usersDirectory, setUsersDirectory] = useState<Array<{ id: number; username: string; role: string }>>([]);
+
+  const handleOpenReferral = async (doc: EDMSDocument) => {
+    setReferralDoc(doc);
+    setReferralComments(`جهت بررسی و اقدام فنی بر روی مدرک ${doc.doc_number} (رویژن ${doc.current_revision})`);
+    try {
+      const res = await authenticatedFetch('/api/users/directory');
+      if (res.ok) {
+        const u = await res.json();
+        setUsersDirectory(u);
+        const other = u.find((x: any) => x.username.toLowerCase() !== currentUser.username.toLowerCase());
+        if (other) {
+          setReferralTargetUser(other.username);
+          setReferralTargetRole(other.role === 'admin' ? 'Project Manager' : (other.role === 'manager' ? 'Lead Engineer' : 'Designer'));
+        } else if (u[0]) {
+          setReferralTargetUser(u[0].username);
+        }
+      }
+    } catch {
+      setUsersDirectory([
+        { id: 1, username: 'admin', role: 'admin' },
+        { id: 2, username: 'manager', role: 'manager' },
+        { id: 3, username: 'user', role: 'user' }
+      ]);
+    }
+  };
+
+  const handleReferralSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!referralDoc || !referralTargetUser) return;
+    setReferralSubmitting(true);
+    try {
+      const res = await authenticatedFetch('/api/edms/circulations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          doc_id: referralDoc.id,
+          doc_number: referralDoc.doc_number,
+          doc_title: referralDoc.title,
+          revision: referralDoc.current_revision,
+          step: 'discipline_lead',
+          assigned_to: referralTargetUser.trim(),
+          assigned_by: currentUser.username,
+          assigned_role: referralTargetRole,
+          action_type: referralActionType,
+          priority: referralPriority,
+          due_date: referralDueDate,
+          comments: referralComments.trim(),
+          status: 'in_progress'
+        })
+      });
+      if (res.ok) {
+        alert(`مدرک ${referralDoc.doc_number} با موفقیت به کارتابل کاربر ${referralTargetUser} ارجاع داده شد.`);
+        const sentDoc = referralDoc;
+        setReferralDoc(null);
+        if (onRefresh) onRefresh();
+        if (onReferDoc) onReferDoc(sentDoc);
+      } else {
+        const err = await res.json();
+        alert(err.error || 'خطا در ثبت ارجاع');
+      }
+    } catch (e) {
+      alert('خطا در ارتباط با سرور.');
+    } finally {
+      setReferralSubmitting(false);
+    }
+  };
 
   // Form State for Add / Edit
   const [formData, setFormData] = useState<Partial<EDMSDocument>>({
@@ -449,6 +532,15 @@ export const MDRTable: React.FC<MDRTableProps> = ({
                     {/* Actions */}
                     <td className="py-3 px-4 text-center">
                       <div className="flex items-center justify-center gap-1">
+                        {/* Refer to User (Cartable) */}
+                        <button
+                          onClick={() => handleOpenReferral(doc)}
+                          className="p-1.5 rounded-lg text-blue-600 hover:text-blue-800 hover:bg-blue-50 transition-colors cursor-pointer"
+                          title="ارجاع مدرک به کاربر (ارسال به کارتابل)"
+                        >
+                          <Send className="w-4 h-4" />
+                        </button>
+
                         {/* Revision History & Lifecycle */}
                         <button
                           onClick={() => setRevisionDoc(doc)}
@@ -467,36 +559,42 @@ export const MDRTable: React.FC<MDRTableProps> = ({
                           <Sparkles className="w-4 h-4" />
                         </button>
 
-                        {/* Hold / Unhold Action */}
-                        <button
-                          onClick={() => handleToggleHold(doc)}
-                          className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                            doc.is_hold 
-                              ? 'text-rose-600 hover:bg-rose-50' 
-                              : 'text-slate-400 hover:text-amber-600 hover:bg-amber-50'
-                          }`}
-                          title={doc.is_hold ? 'خروج مدرک از وضعیت تعلیق (Unhold)' : 'تعلیق مدرک (Hold)'}
-                        >
-                          {doc.is_hold ? <PlayCircle className="w-4 h-4" /> : <PauseCircle className="w-4 h-4" />}
-                        </button>
+                        {/* Hold / Unhold Action - Manager & Admin */}
+                        {(currentUser.role === 'admin' || currentUser.role === 'manager') && (
+                          <button
+                            onClick={() => handleToggleHold(doc)}
+                            className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                              doc.is_hold 
+                                ? 'text-rose-600 hover:bg-rose-50' 
+                                : 'text-slate-400 hover:text-amber-600 hover:bg-amber-50'
+                            }`}
+                            title={doc.is_hold ? 'خروج مدرک از وضعیت تعلیق (Unhold)' : 'تعلیق مدرک (Hold)'}
+                          >
+                            {doc.is_hold ? <PlayCircle className="w-4 h-4" /> : <PauseCircle className="w-4 h-4" />}
+                          </button>
+                        )}
 
-                        {/* Edit Doc */}
-                        <button
-                          onClick={() => handleOpenEdit(doc)}
-                          className="p-1.5 rounded-lg text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 transition-colors cursor-pointer"
-                          title="ویرایش مشخصات مدرک"
-                        >
-                          <Edit3 className="w-4 h-4" />
-                        </button>
+                        {/* Edit Doc - Manager & Admin */}
+                        {(currentUser.role === 'admin' || currentUser.role === 'manager') && (
+                          <button
+                            onClick={() => handleOpenEdit(doc)}
+                            className="p-1.5 rounded-lg text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 transition-colors cursor-pointer"
+                            title="ویرایش مشخصات مدرک"
+                          >
+                            <Edit3 className="w-4 h-4" />
+                          </button>
+                        )}
 
-                        {/* Delete Doc */}
-                        <button
-                          onClick={() => handleDeleteDoc(doc.id, doc.doc_number)}
-                          className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
-                          title="حذف مدرک"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                        {/* Delete Doc - Admin only */}
+                        {currentUser.role === 'admin' && (
+                          <button
+                            onClick={() => handleDeleteDoc(doc.id, doc.doc_number)}
+                            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                            title="حذف مدرک از MDR (ادمین)"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -848,6 +946,136 @@ export const MDRTable: React.FC<MDRTableProps> = ({
                   {savingDoc 
                     ? (lang === 'fa' ? 'در حال ذخیره...' : 'Saving...')
                     : (lang === 'fa' ? 'ذخیره مدرک در MDR' : 'Save Document')}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Modal: Quick Referral to User (Cartable) */}
+      {referralDoc && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg border border-slate-200 overflow-hidden">
+            <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-blue-50/50">
+              <h3 className="text-sm font-black text-slate-900 flex items-center gap-2">
+                <Send className="w-4 h-4 text-blue-600" />
+                <span>ارجاع مدرک به کارتابل کاربر</span>
+              </h3>
+              <button
+                onClick={() => setReferralDoc(null)}
+                className="p-1 rounded-lg text-slate-400 hover:bg-slate-200 cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleReferralSubmit} className="p-5 space-y-3.5 text-xs">
+              <div className="p-3 bg-slate-50 rounded-2xl border border-slate-200">
+                <div className="flex items-center justify-between font-mono font-bold text-blue-700">
+                  <span>{referralDoc.doc_number}</span>
+                  <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded text-[11px]">
+                    {referralDoc.current_revision}
+                  </span>
+                </div>
+                <div className="text-slate-700 text-xs mt-1 font-medium leading-snug">
+                  {referralDoc.title}
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 mb-1 flex items-center gap-1">
+                  <UserCheck className="w-3.5 h-3.5 text-blue-600" />
+                  <span>انتخاب کاربر دریافت‌کننده (گیرنده در کارتابل):</span>
+                </label>
+                <select
+                  value={referralTargetUser}
+                  onChange={e => {
+                    setReferralTargetUser(e.target.value);
+                    const u = usersDirectory.find(x => x.username === e.target.value);
+                    if (u) {
+                      setReferralTargetRole(u.role === 'admin' ? 'Project Manager' : (u.role === 'manager' ? 'Lead Engineer' : 'Designer'));
+                    }
+                  }}
+                  className="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold focus:bg-white"
+                  required
+                >
+                  <option value="">-- انتخاب کاربر --</option>
+                  {usersDirectory.map(u => (
+                    <option key={u.id} value={u.username}>
+                      {u.username} ({u.role === 'admin' ? 'مدیر سیستم' : (u.role === 'manager' ? 'مدیر مهندسی' : 'کارشناس مهندسی')})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-bold text-slate-700 mb-1">نوع اقدام:</label>
+                  <select
+                    value={referralActionType}
+                    onChange={e => setReferralActionType(e.target.value)}
+                    className="w-full p-2 rounded-xl bg-slate-50 border border-slate-200 text-xs focus:bg-white"
+                  >
+                    <option value="بررسی و تایید فنی مهندسی">بررسی و تایید فنی مهندسی</option>
+                    <option value="اعمال کامنت‌های کارفرما و اصلاح مدارک">اعمال کامنت‌های کارفرما</option>
+                    <option value="هماهنگی بین‌رشته‌ای (IDC Check)">هماهنگی بین‌رشته‌ای (IDC)</option>
+                    <option value="کنترل فرمت و صدور نهایی DCC">کنترل فرمت DCC</option>
+                    <option value="جهت استحضار و پیگیری">جهت استحضار و پیگیری</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-bold text-slate-700 mb-1">اولویت اقدام:</label>
+                  <select
+                    value={referralPriority}
+                    onChange={e => setReferralPriority(e.target.value as any)}
+                    className="w-full p-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold focus:bg-white"
+                  >
+                    <option value="normal">عادی (Normal)</option>
+                    <option value="urgent">فوری (Urgent)</option>
+                    <option value="immediate">آنی (Immediate)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 mb-1">مهلت اقدام (شمسی):</label>
+                <input
+                  type="text"
+                  value={referralDueDate}
+                  onChange={e => setReferralDueDate(e.target.value)}
+                  className="w-full p-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 mb-1">دستورکار و توضیحات ارجاع:</label>
+                <textarea
+                  rows={2}
+                  value={referralComments}
+                  onChange={e => setReferralComments(e.target.value)}
+                  className="w-full p-2 rounded-xl bg-slate-50 border border-slate-200 text-xs resize-none focus:bg-white"
+                  required
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setReferralDoc(null)}
+                  className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-bold"
+                >
+                  انصراف
+                </button>
+                <button
+                  type="submit"
+                  disabled={referralSubmitting}
+                  className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-xs cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>{referralSubmitting ? 'در حال ارسال...' : 'ارسال به کارتابل'}</span>
                 </button>
               </div>
             </form>

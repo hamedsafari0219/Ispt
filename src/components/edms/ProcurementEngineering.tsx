@@ -319,27 +319,29 @@ export const ProcurementEngineering: React.FC<ProcurementEngineeringProps> = ({
                   )}
                 </div>
 
-                {/* Stage Progression Buttons */}
-                <div className="flex items-center justify-end gap-2 pt-2">
-                  {item.stage === 'TBE_IN_PROGRESS' && (
-                    <button
-                      onClick={() => handleAdvanceStage(item, 'TBA_APPROVED')}
-                      className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer shadow-2xs flex items-center gap-1"
-                    >
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>تایید ارزیابی فنی (صدور TBA)</span>
-                    </button>
-                  )}
-                  {item.stage === 'TBA_APPROVED' && (
-                    <button
-                      onClick={() => handleAdvanceStage(item, 'PO_PLACED')}
-                      className="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs cursor-pointer shadow-2xs flex items-center gap-1"
-                    >
-                      <ShoppingCart className="w-3.5 h-3.5" />
-                      <span>انعقاد قرارداد و سفارش (PO Placed)</span>
-                    </button>
-                  )}
-                </div>
+                {/* Stage Progression Buttons - Manager & Admin only */}
+                {(currentUser.role === 'admin' || currentUser.role === 'manager') && (
+                  <div className="flex items-center justify-end gap-2 pt-2">
+                    {item.stage === 'TBE_IN_PROGRESS' && (
+                      <button
+                        onClick={() => handleAdvanceStage(item, 'TBA_APPROVED')}
+                        className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer shadow-2xs flex items-center gap-1"
+                      >
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span>تایید ارزیابی فنی (صدور TBA)</span>
+                      </button>
+                    )}
+                    {item.stage === 'TBA_APPROVED' && (
+                      <button
+                        onClick={() => handleAdvanceStage(item, 'PO_PLACED')}
+                        className="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs cursor-pointer shadow-2xs flex items-center gap-1"
+                      >
+                        <ShoppingCart className="w-3.5 h-3.5" />
+                        <span>انعقاد قرارداد و سفارش (PO Placed)</span>
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             );
           })

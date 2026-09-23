@@ -72,15 +72,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
         className="fixed top-0 bottom-0 z-50 lg:static lg:z-20 w-80 max-w-[85vw] bg-white border-l border-slate-200/80 flex flex-col overflow-y-auto shrink-0 h-full p-4 sm:p-5 space-y-5 shadow-2xl lg:shadow-xs custom-scrollbar"
         dir={lang === 'fa' ? 'rtl' : 'ltr'}
       >
-        {/* Mobile Header with Close Button */}
-        <div className="flex items-center justify-between pb-2 border-b border-slate-100 lg:hidden">
+        {/* Header with Close Button */}
+        <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <span className="text-xs font-bold text-slate-800">
-            {lang === 'fa' ? 'پنل آرشیو و یادگیری هوشمند' : 'Archive & AI Feeder'}
+            {lang === 'fa' ? 'پنل ارتقاء دیتابیس از طریق فایل' : 'Database Upgrade via File'}
           </span>
           <button
             type="button"
             onClick={onCloseSidebar}
             className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            title={lang === 'fa' ? 'بستن پنل' : 'Close Panel'}
           >
             <X className="w-5 h-5" />
           </button>

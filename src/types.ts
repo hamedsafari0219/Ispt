@@ -1,7 +1,7 @@
 export interface User {
   id: number;
   username: string;
-  role: 'admin' | 'user';
+  role: 'admin' | 'manager' | 'user';
   system_access: 'alarm' | 'fighting' | 'both';
   price_access: number;
   token?: string;
@@ -329,21 +329,35 @@ export interface EDMSDocument {
   updated_at: string;
 }
 
+export interface EDMSCirculationHistoryItem {
+  id: string;
+  from: string;
+  to: string;
+  action_type?: string;
+  note: string;
+  date: string;
+  status: string;
+}
+
 export interface EDMSCirculationItem {
   id: number;
   doc_id: number;
   doc_number: string;
   doc_title: string;
   revision: string;
-  step: 'drafting' | 'discipline_lead' | 'engineering_manager' | 'dcc_issue' | 'client_review' | 'completed';
+  step: 'drafting' | 'discipline_lead' | 'engineering_manager' | 'inter_discipline' | 'dcc_check' | 'client_review' | 'completed' | string;
   assigned_to: string;
-  assigned_role: 'Designer' | 'Lead Engineer' | 'Project Manager' | 'DCC Controller' | 'Client / Consultant';
+  assigned_by?: string;
+  assigned_role: 'Designer' | 'Lead Engineer' | 'Project Manager' | 'DCC Controller' | 'Client / Consultant' | string;
+  action_type?: string; // 'بررسی و تایید فنی' | 'اعمال کامنت‌ها' | 'هماهنگی بین‌رشته‌ای IDC' | 'کنترل فرمت و صدور DCC' | 'جهت استحضار'
+  priority?: 'normal' | 'urgent' | 'immediate';
   start_date: string;
   due_date: string;
   completed_date?: string;
-  status: 'pending' | 'in_progress' | 'approved' | 'rejected' | 'delayed';
+  status: 'pending' | 'in_progress' | 'approved' | 'rejected' | 'delayed' | 'on_hold';
   comments?: string;
   man_hours_spent?: number;
+  history?: EDMSCirculationHistoryItem[];
 }
 
 export interface EDMSTimesheetEntry {

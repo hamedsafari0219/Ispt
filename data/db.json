@@ -869,11 +869,1138 @@
         }
       ],
       "updated_at": "2026-07-08T06:19:21.479Z"
+    },
+    {
+      "id": 7,
+      "user_id": 1,
+      "title": "یک مقدمه و شرح فنی رسمی و حرفه",
+      "history": [
+        {
+          "role": "user",
+          "content": "یک مقدمه و شرح فنی رسمی و حرفه‌ای به زبان فارسی برای یک پروپوزال فنی مهندسی سیستم‌های اعلام و اطفاء حریق (F&G) بنویس. پروژه: پروپوزال سیستم اعلام و اطفاء حریق F&G برای کارفرمای شرکت صنایع پتروشیمی. تجهیزات شامل: 1x Notifier FX-350 (پنل مرکزی اعلام حریق), 1x Fike FM-200-CYL (سیلندر اطفاء حریق گازی), 1x Oggioni RAS/AD (Gas Detector). متن حداکثر ۳ پاراگراف جذاب، فنی و با لحن مهندسی رسمی باشد."
+        },
+        {
+          "role": "assistant",
+          "content": "**مقدمه و شرح فنی پروپوزال سیستم‌های اعلام و اطفاء حریق (F&G)**\n\nصنایع پتروشیمی به دلیل ماهیت فرآیندی پیچیده و حضور مستمر گازهای قابل اشتعال و سمی، همواره نیازمند بالاترین سطوح ایمنی و سیستم‌های پیشرفته کشف و اطفاء حریق (F&G) هستند. این پروپوزال فنی با هدف ارائه یک راهکار جامع، یکپارچه و منطبق بر آخرین استانداردهای بین‌المللی نظیر NFPA 72 و NFPA 2001 جهت حفاظت از دارایی‌های حیاتی، تجهیزات فرآیندی و پرسنل شریف آن مجموعه محترم تدوین شده است. در این طرح، با تلفیق فناوری‌های روزآمد دنیا در حوزه کشف گازهای مخاطره‌آمیز، اعلام حریق آدرس‌پذیر و اطفاء حریق خودکار با گاز تمیز، سیستمی با قابلیت اطمینان بالا، پایداری عملکردی فوق‌العاده و ساختار بدون خطا (Fail-Safe) پیشنهاد می‌گردد.\n\nدر بخش کشف و اعلام، هسته مرکزی سیستم بر پایه پنل آدرس‌پذیر هوشمند **Notifier FX-350** (مطابق با استاندارد NFPA 72) بنا شده است که با پشتیبانی از دو لوپ مجزا و صفحه نمایش ال‌سی‌دی، مدیریت و مانیتورینگ یکپارچه تجهیزات را میسر می‌سازد. جهت پایش مستمر و دقیق اتمسفر محیط‌های پرخطر (Hazardous Areas)، دتکتور گاز میکروپروسسوری **Oggioni RAS/AD** با بدنه ضد انفجار (دارای تاییدیه ATEX II 2G Ex d IIC T6) و سطح ایمنی عملکردی SIL 2 پیشنهاد شده است. این تجهیز با بهره‌گیری از خروجی آنالوگ 4-20mA، پروتکل دیجیتال RS-485 Modbus RTU و سه کنتاکت رله بدون ولتاژ، امکان مانیتورینگ پیوسته، کالیبراسیون غیرمزاحم (Non-Intrusive) و یکپارچه‌سازی کامل با سیستم‌های کنترل فرآیندی (DCS/ESD) را فراهم می‌آورد.\n\nدر بخش اطفاء حریق خودکار، به منظور صیانت از اتاق‌های کنترل و تجهیزات حساس الکترونیکی، سیستم اطفاء گاز تمیز **Fike FM-200-CYL** مبتنی بر الزامات سخت‌گیرانه استاندارد NFPA 2001 طراحی گردیده است. این سیستم شامل سیلندر ۸۰ لیتری تحت فشار ۲۵ بار مجهز به شیر برقی خودکار است که به گونه‌ای پیکربندی شده تا کل حجم گاز اطفاء را در زمان بحرانی کمتر از ۱۰ ثانیه تخلیه نموده و غلظت طراحی لازم را جهت فرونشاندن سریع حریق بدون آسیب به تجهیزات حساس ایجاد کند. هم‌افزایی این تجهیزات تراز اول جهانی، سیستمی پایدار، منطبق بر الزامات پتروشیمی و ضامن تداوم ایمن تولید را به ارمغان می‌آورد."
+        }
+      ],
+      "updated_at": "2026-09-15T20:12:09.691Z"
+    },
+    {
+      "id": 8,
+      "user_id": 1,
+      "title": "سلام، تجهیزات اعلام حریق را مع",
+      "history": [
+        {
+          "role": "user",
+          "content": "سلام، تجهیزات اعلام حریق را معرفی کن"
+        },
+        {
+          "role": "assistant",
+          "content": "با سلام و احترام؛\n\nبه عنوان کارشناس ارشد سیستم‌های اعلام و اطفاء حریق (F&G)، تجهیزات اعلام حریق را در یک ساختار مهندسی، استاندارد و منطبق بر الزامات بین‌المللی (نظیر NFPA) خدمت شما معرفی می‌کنم. \n\nیک سیستم اعلام حریق و گاز (F&G) کارآمد، از بخش‌های مختلفی تشکیل شده است که هماهنگی میان آن‌ها ایمنی کل سایت را تضمین می‌کند. در ادامه، این تجهیزات را به تفکیک دسته‌بندی فنی معرفی می‌کنم:\n\n---\n\n### ۱. پنل کنترل مرکزی (Fire Alarm Control Panel - FACP)\nپنل مرکزی به عنوان «مغز متفکر» سیستم عمل می‌کند؛ سیگنال‌ها را از دتکتورها دریافت کرده، پردازش می‌کند و فرمان‌های خروجی (آلارم یا اطفاء) را صادر می‌نماید.\n\n*   **تجهیز پیشنهادی موجود در انبار:**\n    *   **پارت‌نامبر:** FX-350\n    *   **برند:** Notifier (آمریکا)\n    *   **نوع:** پنل مرکزی آدرس‌پذیر (Addressable)\n    *   **استاندارد:** NFPA 72\n    *   **مشخصات فنی:** مجهز به صفحه نمایش LCD و پشتیبانی از دو لوپ (Loop) آدرس‌پذیر مجزا جهت مسیریابی و آدرس‌دهی دقیق تجهیزات.\n    *   **قیمت:** 1,250 USD\n\n---\n\n### ۲. تجهیزات کشف و تشخیص (Initiating Devices)\nاین تجهیزات وظیفه پایش مداوم محیط و شناسایی نشانه‌های حریق (دود، حرارت، شعله) یا نشت گازهای خطرناک را بر عهده دارند.\n\n*   **دتکتورهای حریق:** شامل دتکتورهای دود (نوری/یونیزه)، دتکتورهای حرارتی (ثابت/افزایشی) و دتکتورهای شعله (Flame Detectors).\n*   **دتکتورهای گاز (Gas Detectors):** برای شناسایی گازهای قابل اشتعال و سمی. فناوری‌های سنسور به کار رفته در این تجهیزات عبارتند از:\n    *   **کاتالیتیک (Catalytic):** بهینه شده برای گازهای قابل احتراق.\n    *   **الکتروشیمیایی و جذب شیمیایی:** برای تشخیص گازهای سمی.\n    *   **مادون قرمز (IR):** برای پایش دقیق هیدروکربن‌ها.\n\n#### الزامات مهندسی و استانداردهای دتکتورها در مناطق خطرناک (Hazardous Areas):\n*   **گواهینامه ضد انفجار:** تجهیزات نصب شده در زون‌های عملیاتی باید دارای استاندارد ATEX باشند (مانند گواهینامه **ATEX II 2G Ex d IIC T6** که نشان‌دهنده مقاومت تجهیز در برابر گازهای انفجاری گروه IIC و حداکثر دمای سطح T6 است).\n*   **سطح یکپارچگی ایمنی (SIL):** برای استفاده در سیستم‌های ایمنی بحرانی (SIS)، دتکتورها باید استاندارد **SIL 2** را برآورده کنند.\n\n---\n\n### ۳. پروتکل‌های ارتباطی و خروجی‌ها (Communication & Interfaces)\nبرای یکپارچه‌سازی دتکتورها با پنل مرکزی F&G و سیستم‌های کنترل صنعتی (مانند DCS یا PLC)، خروجی‌های زیر الزامی است:\n*   **خروجی آنالوگ 4-20mA:** جهت انتقال پیوسته غلظت گاز یا وضعیت دتکتور به اتاق کنترل.\n*   **پروتکل دیجیتال RS-485 MODBUS RTU:** جهت ارتباط دیجیتال، عیب‌یابی و پیکربندی از راه دور.\n*   **کنتاکت‌های رله بدون ولتاژ (Dry Contacts):** برای فعال‌سازی آلارم‌های محلی، اینترلاک‌ها و قطع اضطراری تجهیزات (ESD).\n*   **کالیبراسیون بدون نیاز به باز کردن محفظه (Non-Intrusive Calibration):** با استفاده از پروتکل‌های دیجیتال (مانند Modbus یا Bluetooth)، امکان کالیبراسیون یک‌نفره (One Person Calibration)، تنظیم نقاط صفر (Zero)، اسپان (Span)، آستانه‌های آلارم (TWA, STEL) و دریافت گزارش‌های نگهداری بدون باز کردن پوسته ضد انفجار دتکتور فراهم می‌شود که ایمنی و سرعت تعمیر و نگهداری را به شدت افزایش می‌دهد.\n\n---\n\n### ۴. تجهیزات اطفاء حریق (Fire Suppression Systems)\nدر بسیاری از پروژه‌های صنعتی و اتاق‌های سرور، سیستم اعلام حریق مستقیماً با سیستم اطفاء حریق خودکار (Suppression) لینک می‌شود.\n\n*   **تجهیز پیشنهادی موجود در انبار:**\n    *   **پارت‌نامبر:** FM-200-CYL\n    *   **برند:** Fike\n    *   **نوع:** سیلندر اطفاء حریق گازی (Clean Agent)\n    *   **استاندارد:** NFPA 2001 (استاندارد سیستم‌های اطفاء حریق با عامل تمیز)\n    *   **مشخصات فنی:** سیلندر ۸۰ لیتری حاوی گاز تمیز FM-200 تحت فشار ۲۵ بار، به همراه شیر برقی (Solenoid Valve) جهت فعال‌سازی خودکار فرمان گرفته از پنل اعلام حریق. گاز FM-200 به دلیل عدم رسانایی الکتریکی و عدم آسیب به تجهیزات حساس، بهترین گزینه برای اتاق‌های کنترل و سرور است.\n    *   **قیمت:** 3,400 USD\n\n---\n\n### ۵. تجهیزات هشداردهنده (Notification Appliances)\nاین تجهیزات وظیفه آگاه‌سازی پرسنل در صورت بروز خطر را دارند و شامل موارد زیر می‌شوند:\n*   **آژیرها و بلندگوها (Horns/Sirens):** جهت ایجاد هشدار صوتی.\n*   **فلاشرها (Strobes):** جهت ایجاد هشدار بصری در محیط‌های پر سر و صدا.\n\n---\n\n**توصیه مهندسی:**\nبرای طراحی یک سیستم F&G کارآمد، ابتدا باید نقشه زون‌بندی خطر (Hazardous Area Classification) و سناریوی علت و معلول (Cause & Effect Matrix) پروژه شما بررسی شود تا دتکتورها با فناوری مناسب و استانداردهای حفاظتی درست (مانند ATEX و SIL 2) انتخاب شوند.\n\nدر صورتی که نیاز به طراحی سیستم، دریافت دیتاشیت تجهیزات فوق یا مشاوره فنی بیشتر دارید، بنده در خدمت شما هستم."
+        }
+      ],
+      "updated_at": "2026-09-15T20:22:51.593Z"
+    },
+    {
+      "id": 9,
+      "user_id": 1,
+      "title": "دتکتور شعله برند Notifier چه پ",
+      "history": [
+        {
+          "role": "user",
+          "content": "دتکتور شعله برند Notifier چه پارت‌نامبری دارد؟"
+        },
+        {
+          "role": "assistant",
+          "content": "با سلام و احترام حضور همکار گرامی،\n\nبه عنوان کارشناس سیستم‌های اعلام و اطفاء حریق (F&G)، در پاسخ به سوال شما در خصوص دتکتور شعله (Flame Detector) برند **Notifier**، جزئیات فنی زیر را به استحضار می‌رسانم:\n\nبر اساس داده‌های موجود در انبار و حافظه محلی سیستم، پارت‌نامبر ثبت شده از برند Notifier، تجهیز **FX-350** می‌باشد که یک **پنل مرکزی اعلام حریق آدرس‌پذیر (FACP)** است و دتکتور شعله‌ای از این برند در لیست موجودی فعلی انبار ثبت نشده است.\n\n### راهنمایی مهندسی و فنی در خصوص دتکتورهای شعله Notifier:\nجهت پیشبرد فرآیند مهندسی پروژه خود، لطفا مد نظر داشته باشید که برند **Notifier** (به عنوان یکی از بزرگترین زیرمجموعه‌های هلدینگ **Honeywell**) در پروژه‌های صنعتی و سیستم‌های F&G، دتکتورهای شعله خود را معمولاً از طریق خطوط تولید تخصصی هانیول تأمین و یکپارچه‌سازی (Integrate) می‌کند. معروف‌ترین پارت‌نامبرهای دتکتور شعله صنعتی که در پروژه‌ها همراه با تجهیزات Notifier استفاده می‌شوند عبارتند از:\n\n1. **سری FS24X (تکنولوژی Multi-Spectrum IR):** \n   - مانند پارت‌نامبر **FS24X-911-21-XX** که یک دتکتور شعله پیشرفته با تکنولوژی Triple IR (3IR) و دارای تاییدیه ضد انفجار (Explosion-Proof) است.\n2. **سری FS20X (تکنولوژی UV/IR):**\n   - برای تشخیص سریع حریق‌های هیدروکربنی و غیرهیدروکربنی.\n3. **سری FSL100:**\n   - مناسب برای کاربردهای تجاری و صنعتی سبک (در انواع UV، IR و UV/IR).\n\n**نکته مهندسی جهت اتصال به پنل FX-350:**\nاز آنجایی که پنل **FX-350** یک پنل آدرس‌پذیر با استاندارد NFPA 72 است، برای اتصال دتکتورهای شعله صنعتی (که معمولاً خروجی کنتاکت رله یا جریان ۴ تا ۲۰ میلی‌آمپر دارند) به این پنل، باید از **ماژول‌های واسط آدرس‌پذیر (Monitor Module)** مانند مدل‌های سری *FMM-1* یا *FMM-101* برند Notifier استفاده نمایید تا زون دتکتور شعله به صورت آدرس‌پذیر روی لوپ پنل FX-350 شناسایی شود.\n\nدر صورتی که نیاز به مشخصات فنی دقیق‌تر، کاتالوگ دتکتورهای شعله سازگار یا نحوه لوپ‌بندی و محاسبات جریان (Battery Calculation) برای پنل FX-350 دارید، بفرمایید تا در اسرع وقت اطلاعات تکمیلی را در اختیارتان قرار دهم."
+        }
+      ],
+      "updated_at": "2026-09-15T20:26:36.787Z"
     }
   ],
   "ai_config": {
-    "api_key": "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",
-    "base_url": "https://openrouter.ai/api/v1",
-    "model_name": "nvidia/nemotron-3-ultra-550b-a55b:free"
-  }
+    "api_key": "AQ.Ab8RN6JxmnaVYCyX_Yp7BPqzk7gfQxaU7ZEcl0g4h3z9_X25ag",
+    "base_url": "https://generativelanguage.googleapis.com",
+    "model_name": "gemini-3.5-flash"
+  },
+  "proposals": [],
+  "proposal_templates": [
+    {
+      "id": 1,
+      "title": "قالب جامع مناقصات نفت، گاز و پتروشیمی (Oil & Gas EPC Standard)",
+      "description": "قالب رسمی و استاندارد مهندسی شامل رفرنس‌های نقشه DWG، تگ تجهیز، انطباق با IPS و NFPA، و تفکیک کامل ضرایب بازرگانی و گمرک.",
+      "category": "oil_gas",
+      "is_default": true,
+      "header_title": "شرکت مهندسی ایساتیس پارس تجهیز",
+      "header_subtitle": "پیشنهاد فنی و مهندسی سیستم‌های اعلام و اطفاء حریق و گاز (F&G) - پروژه‌های صنعتی و نفت و گاز",
+      "intro_template": "با احترام، پیرو استعلام فنی/مناقصه پروژه {{PROJECT_NAME}} (کد رفرنس: {{PROJECT_CODE}})، پیشنهاد فنی و مالی حاضر جهت تامین تجهیزات پکیج F&G مطابق با مشخصات فنی، اسناد مهندسی و الزامات استانداردهای بین‌المللی تقدیم حضور کارفرمای محترم {{CLIENT_NAME}} می‌گردد.",
+      "technical_notes": "کلیه اقلام پیشنهادی دارای گواهینامه‌های معتبر بین‌المللی ATEX, FM, UL و رده ایمنی SIL-2/SIL-3 بوده و مستقیماً همراه با سرتیفیکیت کارخانه سازنده (3.1 Certificate) و گارانتی اصالت کالا ارائه می‌گردند.",
+      "boq_columns": [
+        "row",
+        "part_number",
+        "dwg_tag",
+        "brand",
+        "type",
+        "specs",
+        "qty",
+        "unit_price",
+        "total_price"
+      ],
+      "show_price_analysis_table": true,
+      "warranty_template": "۱۸ ماه پس از تحویل کالا در سایت پروژه یا ۱۲ ماه پس از نصب و راه‌اندازی (هر کدام زودتر محقق گردد) به همراه ۱۰ سال تضمین تامین قطعات یدکی.",
+      "payment_terms_template": "۵۰٪ پیش‌پرداخت همزمان با ابلاغ قرارداد، ۴۰٪ پس از آماده‌سازی و رویت کالا در انبار/گمرک، ۱۰٪ پس از تحویل نهایی در سایت.",
+      "delivery_time_template": "۶ الی ۸ هفته کاری پس از دریافت پیش‌پرداخت و تایید نهایی مدارک مهندسی (Approved for Construction).",
+      "validity_template": "۳۰ روز تقویمی از تاریخ صدور پیشنهاد.",
+      "closing_remarks": "در صورت نیاز به هرگونه جلسه شفاف‌سازی فنی (Clarification Meeting) یا ارائه مدارک تکمیلی مهندسی، کارشناسان این شرکت آماده همکاری می‌باشند.",
+      "signature_section": {
+        "prepared_by_title": "کارشناس ارشد مهندسی فروش F&G",
+        "approved_by_title": "مدیر مهندسی و بازرگانی",
+        "company_seal_text": "شرکت مهندسی ایساتیس پارس تجهیز"
+      },
+      "created_at": "2026-08-24T12:00:00.000Z",
+      "created_by": "system"
+    },
+    {
+      "id": 2,
+      "title": "قالب استعلام قیمت سریع بازرگانی (Fast Commercial Quotation)",
+      "description": "قالب فشرده و سریع جهت صدور پیش‌فاکتورهای فوری، استعلام‌های بهای کوتاه و سفارشات خرید انبار.",
+      "category": "fast_inquiry",
+      "is_default": false,
+      "header_title": "ایساتیس پارس تجهیز - واحد بازرگانی و فروش",
+      "header_subtitle": "پیش‌فاکتور و پیشنهاد قیمت اقلام اعلام و اطفاء حریق",
+      "intro_template": "با سلام، عطف به درخواست استعلام بهای مورخ {{DATE}}، پیش‌فاکتور و مشخصات فنی تجهیزات درخواستی پروژه {{PROJECT_NAME}} به شرح جدول ذیل تقدیم حضور می‌گردد.",
+      "technical_notes": "اقلام فوق دارای گارانتی اصالت کالا و برگه ترخیص گمرکی معتبر می‌باشند.",
+      "boq_columns": [
+        "row",
+        "part_number",
+        "brand",
+        "type",
+        "qty",
+        "unit_price",
+        "total_price"
+      ],
+      "show_price_analysis_table": false,
+      "warranty_template": "۱۲ ماه گارانتی تعویض و اصالت قطعات.",
+      "payment_terms_template": "۱۰۰٪ تسویه نقدی همزمان با تحویل فوری اقلام در انبار.",
+      "delivery_time_template": "موجود در انبار (تحویل ۲۴ الی ۴۸ ساعته) / اقلام سفارشی: ۲ الی ۳ هفته کاری.",
+      "validity_template": "۷ روز کاری با توجه به نوسانات نرخ ارز.",
+      "closing_remarks": "پیش‌فاکتور فوق پس از واریز پیش‌پرداخت نهایی و معتبر خواهد بود.",
+      "signature_section": {
+        "prepared_by_title": "واحد فروش و استعلام بها",
+        "approved_by_title": "مدیریت مالی و فروش",
+        "company_seal_text": "ایساتیس پارس تجهیز"
+      },
+      "created_at": "2026-08-24T12:00:00.000Z",
+      "created_by": "system"
+    },
+    {
+      "id": 3,
+      "title": "قالب تخصصی سیستم‌های اطفاء حریق گازی (Clean Agent FM-200 / Novec 1230)",
+      "description": "قالب تخصصی مهندسی اطفاء گاز پاک مطابق استاندارد NFPA 2001 به همراه مشخصات سیلندرها، محاسبات هیدرولیک و شیرهای اکچویتور.",
+      "category": "fm200_fire_fighting",
+      "is_default": false,
+      "header_title": "شرکت مهندسی ایساتیس پارس تجهیز",
+      "header_subtitle": "پیشنهاد فنی و مهندسی سیستم اطفاء حریق گازی اتوماتیک Total Flooding (NFPA 2001)",
+      "intro_template": "احتراماً پیشنهاد فنی-مهندسی و مالی سیستم اطفاء حریق اتوماتیک گاز پاک (HFC-227ea / FK-5-1-12) جهت حفاظت از فضاهای حساس و سرور روم‌های پروژه {{PROJECT_NAME}} (کارفرما: {{CLIENT_NAME}}) تقدیم می‌گردد.",
+      "technical_notes": "طراحی هیدرولیکی بر اساس نرم‌افزار معتبر VdS/UL Approved، سیلندرهای استاندارد TPED/DOT با ضخامت بالا و شیرهای برقی سلنوئیدی مجهز به ضامن دستی و پنل‌های اطفاء حریق دوزونه (Cross-zone).",
+      "boq_columns": [
+        "row",
+        "part_number",
+        "dwg_tag",
+        "brand",
+        "type",
+        "specs",
+        "qty",
+        "unit_price",
+        "total_price"
+      ],
+      "show_price_analysis_table": true,
+      "warranty_template": "۲۴ ماه گارانتی سیستم و شیرآلات و ۱۰ سال تضمین شارژ مجدد و دیسچارج گاز.",
+      "payment_terms_template": "۶۰٪ پیش‌پرداخت، ۳۰٪ تحویل سیلندرها و تجهیزات در محل پروژه، ۱۰٪ پس از تست عملکردی و تحویل موقت.",
+      "delivery_time_template": "۴ الی ۶ هفته کاری.",
+      "validity_template": "۲۱ روز تقویمی.",
+      "closing_remarks": "تست هیدرواستاتیک و دیسچارج تحت نظارت مهندسین مجاز ایساتیس انجام خواهد پذیرفت.",
+      "signature_section": {
+        "prepared_by_title": "مهندس طراح سیستم‌های اطفاء حریق",
+        "approved_by_title": "مدیر دپارتمان سیستم‌های اطفاء",
+        "company_seal_text": "ایساتیس پارس تجهیز"
+      },
+      "created_at": "2026-08-24T12:00:00.000Z",
+      "created_by": "system"
+    },
+    {
+      "id": 4,
+      "title": "قالب تخصصی سیستم‌های اعلام و مانیتورینگ حریق و گاز (F&G & Addressable Fire Alarm)",
+      "description": "قالب مهندسی سیستم‌های آدرس‌پذیر اعلام حریق و دتکتورهای تخصصی گاز و شعله مطابق با الزامات استانداردهای NFPA 72 و EN 54.",
+      "category": "alarm_system",
+      "is_default": false,
+      "header_title": "شرکت مهندسی ایساتیس پارس تجهیز",
+      "header_subtitle": "پیشنهاد سیستم اعلام حریق آدرس‌پذیر هوشمند و آشکارسازهای حریق و گاز (F&G)",
+      "intro_template": "با احترام، پروپوزال جامع طراحی و تامین سیستم اعلام حریق آدرس‌پذیر هوشمند و آشکارسازی گازهای سمی و قابل اشتعال پروژه {{PROJECT_NAME}} مطابق با الزامات استانداردهای NFPA 72 و EN 54 تقدیم حضور کارفرمای محترم {{CLIENT_NAME}} می‌گردد.",
+      "technical_notes": "شامل کنترل‌پنل‌های مرکزی ماژولار با قابلیت شبکه Redundant، دتکتورهای نوری/حرارتی آدرس‌پذیر، آشکارسازهای شعله IR3 ضد انفجار (Exd) و اینترفیس‌های مانیتورینگ سیستم‌های تهویه و اطفاء.",
+      "boq_columns": [
+        "row",
+        "part_number",
+        "dwg_tag",
+        "brand",
+        "type",
+        "specs",
+        "qty",
+        "unit_price",
+        "total_price"
+      ],
+      "show_price_analysis_table": true,
+      "warranty_template": "۱۸ ماه گارانتی طلایی تعویض قطعات و ۵ سال خدمات پشتیبانی نرم‌افزاری پنل.",
+      "payment_terms_template": "۵۰٪ پیش‌پرداخت، ۴۰٪ هنگام تحویل کالا، ۱۰٪ پس از پروگرامینگ و راه‌اندازی کامل.",
+      "delivery_time_template": "۳ الی ۵ هفته کاری.",
+      "validity_template": "۳۰ روز تقویمی.",
+      "closing_remarks": "کلیه نقشه‌های سیم‌کشی لوپ، رایزر دیاگرام و جدول Cause & Effect توسط دپارتمان مهندسی تهیه می‌گردد.",
+      "signature_section": {
+        "prepared_by_title": "مهندس ارشد اتوماسیون و F&G",
+        "approved_by_title": "مدیر فنی و مهندسی",
+        "company_seal_text": "ایساتیس پارس تجهیز"
+      },
+      "created_at": "2026-08-24T12:00:00.000Z",
+      "created_by": "system"
+    }
+  ],
+  "letters": [
+    {
+      "id": 1,
+      "letter_number": "IP-LTR-1405-0101",
+      "letter_date": "1405/05/15",
+      "type": "outgoing",
+      "subject": "ارسال و تاییدیه مدارک فنی سیستم اعلام و اطفاء حریق پتروشیمی",
+      "sender": "شرکت مهندسی ایساتیس پارس تجهیز",
+      "recipient": "مدیریت محترم پروژه پتروشیمی پارس",
+      "confidentiality": "normal",
+      "priority": "urgent",
+      "status": "sent",
+      "content": "احتراماً، پیرو قرارداد شماره IP-2026-F&G-01 و مذاکرات صورت گرفته، بدین‌وسیله جدول مشخصات فنی، کاتالوگ‌های مرجع و مدارک طراحی اولیه سیستم‌های اعلام حریق (Fire Alarm) و اطفاء حریق گازی (FM-200) جهت بررسی و صدور تاییدیه نهایی به حضورتان ارسال می‌گردد.\n\nخواهشمند است پس از ملاحضه نسبت به ابلاغ دستور تایید مدارک اقدام فرمایید.",
+      "attachments": "نقشه DWG-F&G-101، داتاشیت تجهیزات Notifier و Fike",
+      "project_code": "IP-2026-F&G-01",
+      "created_at": "2026-08-05T10:00:00.000Z",
+      "created_by": "admin"
+    },
+    {
+      "id": 2,
+      "letter_number": "PARS-1405-9941",
+      "letter_date": "1405/05/18",
+      "type": "incoming",
+      "subject": "تاییدیه مشخصات فنی دتکتورهای شعله و گاز پروژه",
+      "sender": "شرکت صنایع پتروشیمی پارس",
+      "recipient": "شرکت مهندسی ایساتیس پارس تجهیز",
+      "confidentiality": "normal",
+      "priority": "normal",
+      "status": "archived",
+      "content": "با سلام و احترام،\nبازگشت به نامه شماره IP-LTR-1405-0101، به اطلاع می‌رساند مدارک فنی ارسال شده توسط واحد دستگاه نظارت عالیه بررسی گردید و با رعایت استانداردهای NFPA 72 و NFPA 2001 مورد تایید فنی قرار گرفت.\n\nمراتب جهت ادامه مراحل تامین تجهیزات اعلام می‌گردد.",
+      "attachments": "فرم تاییدیه شماره AP-002",
+      "project_code": "IP-2026-F&G-01",
+      "created_at": "2026-08-08T11:20:00.000Z",
+      "created_by": "admin"
+    }
+  ],
+  "email_config": {
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 587,
+    "smtp_secure": false,
+    "smtp_user": "",
+    "smtp_pass": "",
+    "from_name": "شرکت مهندسی ایساتیس پارس تجهیز",
+    "from_email": "sales@isatis-fg.ir",
+    "reply_to": "info@isatis-fg.ir",
+    "enable_smtp": false
+  },
+  "email_logs": [],
+  "system_settings": {
+    "company_name_fa": "شرکت مهندسی ایساتیس پارس تجهیز",
+    "company_name_en": "Isatis Pars Tajhiz Engineering Co.",
+    "company_tagline": "طراحی، مشاوره، تامین و اجرای سیستم‌های اعلام و اطفاء حریق تخصصی (F&G)",
+    "company_phone": "+98 21 88997766",
+    "company_email": "info@isatis-fg.ir",
+    "company_website": "www.isatis-fg.ir",
+    "company_address": "تهران، خیابان ولیعصر، برج مهندسی، طبقه ۶، واحد ۶۰۲",
+    "ceo_name": "مهندس حسینی",
+    "technical_manager": "دپارتمان مهندسی F&G",
+    "default_multipliers": {
+      "customsFactor": 1.15,
+      "logisticsFactor": 1.05,
+      "overheadProfit": 1.2,
+      "currencyRisk": 1.05,
+      "discountFactor": 0.95
+    },
+    "default_proposal_terms": {
+      "warranty": "۱۲ ماه گارانتی تعویض و ۱۰ سال خدمات پس از فروش و تامین قطعات یدکی",
+      "paymentTerms": "۵۰٪ پیش‌پرداخت هنگام عقد قرارداد، ۴۰٪ هنگام تحویل کالا، ۱۰٪ پس از راه‌اندازی و تایید نهایی",
+      "validityDays": 14,
+      "deliveryTime": "۴ الی ۶ هفته کاری پس از دریافت پیش‌پرداخت"
+    }
+  },
+  "audit_logs": [
+    {
+      "id": 14,
+      "timestamp": "2026-09-15T20:26:22.066Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "LOGIN",
+      "details": "ورود کاربر admin با نقش admin",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 13,
+      "timestamp": "2026-09-15T20:22:40.048Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "LOGIN",
+      "details": "ورود کاربر admin با نقش admin",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 12,
+      "timestamp": "2026-09-15T20:19:37.720Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "LOGIN",
+      "details": "ورود کاربر admin با نقش admin",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 11,
+      "timestamp": "2026-09-15T20:16:44.754Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "UPDATE_AI_CONFIG",
+      "details": "به‌روزرسانی تنظیمات هوش مصنوعی (مدل: gemini-3.5-flash)",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 10,
+      "timestamp": "2026-09-15T20:16:15.542Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "UPDATE_AI_CONFIG",
+      "details": "به‌روزرسانی تنظیمات هوش مصنوعی (مدل: deepseek/deepseek-r1:free)",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 9,
+      "timestamp": "2026-09-15T20:15:29.785Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "UPDATE_AI_CONFIG",
+      "details": "به‌روزرسانی تنظیمات هوش مصنوعی (مدل: google/gemma-4-31b-it:free)",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 8,
+      "timestamp": "2026-09-15T20:11:46.415Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "UPDATE_AI_CONFIG",
+      "details": "به‌روزرسانی تنظیمات هوش مصنوعی (مدل: gemini-3.5-flash)",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 7,
+      "timestamp": "2026-09-15T20:08:11.653Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "LOGIN",
+      "details": "ورود کاربر admin با نقش admin",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 6,
+      "timestamp": "2026-09-15T20:01:59.296Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "LOGIN",
+      "details": "ورود کاربر admin با نقش admin",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 5,
+      "timestamp": "2026-09-15T20:01:54.164Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "LOGIN",
+      "details": "ورود کاربر admin با نقش admin",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 4,
+      "timestamp": "2026-09-15T20:01:48.458Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "LOGIN",
+      "details": "ورود کاربر admin با نقش admin",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 3,
+      "timestamp": "2026-09-15T20:01:46.089Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "LOGIN",
+      "details": "ورود کاربر admin با نقش admin",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 2,
+      "timestamp": "2026-09-15T19:59:43.941Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "LOGIN",
+      "details": "ورود کاربر admin با نقش admin",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 1,
+      "timestamp": "2026-09-15T19:59:40.654Z",
+      "user_id": 1,
+      "username": "admin",
+      "action": "LOGIN",
+      "details": "ورود کاربر admin با نقش admin",
+      "ip": "127.0.0.1"
+    }
+  ],
+  "edms_documents": [
+    {
+      "id": 1,
+      "doc_number": "IPT-FNG-PHI-001",
+      "title": "فلسفه طراحی و کنترل سیستم اعلام و اطفاء حریق و نشت گاز",
+      "title_en": "Fire & Gas System Design Philosophy & Architecture",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "discipline": "F&G",
+      "doc_type": "PHI",
+      "weight_factor": 10,
+      "current_revision": "Rev 1",
+      "current_status": "APPROVED",
+      "progress": 100,
+      "planned_date": "1405/02/15",
+      "actual_date": "1405/02/20",
+      "remarks": "تایید نهایی شده با کد ۱ توسط مشاور و کارفرمای پروژه نفت و گاز",
+      "equipment_tags": [
+        "FACP-01",
+        "FACP-02",
+        "ESD-01"
+      ],
+      "file_name": "IPT-FNG-PHI-001_Rev1.pdf",
+      "created_by": "admin",
+      "created_at": "2026-05-10T08:00:00.000Z",
+      "updated_at": "2026-06-01T10:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "doc_number": "IPT-FNG-CE-001",
+      "title": "ماتریس علت و معلول سیستم F&G و اینترلاک‌های ایمنی",
+      "title_en": "Fire & Gas Cause & Effect (C&E) Matrix",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "discipline": "F&G",
+      "doc_type": "C&E",
+      "weight_factor": 12,
+      "current_revision": "Rev 0",
+      "current_status": "IFC",
+      "progress": 100,
+      "planned_date": "1405/03/01",
+      "actual_date": "1405/03/08",
+      "remarks": "صادر شده جهت ساخت و پیکربندی لاجیک کنترل پنل (IFC)",
+      "equipment_tags": [
+        "FACP-01",
+        "DELUGE-V01",
+        "FOAM-SKID-01"
+      ],
+      "file_name": "IPT-FNG-CE-001_Rev0.xlsx",
+      "created_by": "admin",
+      "created_at": "2026-05-20T09:15:00.000Z",
+      "updated_at": "2026-06-15T11:45:00.000Z"
+    },
+    {
+      "id": 3,
+      "doc_number": "IPT-FNG-DWG-001",
+      "title": "نقشه جانمایی دتکتورهای شعله و گاز واحد فرآیندی (Process Area)",
+      "title_en": "F&G Detector Layout Drawing - Process & Utility Area",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "discipline": "F&G",
+      "doc_type": "DWG",
+      "weight_factor": 15,
+      "current_revision": "Rev B",
+      "current_status": "IFA",
+      "progress": 80,
+      "planned_date": "1405/04/10",
+      "actual_date": "1405/04/14",
+      "remarks": "ارسال شده جهت تایید کارفرما (IFA) با ترانزمیتال TR-IPT-FG-2026-001",
+      "equipment_tags": [
+        "FD-101",
+        "FD-102",
+        "GD-101",
+        "GD-102"
+      ],
+      "file_name": "IPT-FNG-DWG-001_RevB.dwg",
+      "created_by": "admin",
+      "created_at": "2026-06-10T14:00:00.000Z",
+      "updated_at": "2026-07-05T16:20:00.000Z"
+    },
+    {
+      "id": 4,
+      "doc_number": "IPT-FNG-DWG-002",
+      "title": "نقشه و دیاگرام سیم‌بندی پنل اعلام حریق و لوپ‌های آدرس‌پذیر",
+      "title_en": "Fire Alarm Control Panel Architecture & Wiring Diagram",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "discipline": "Electrical",
+      "doc_type": "DWG",
+      "weight_factor": 10,
+      "current_revision": "Rev 0",
+      "current_status": "IFC",
+      "progress": 100,
+      "planned_date": "1405/04/25",
+      "actual_date": "1405/04/28",
+      "remarks": "تایید نهایی جهت ساخت و سربندی کابل‌های پنل Notifier FX-350",
+      "equipment_tags": [
+        "FX-350",
+        "LOOP-01",
+        "LOOP-02"
+      ],
+      "file_name": "IPT-FNG-DWG-002_Rev0.pdf",
+      "created_by": "admin",
+      "created_at": "2026-06-25T11:00:00.000Z",
+      "updated_at": "2026-07-15T09:30:00.000Z"
+    },
+    {
+      "id": 5,
+      "doc_number": "IPT-FNG-CAL-001",
+      "title": "دفترچه محاسبات هیدرولیکی سیستم اطفاء گازی FM-200 اتاق کنترل",
+      "title_en": "Clean Agent FM-200 Hydraulic Flow & Battery Calculations",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "discipline": "Mechanical",
+      "doc_type": "CAL",
+      "weight_factor": 8,
+      "current_revision": "Rev A",
+      "current_status": "IFR",
+      "progress": 60,
+      "planned_date": "1405/05/10",
+      "remarks": "محاسبات بر مبنای NFPA 2001 و نرم‌افزار تخصصی هیدرولیک Fike",
+      "equipment_tags": [
+        "FM-200-CYL",
+        "NOZ-01",
+        "NOZ-02"
+      ],
+      "file_name": "IPT-FNG-CAL-001_RevA.pdf",
+      "created_by": "admin",
+      "created_at": "2026-07-01T10:00:00.000Z",
+      "updated_at": "2026-07-20T14:10:00.000Z"
+    },
+    {
+      "id": 6,
+      "doc_number": "IPT-FNG-DSH-001",
+      "title": "مشخصات فنی و دیتاشیت مهندسی تجهیزات دتکتورهای شعله، گاز و دود",
+      "title_en": "F&G Field Instruments Technical Datasheets & Certificates",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "discipline": "Instrumentation",
+      "doc_type": "DSH",
+      "weight_factor": 10,
+      "current_revision": "Rev 0",
+      "current_status": "APPROVED",
+      "progress": 100,
+      "planned_date": "1405/03/15",
+      "actual_date": "1405/03/18",
+      "remarks": "شامل استانداردهای ضدانفجار ATEX/IECEx و تاییدیه SIL-2",
+      "equipment_tags": [
+        "IR3-FLAME",
+        "H2S-DET",
+        "LEL-DET"
+      ],
+      "file_name": "IPT-FNG-DSH-001_Rev0.pdf",
+      "created_by": "admin",
+      "created_at": "2026-05-25T08:30:00.000Z",
+      "updated_at": "2026-06-20T15:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "doc_number": "IPT-FNG-SCH-001",
+      "title": "جدول کابل‌ها و لیست ورودی/خروجی (I/O List) کنترل پنل F&G",
+      "title_en": "F&G System Cable Schedule & PLC I/O Assignment List",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "discipline": "Electrical",
+      "doc_type": "SCH",
+      "weight_factor": 12,
+      "current_revision": "Rev B",
+      "current_status": "IFA",
+      "progress": 85,
+      "planned_date": "1405/05/01",
+      "actual_date": "1405/05/05",
+      "remarks": "شامل سایز کابل‌های نسوز ضدحریق طبق BS 6387",
+      "equipment_tags": [
+        "CBL-FNG-01",
+        "JB-FNG-101"
+      ],
+      "file_name": "IPT-FNG-SCH-001_RevB.xlsx",
+      "created_by": "admin",
+      "created_at": "2026-06-30T13:00:00.000Z",
+      "updated_at": "2026-07-28T17:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "doc_number": "IPT-FNG-PROC-001",
+      "title": "دستورالعمل تست و راه‌اندازی در سایت (SAT & Pre-Commissioning Procedure)",
+      "title_en": "Site Acceptance Test (SAT) & Pre-Commissioning Procedure",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "discipline": "Safety",
+      "doc_type": "PROC",
+      "weight_factor": 8,
+      "current_revision": "Rev A",
+      "current_status": "IFR",
+      "progress": 50,
+      "planned_date": "1405/06/15",
+      "remarks": "پروپوزال اولیه تست سایت مطابق الزامات ایمنی و بازرسی کارفرما",
+      "equipment_tags": [
+        "ALL"
+      ],
+      "file_name": "IPT-FNG-PROC-001_RevA.docx",
+      "created_by": "admin",
+      "created_at": "2026-07-10T09:00:00.000Z",
+      "updated_at": "2026-08-01T12:00:00.000Z"
+    },
+    {
+      "id": 9,
+      "doc_number": "IPT-FNG-MAN-001",
+      "title": "کتابچه راهنمای بهره‌برداری، نگهداری و عیب‌یابی (O&M Manual)",
+      "title_en": "Operation & Maintenance (O&M) Manual for F&G Package",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "discipline": "General",
+      "doc_type": "MANUAL",
+      "weight_factor": 15,
+      "current_revision": "Rev A",
+      "current_status": "IFR",
+      "progress": 40,
+      "planned_date": "1405/07/01",
+      "remarks": "در حال تکمیل توسط دپارتمان مهندسی و مستندسازی",
+      "equipment_tags": [
+        "ALL"
+      ],
+      "file_name": "IPT-FNG-MAN-001_RevA.pdf",
+      "created_by": "admin",
+      "created_at": "2026-07-15T11:00:00.000Z",
+      "updated_at": "2026-08-05T14:30:00.000Z"
+    }
+  ],
+  "edms_revisions": [
+    {
+      "id": 1,
+      "doc_id": 1,
+      "doc_number": "IPT-FNG-PHI-001",
+      "revision": "A",
+      "issue_purpose": "IFR",
+      "issue_date": "1405/01/20",
+      "transmittal_number": "TR-IPT-FG-2026-000",
+      "review_code": "Code 2",
+      "review_date": "1405/01/28",
+      "reviewed_by": "دستگاه نظارت - مهندس رضایی",
+      "revision_notes": "صدور اولیه جهت بررسی و اظهار نظر مشاور",
+      "created_by": "admin",
+      "created_at": "2026-04-09T08:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "doc_id": 1,
+      "doc_number": "IPT-FNG-PHI-001",
+      "revision": "0",
+      "issue_purpose": "IFA",
+      "issue_date": "1405/02/10",
+      "transmittal_number": "TR-IPT-FG-2026-001",
+      "review_code": "Code 2",
+      "review_date": "1405/02/18",
+      "reviewed_by": "دستگاه نظارت - مهندس رضایی",
+      "revision_notes": "اعمال کامنت‌های Rev A و ارسال جهت تایید نهایی",
+      "created_by": "admin",
+      "created_at": "2026-04-30T09:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "doc_id": 1,
+      "doc_number": "IPT-FNG-PHI-001",
+      "revision": "1",
+      "issue_purpose": "AFC",
+      "issue_date": "1405/02/20",
+      "transmittal_number": "TR-IPT-FG-2026-002",
+      "review_code": "Code 1",
+      "review_date": "1405/02/25",
+      "reviewed_by": "کارفرما - شرکت نفت و گاز",
+      "revision_notes": "تایید کامل نهایی (Code 1 - Approved) جهت ساخت و اجرا",
+      "created_by": "admin",
+      "created_at": "2026-05-10T10:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "doc_id": 3,
+      "doc_number": "IPT-FNG-DWG-001",
+      "revision": "A",
+      "issue_purpose": "IFR",
+      "issue_date": "1405/03/15",
+      "transmittal_number": "TR-IPT-FG-2026-001",
+      "review_code": "Code 2",
+      "review_date": "1405/03/25",
+      "reviewed_by": "دستگاه نظارت",
+      "revision_notes": "جانمایی دتکتورهای شعله در رینگ مخازن اصلاح گردد",
+      "created_by": "admin",
+      "created_at": "2026-06-05T08:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "doc_id": 3,
+      "doc_number": "IPT-FNG-DWG-001",
+      "revision": "B",
+      "issue_purpose": "IFA",
+      "issue_date": "1405/04/14",
+      "transmittal_number": "TR-IPT-FG-2026-002",
+      "review_code": "Pending",
+      "revision_notes": "پوشش مخروط دید دتکتورهای IR3 بازنگری و بهینه‌سازی شد",
+      "created_by": "admin",
+      "created_at": "2026-07-05T12:00:00.000Z"
+    }
+  ],
+  "edms_transmittals": [
+    {
+      "id": 1,
+      "transmittal_number": "TR-IPT-FG-2026-001",
+      "transmittal_date": "1405/03/15",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "sender": "شرکت مهندسی ایساتیس پارس تجهیز (IPT)",
+      "sender_contact": "دپارتمان مهندسی و کنترل مدارک (DCC)",
+      "recipient": "شرکت مهندسی و مدیریت ساخت نفت و گاز (کارفرما)",
+      "attention_to": "جناب آقای مهندس رضایی - مدیریت مهندسی برق و ابزاردقیق",
+      "recipient_email": "hamedgp123@gmail.com",
+      "subject": "ارسال مدارک مهندسی پکیج اعلام و اطفاء حریق جهت بررسی و اظهار نظر (Issue for Review)",
+      "transmittal_type": "outgoing",
+      "issue_purpose": "IFR",
+      "delivery_method": "Email",
+      "documents": [
+        {
+          "doc_id": 1,
+          "doc_number": "IPT-FNG-PHI-001",
+          "doc_title": "فلسفه طراحی و معماری سیستم اعلام و اطفاء حریق و گاز",
+          "revision": "0",
+          "copies": 1,
+          "format": "PDF",
+          "status": "IFR",
+          "notes": "بررسی طبق استاندارد IPS-E-PR-440"
+        },
+        {
+          "doc_id": 3,
+          "doc_number": "IPT-FNG-DWG-001",
+          "doc_title": "نقشه جانمایی دتکتورهای شعله و گاز واحد فرآیندی",
+          "revision": "A",
+          "copies": 1,
+          "format": "PDF",
+          "status": "IFR",
+          "notes": "نقشه‌های اندازه A1 در فرمت اتوکد و پی‌دی‌اف"
+        }
+      ],
+      "remarks": "خواهشمند است دستور فرمایید نظرات محترم دستگاه نظارت حداکثر ظرف مدت ۱۰ روز کاری به این شرکت منعکس گردد.",
+      "prepared_by": "کارشناس DCC - مهندس محمدی",
+      "approved_by": "مدیر مهندسی - مهندس کریمی",
+      "status": "issued",
+      "created_at": "2026-06-05T09:00:00.000Z",
+      "emailed_at": "2026-06-05T10:15:00.000Z"
+    },
+    {
+      "id": 2,
+      "transmittal_number": "TR-IPT-FG-2026-002",
+      "transmittal_date": "1405/04/15",
+      "project_code": "PRJ-SP14-FG",
+      "project_name": "پروژه پالایشگاه فاز ۱۴ پارس جنوبی",
+      "sender": "شرکت مهندسی ایساتیس پارس تجهیز (IPT)",
+      "sender_contact": "دپارتمان DCC",
+      "recipient": "دستگاه نظارت عالیه مهندسی پالایشگاه",
+      "attention_to": "سرکار خانم مهندس شریفی - رئیس کنترل مدارک کارفرما",
+      "recipient_email": "hamedgp123@gmail.com",
+      "subject": "ارسال نسخه‌های اصلاحی مدارک مهندسی و نقشه‌های جانمایی F&G (Issue for Approval)",
+      "transmittal_type": "outgoing",
+      "issue_purpose": "IFA",
+      "delivery_method": "Email",
+      "documents": [
+        {
+          "doc_id": 2,
+          "doc_number": "IPT-FNG-CE-001",
+          "doc_title": "ماتریس علت و معلول سیستم F&G",
+          "revision": "0",
+          "copies": 1,
+          "format": "Excel",
+          "status": "IFA",
+          "notes": "اعمال اینترلاک‌های شیرهای Deluge"
+        },
+        {
+          "doc_id": 3,
+          "doc_number": "IPT-FNG-DWG-001",
+          "doc_title": "نقشه جانمایی دتکتورهای شعله و گاز واحد فرآیندی",
+          "revision": "B",
+          "copies": 1,
+          "format": "PDF",
+          "status": "IFA",
+          "notes": "انطباق مخروط دید و تست سایه"
+        }
+      ],
+      "remarks": "همراه با برگه پاسخ به کامنت‌ها (CRS Sheet) پیوست گردید.",
+      "prepared_by": "مهندس محمدی",
+      "approved_by": "مهندس کریمی",
+      "status": "issued",
+      "created_at": "2026-07-06T10:00:00.000Z"
+    }
+  ],
+  "edms_comments": [
+    {
+      "id": 1,
+      "doc_id": 3,
+      "doc_number": "IPT-FNG-DWG-001",
+      "revision": "A",
+      "transmittal_number": "TR-IPT-FG-2026-001",
+      "item_no": 1,
+      "page_or_sheet": "Sheet 2 / Grid D-4",
+      "client_comment": "زاویه دید دتکتور شعله FD-101 به دلیل وجود ساپورت لوله پیپینگ دچار انسداد موضعی شده است. محل نصب ۴۰ سانتی‌متر جابجا شود.",
+      "contractor_response": "کامنت اعمال شد. ساپورت دتکتور به موقعیت Grid D-4.5 با دید باز ۳۶۰ درجه مخروطی بدون مانع منتقل گردید.",
+      "status": "resolved",
+      "resolution_code": "Code 1",
+      "commented_by": "مهندس رضایی (دستگاه نظارت)",
+      "responded_by": "مهندس کریمی (ایساتیس)",
+      "created_at": "2026-06-15T09:30:00.000Z",
+      "updated_at": "2026-06-25T14:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "doc_id": 3,
+      "doc_number": "IPT-FNG-DWG-001",
+      "revision": "A",
+      "transmittal_number": "TR-IPT-FG-2026-001",
+      "item_no": 2,
+      "page_or_sheet": "Sheet 3 / Battery Limit",
+      "client_comment": "فاصله دتکتورهای گاز قابل اشتعال (LEL) در نزدیکی کمپرسور گاز بر اساس IPS-E-IN-100 نباید از ۵ متر بیشتر باشد.",
+      "contractor_response": "کامنت پذیرفته شد. تعداد دتکتورهای گاز LEL از ۲ عدد به ۳ عدد افزایش یافت و فواصل کمتر از ۴.۵ متر تنظیم شد.",
+      "status": "resolved",
+      "resolution_code": "Code 1",
+      "commented_by": "مهندس رضایی",
+      "responded_by": "مهندس کریمی",
+      "created_at": "2026-06-15T09:45:00.000Z",
+      "updated_at": "2026-06-25T14:15:00.000Z"
+    },
+    {
+      "id": 3,
+      "doc_id": 1,
+      "doc_number": "IPT-FNG-PHI-001",
+      "revision": "0",
+      "transmittal_number": "TR-IPT-FG-2026-001",
+      "item_no": 3,
+      "page_or_sheet": "Section 4.3 - Voting Logic",
+      "client_comment": "منطق رای‌گیری برای دتکتورهای شعله در زون‌های حساس پالایشگاهی ۲oo۳ (دو از سه) لحاظ شود تا از فالس آلارم جلوگیری به عمل آید.",
+      "contractor_response": "منطق ۲oo۳ برای کلیه دتکتورهای شعله زون‌های کلاس ۱ دیویژن ۱ پیاده‌سازی و در دیاگرام لاجیک گنجانده شد.",
+      "status": "resolved",
+      "resolution_code": "Code 1",
+      "commented_by": "مهندس شریفی",
+      "responded_by": "مهندس کریمی",
+      "created_at": "2026-06-20T11:00:00.000Z",
+      "updated_at": "2026-06-28T16:30:00.000Z"
+    },
+    {
+      "id": 4,
+      "doc_id": 5,
+      "doc_number": "IPT-FNG-CAL-001",
+      "revision": "A",
+      "transmittal_number": "TR-IPT-FG-2026-002",
+      "item_no": 4,
+      "page_or_sheet": "Page 12 / Discharge Time",
+      "client_comment": "حداکثر زمان تخلیه گاز FM-200 مطابق NFPA 2001 باید زیر ۱۰ ثانیه باشد، لطفاً منحنی افت فشار لوله‌کشی مجدداً بررسی گردد.",
+      "contractor_response": "در دست بازنگری و محاسبه مجدد با نرم‌افزار هیدرولیک جهت ارائه در رویژن B.",
+      "status": "pending",
+      "resolution_code": "Code 2",
+      "commented_by": "مهندس رضایی",
+      "responded_by": "مهندس محمدی",
+      "created_at": "2026-07-18T10:00:00.000Z",
+      "updated_at": "2026-07-20T11:00:00.000Z"
+    }
+  ],
+  "edms_circulations": [
+    {
+      "id": 1,
+      "doc_id": 3,
+      "doc_number": "IPT-FNG-DWG-001",
+      "doc_title": "نقشه جانمایی دتکتورهای شعله و گاز واحد فرآیندی (Process Area)",
+      "revision": "B",
+      "step": "client_review",
+      "assigned_to": "مهندس رضایی",
+      "assigned_role": "Client / Consultant",
+      "start_date": "1405/04/10",
+      "due_date": "1405/04/24",
+      "status": "in_progress",
+      "comments": "ارسال با ترانزمیتال TR-IPT-FG-2026-001 جهت اعلام نظر دستگاه نظارت",
+      "man_hours_spent": 35
+    },
+    {
+      "id": 2,
+      "doc_id": 4,
+      "doc_number": "IPT-FNG-DWG-002",
+      "doc_title": "نقشه و دیاگرام سیم‌بندی پنل اعلام حریق و لوپ‌های آدرس‌پذیر",
+      "revision": "A",
+      "step": "discipline_lead",
+      "assigned_to": "مهندس حسینی",
+      "assigned_role": "Lead Engineer",
+      "start_date": "1405/05/01",
+      "due_date": "1405/05/08",
+      "status": "in_progress",
+      "comments": "بررسی تطابق اینترلاک‌های کارت‌های شبکه F&G با سیستم اتوماسیون مرکزی",
+      "man_hours_spent": 24
+    },
+    {
+      "id": 3,
+      "doc_id": 5,
+      "doc_number": "IPT-FNG-CAL-001",
+      "doc_title": "دفترچه محاسبات هیدرولیک و سایزینگ سیلندرهای گاز اطفاء FM-200",
+      "revision": "A",
+      "step": "drafting",
+      "assigned_to": "مهندس محمدی",
+      "assigned_role": "Designer",
+      "start_date": "1405/05/02",
+      "due_date": "1405/05/10",
+      "status": "in_progress",
+      "comments": "اصلاح افت فشار نازل‌های اطفاء بر اساس کامنت‌های کارفرما جهت صدور رویژن B",
+      "man_hours_spent": 18
+    },
+    {
+      "id": 4,
+      "doc_id": 2,
+      "doc_number": "IPT-FNG-CE-001",
+      "doc_title": "ماتریس علت و معلول سیستم F&G و اینترلاک‌های ایمنی",
+      "revision": "0",
+      "step": "completed",
+      "assigned_to": "مهندس کریمی",
+      "assigned_role": "DCC Controller",
+      "start_date": "1405/03/01",
+      "due_date": "1405/03/08",
+      "completed_date": "1405/03/08",
+      "status": "approved",
+      "comments": "تایید نهایی و صدور رسمی نسخه IFC برای کارفرما",
+      "man_hours_spent": 40
+    }
+  ],
+  "edms_timesheets": [
+    {
+      "id": 1,
+      "doc_id": 3,
+      "doc_number": "IPT-FNG-DWG-001",
+      "user_id": 1,
+      "username": "admin",
+      "discipline": "F&G",
+      "date": "1405/04/05",
+      "hours": 8,
+      "activity_description": "جانمایی دتکتورهای شعله UV/IR در سکوی فرآیندی و بررسی مخروط پوشش زاویه‌ای",
+      "created_at": "2026-06-25T16:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "doc_id": 3,
+      "doc_number": "IPT-FNG-DWG-001",
+      "user_id": 1,
+      "username": "admin",
+      "discipline": "F&G",
+      "date": "1405/04/06",
+      "hours": 7,
+      "activity_description": "اعمال فواصل استاندارد دتکتورهای گاز قابل اشتعال LEL مطابق IPS-E-IN-100",
+      "created_at": "2026-06-26T15:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "doc_id": 5,
+      "doc_number": "IPT-FNG-CAL-001",
+      "user_id": 1,
+      "username": "admin",
+      "discipline": "Mechanical",
+      "date": "1405/04/20",
+      "hours": 6.5,
+      "activity_description": "محاسبات هیدرولیکی شبکه پایپینگ و سایزینگ لوله منیفولد گاز تمیز FM-200",
+      "created_at": "2026-07-10T14:30:00.000Z"
+    },
+    {
+      "id": 4,
+      "doc_id": 4,
+      "doc_number": "IPT-FNG-DWG-002",
+      "user_id": 1,
+      "username": "admin",
+      "discipline": "Electrical",
+      "date": "1405/04/28",
+      "hours": 8,
+      "activity_description": "طراحی نقشه مدارات حلقوی Class A و محاسبات افت ولتاژ لوپ آدرس‌پذیر",
+      "created_at": "2026-07-18T17:00:00.000Z"
+    }
+  ],
+  "edms_procurements": [
+    {
+      "id": 1,
+      "mr_number": "MR-IPT-FG-2026-001",
+      "mto_ref": "MTO-IPT-FG-001_RevB",
+      "title": "خرید دتکتورهای شعله مادون قرمز و فرابنفش (UV/IR) و دتکتورهای گاز LEL ضدانفجار",
+      "discipline": "F&G",
+      "estimated_cost": 1450000000,
+      "target_po_date": "1405/06/30",
+      "stage": "TBE_IN_PROGRESS",
+      "vendors_count": 3,
+      "selected_vendor": "Spectrex / General Monitors",
+      "linked_equipment_tags": [
+        "FD-101",
+        "FD-102",
+        "GD-101",
+        "GD-102"
+      ],
+      "tbe_status": "Under Clarification",
+      "clarifications_count": 2,
+      "remarks": "در حال ارزیابی فنی پیشنهادات شرکت‌های ارائه‌دهنده دتکتورهای SIL-2 و استعلام استانداردهای ATEX",
+      "created_at": "2026-07-01T09:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "mr_number": "MR-IPT-FG-2026-002",
+      "mto_ref": "MTO-IPT-FG-002_RevA",
+      "title": "سیلندرهای اطفاء گازی FM-200 با شیرهای اکچویتور برقی، سوئیچ فشار و نازل‌های استیل",
+      "discipline": "Mechanical",
+      "estimated_cost": 2800000000,
+      "target_po_date": "1405/06/15",
+      "stage": "TBA_APPROVED",
+      "vendors_count": 2,
+      "selected_vendor": "Fike Protection Systems",
+      "linked_equipment_tags": [
+        "FM-200-CYL",
+        "NOZZLE-01"
+      ],
+      "tbe_status": "Approved",
+      "clarifications_count": 1,
+      "remarks": "تایید فنی نهایی (TBA) توسط واحد مهندسی صادر شد و پیش‌نویس سفارش خرید (PO) به تدارکات ارسال گردید.",
+      "created_at": "2026-07-10T10:30:00.000Z"
+    },
+    {
+      "id": 3,
+      "mr_number": "MR-IPT-FG-2026-003",
+      "mto_ref": "MTO-IPT-FG-003_Rev0",
+      "title": "کابل‌های نسوز نسوز ضدحریق ابزار دقیق و کنترل (Fire Resistant Cables - BS 6387 CWZ)",
+      "discipline": "Electrical",
+      "estimated_cost": 950000000,
+      "target_po_date": "1405/05/30",
+      "stage": "PO_PLACED",
+      "vendors_count": 4,
+      "selected_vendor": "کابل متال / Draka",
+      "linked_equipment_tags": [
+        "CBL-FNG-01",
+        "JB-FNG-101"
+      ],
+      "tbe_status": "Approved",
+      "clarifications_count": 0,
+      "remarks": "قرارداد خرید منعقد گردید و نمونه کابل‌ها جهت تست آزمایشگاهی به کارگاه ارسال شد.",
+      "created_at": "2026-06-15T08:00:00.000Z"
+    }
+  ],
+  "edms_lessons": [
+    {
+      "id": 1,
+      "doc_id": 4,
+      "doc_number": "IPT-FNG-DWG-002",
+      "project_code": "PRJ-SP14-FG",
+      "category": "Design Error",
+      "title": "جداسازی سینی کابل‌های ابزار دقیق F&G از کابل‌های قدرت ولتاژ متوسط (MV)",
+      "problem_description": "در فاز اولیه طراحی، سینی کابل‌های سیگنالینگ دتکتورهای گاز ۴-۲۰ میلی‌آمپر در مجاورت سینی کابل‌های الکتروموتور ۶ کیلوولت قرار گرفته بود که منجر به نویز القایی شدید گردید.",
+      "root_cause": "عدم اعمال فاصله مجاز تفکیک سینی‌ها (حداقل ۶۰ سانتی‌متر) بر اساس استاندارد IPS-E-EL-100 در نقشه‌های مدلسازی سه بعدی پایپ‌رک.",
+      "preventive_action": "اضافه شدن چک‌لیست بازرسی تداخلات الکتریکی و درج الزامات رعایت شیلدینگ و فاصله تفکیک کابل‌ها در رویه هماهنگی مهندسی.",
+      "standards_referenced": [
+        "IPS-E-EL-100",
+        "IEEE 518",
+        "NFPA 72"
+      ],
+      "created_by": "admin",
+      "created_at": "2026-07-12T14:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "doc_id": 3,
+      "doc_number": "IPT-FNG-DWG-001",
+      "project_code": "PRJ-SP14-FG",
+      "category": "Standard Non-Compliance",
+      "title": "تنظیم ارتفاع نصب و پوشش زاویه‌ای دتکتورهای گاز سولفید هیدروژن (H2S) در مناطق فرآیندی",
+      "problem_description": "به دلیل چگالی گاز H2S نسبت به هوا (سنگین‌تر از هوا بودن)، نصب دتکتورها در ارتفاع ۱.۸ متری باعث تاخیر در هشدار اولیه می‌گردید.",
+      "root_cause": "الگوی عمومی جانمایی بدون تفکیک جرم مولکولی گاز سمی نسبت به گاز متان.",
+      "preventive_action": "الزام نصب دتکتورهای گاز سمی H2S در ارتفاع ۳۰ تا ۵۰ سانتی‌متری از سطح زمین یا کف سینی مخازن فرآیندی.",
+      "standards_referenced": [
+        "API RP 14C",
+        "ISA-TR12.13.03"
+      ],
+      "created_by": "admin",
+      "created_at": "2026-07-18T16:20:00.000Z"
+    },
+    {
+      "id": 3,
+      "doc_id": 5,
+      "doc_number": "IPT-FNG-CAL-001",
+      "project_code": "PRJ-SP14-FG",
+      "category": "Client Requirement",
+      "title": "لزوم انجام آزمون یکپارچگی اتاق (Door Fan Test) قبل از راه‌اندازی سیستم گاز تمیز",
+      "problem_description": "عدم درزگیری مناسب منافذ عبور کابل‌ها در اتاق سرور باعث افت سریع غلظت گاز FM-200 ظرف کمتر از ۵ دقیقه می‌شد.",
+      "root_cause": "عدم هماهنگی بین تیم معماری و مهندسی اطفا در فاز اجرای فایراستاپ (Firestop Penetration Seals).",
+      "preventive_action": "اضافه شدن مدرک آزمون فن تست درب به عنوان پیش‌نیاز تست تحویل سایت (SAT) در مدارک مهندسی.",
+      "standards_referenced": [
+        "NFPA 2001 Appendix C",
+        "BS EN 15004-1"
+      ],
+      "created_by": "admin",
+      "created_at": "2026-07-25T11:45:00.000Z"
+    }
+  ],
+  "edms_billings": [
+    {
+      "id": 1,
+      "certificate_no": "IPC-IPT-SP14-01",
+      "period": "اردیبهشت ۱۴۰۵",
+      "project_code": "PRJ-SP14-FG",
+      "total_mdr_weight": 100,
+      "previous_progress": 0,
+      "current_progress": 25,
+      "period_progress": 25,
+      "total_contract_value": 3600000000,
+      "certified_amount": 900000000,
+      "status": "paid",
+      "created_at": "2026-05-30T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "certificate_no": "IPC-IPT-SP14-02",
+      "period": "خرداد ۱۴۰۵",
+      "project_code": "PRJ-SP14-FG",
+      "total_mdr_weight": 100,
+      "previous_progress": 25,
+      "current_progress": 52,
+      "period_progress": 27,
+      "total_contract_value": 3600000000,
+      "certified_amount": 972000000,
+      "status": "paid",
+      "created_at": "2026-06-30T11:15:00.000Z"
+    },
+    {
+      "id": 3,
+      "certificate_no": "IPC-IPT-SP14-03",
+      "period": "تیر ۱۴۰۵",
+      "project_code": "PRJ-SP14-FG",
+      "total_mdr_weight": 100,
+      "previous_progress": 52,
+      "current_progress": 74.5,
+      "period_progress": 22.5,
+      "total_contract_value": 3600000000,
+      "certified_amount": 810000000,
+      "status": "certified",
+      "created_at": "2026-07-31T15:30:00.000Z"
+    }
+  ]
 }

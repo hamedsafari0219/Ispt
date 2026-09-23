@@ -15,34 +15,26 @@ const GOOGLE_MODELS = [
   { 
     id: 'gemini-3.5-flash', 
     name: 'Gemini 3.5 Flash', 
-    badgeFa: '⚡ رایگان و سریع (توصیه شده)', 
-    badgeEn: '⚡ Free & Fast (Recommended)',
-    descFa: 'مدل جدید نسل 3.5 گوگل با سرعت فوق‌العاده و استدلال قوی',
-    descEn: 'Latest 3.5 generation Google model with high speed and precision'
+    badgeFa: '⚡ فوق‌العاده سریع و پایدار (توصیه شده)', 
+    badgeEn: '⚡ Fast & Stable (Recommended)',
+    descFa: 'مدل استاندارد نسل 3.5 گوگل با سرعت بالا و پاسخ‌دهی پایدار',
+    descEn: 'Standard 3.5 model with verified high stability and speed'
   },
   { 
-    id: 'gemini-2.5-flash', 
-    name: 'Gemini 2.5 Flash', 
-    badgeFa: 'کلاسیک', 
-    badgeEn: 'Classic',
-    descFa: 'مدل عمومی سریع گوگل',
-    descEn: 'Standard fast model'
+    id: 'gemini-3.8-flash', 
+    name: 'Gemini 3.8 Flash', 
+    badgeFa: 'نسل جدید 3.8', 
+    badgeEn: 'Next-Gen 3.8',
+    descFa: 'جدیدترین مدل سبک و باهوش گوگل برای پردازش‌های مهندسی',
+    descEn: 'Latest lightweight and smart Google model for engineering workflows'
   },
   { 
-    id: 'gemini-3.5-pro', 
-    name: 'Gemini 3.5 Pro', 
-    badgeFa: 'پیشرفته پرو', 
-    badgeEn: 'Pro Reasoning',
-    descFa: 'مدل قدرتمند برای محاسبات و استدلال‌های سنگین',
-    descEn: 'Pro model for complex reasoning tasks'
-  },
-  { 
-    id: 'gemini-2.5-pro', 
-    name: 'Gemini 2.5 Pro', 
-    badgeFa: 'پرو 2.5', 
-    badgeEn: 'Pro 2.5',
-    descFa: 'نسخه ۲.۵ پرو با دقت بالا در متون تخصصی',
-    descEn: 'Pro version 2.5 with long context support'
+    id: 'gemini-3.6-flash', 
+    name: 'Gemini 3.6 Flash', 
+    badgeFa: 'استدلال پیشرفته', 
+    badgeEn: 'Advanced Reasoning',
+    descFa: 'مدل قدرتمند با درک عمیق اسناد فنی و استانداردهای NFPA',
+    descEn: 'Powerful model with deep understanding of technical standards'
   }
 ];
 

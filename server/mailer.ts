@@ -742,12 +742,32 @@ export async function generateAiEmailDraft(params: {
 2. فقط متن بدنه ایمیل را برگردانید و از هیچ تگ اضافی یا توضیحات جانبی خودداری کنید.
 `;
 
-    const response = await ai.models.generateContent({
-      model: aiConfig.model_name || 'gemini-2.5-flash',
-      contents: prompt,
-    });
+    const candidateModels = [
+      ...(aiConfig.model_name && !aiConfig.model_name.includes('2.5') ? [aiConfig.model_name] : []),
+      'gemini-3.8-flash',
+      'gemini-3.6-flash',
+      'gemini-3.5-flash'
+    ];
 
-    return response.text?.trim() || 'متن ایمیل تولید نشد.';
+    let emailText = '';
+    for (const model of candidateModels) {
+      try {
+        const response = await ai.models.generateContent({
+          model,
+          contents: prompt,
+        });
+        if (response.text?.trim()) {
+          emailText = response.text.trim();
+          break;
+        }
+      } catch (err: any) {
+        console.warn(`[Mailer AI] Model ${model} failed: ${err.message}`);
+      }
+    }
+
+    return emailText || (language === 'fa'
+      ? `جناب آقای/سرکار خانم ${recipientName || 'محترم'}\nبا سلام و احترام،\nپیرو مذاکرات انجام‌شده، اطلاعات مرتبط با ${summaryDetails} به پیوست تقدیم می‌گردد.\nبا احترام، دپارتمان مهندسی ایساتیس پارس تجهیز`
+      : `Dear ${recipientName || 'Customer'},\n\nPlease find the requested details regarding ${summaryDetails}.\n\nSincerely,\nIsatis Pars Tajhiz Engineering Co.`);
   } catch (error: any) {
     console.error('Error generating AI email draft:', error);
     return language === 'fa'

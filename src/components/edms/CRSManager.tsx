@@ -16,12 +16,13 @@ import {
   ChevronDown
 } from 'lucide-react';
 import * as XLSX from 'xlsx';
-import { EDMSComment, EDMSDocument } from '../../types';
+import { EDMSComment, EDMSDocument, User } from '../../types';
 import { authenticatedFetch } from '../../utils/api';
 
 interface CRSManagerProps {
   comments: EDMSComment[];
   documents: EDMSDocument[];
+  currentUser: User;
   onRefresh: () => void;
   lang: 'fa' | 'en';
 }
@@ -29,6 +30,7 @@ interface CRSManagerProps {
 export const CRSManager: React.FC<CRSManagerProps> = ({
   comments,
   documents,
+  currentUser,
   onRefresh,
   lang
 }) => {
@@ -368,20 +370,24 @@ export const CRSManager: React.FC<CRSManagerProps> = ({
 
                     <td className="py-3 px-3 text-center">
                       <div className="flex items-center justify-center gap-1">
-                        <button
-                          onClick={() => handleOpenReply(c)}
-                          className="p-1.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors cursor-pointer"
-                          title="پاسخ به کامنت"
-                        >
-                          <Edit3 className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => handleDeleteComment(c.id)}
-                          className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
-                          title="حذف کامنت"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                        {(currentUser.role === 'admin' || currentUser.role === 'manager') && (
+                          <button
+                            onClick={() => handleOpenReply(c)}
+                            className="p-1.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors cursor-pointer"
+                            title="پاسخ به کامنت (مدیر و ادمین)"
+                          >
+                            <Edit3 className="w-4 h-4" />
+                          </button>
+                        )}
+                        {currentUser.role === 'admin' && (
+                          <button
+                            onClick={() => handleDeleteComment(c.id)}
+                            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                            title="حذف کامنت (ادمین)"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>

@@ -92,7 +92,7 @@ export interface User {
   id: number;
   username: string;
   passwordHash: string;
-  role: 'admin' | 'user';
+  role: 'admin' | 'manager' | 'user';
   system_access: 'alarm' | 'fighting' | 'both';
   price_access: number; // 0 or 1
 }
@@ -362,21 +362,35 @@ export interface EDMSDocument {
   updated_at: string;
 }
 
+export interface EDMSCirculationHistoryItem {
+  id: string;
+  from: string;
+  to: string;
+  action_type?: string;
+  note: string;
+  date: string;
+  status: string;
+}
+
 export interface EDMSCirculationItem {
   id: number;
   doc_id: number;
   doc_number: string;
   doc_title: string;
   revision: string;
-  step: 'drafting' | 'discipline_lead' | 'engineering_manager' | 'dcc_issue' | 'client_review' | 'completed';
+  step: 'drafting' | 'discipline_lead' | 'engineering_manager' | 'inter_discipline' | 'dcc_check' | 'client_review' | 'completed' | string;
   assigned_to: string;
-  assigned_role: 'Designer' | 'Lead Engineer' | 'Project Manager' | 'DCC Controller' | 'Client / Consultant';
+  assigned_by?: string;
+  assigned_role: 'Designer' | 'Lead Engineer' | 'Project Manager' | 'DCC Controller' | 'Client / Consultant' | string;
+  action_type?: string;
+  priority?: 'normal' | 'urgent' | 'immediate';
   start_date: string;
   due_date: string;
   completed_date?: string;
-  status: 'pending' | 'in_progress' | 'approved' | 'rejected' | 'delayed';
+  status: 'pending' | 'in_progress' | 'approved' | 'rejected' | 'delayed' | 'on_hold';
   comments?: string;
   man_hours_spent?: number;
+  history?: EDMSCirculationHistoryItem[];
 }
 
 export interface EDMSTimesheetEntry {
@@ -1107,14 +1121,28 @@ export const defaultEDMSCirculations: EDMSCirculationItem[] = [
     doc_number: 'IPT-FNG-DWG-001',
     doc_title: 'نقشه جانمایی دتکتورهای شعله و گاز واحد فرآیندی (Process Area)',
     revision: 'B',
-    step: 'client_review',
-    assigned_to: 'مهندس رضایی',
-    assigned_role: 'Client / Consultant',
-    start_date: '1405/04/10',
-    due_date: '1405/04/24',
+    step: 'discipline_lead',
+    assigned_to: 'admin',
+    assigned_by: 'manager',
+    assigned_role: 'Lead Engineer',
+    action_type: 'بررسی و تایید فنی',
+    priority: 'urgent',
+    start_date: '1405/05/10',
+    due_date: '1405/05/18',
     status: 'in_progress',
-    comments: 'ارسال با ترانزمیتال TR-IPT-FG-2026-001 جهت اعلام نظر دستگاه نظارت',
-    man_hours_spent: 35
+    comments: 'بررسی زاویه پوشش دتکتورهای IR3 در مجاورت فلنج‌های فشار قوی مطابق NFPA 72',
+    man_hours_spent: 12,
+    history: [
+      {
+        id: 'h-1',
+        from: 'manager',
+        to: 'admin',
+        action_type: 'بررسی و تایید فنی',
+        note: 'ارجاع اولیه جهت کنترل فنی و صحه‌گذاری زوایای دتکتورها',
+        date: '1405/05/10',
+        status: 'in_progress'
+      }
+    ]
   },
   {
     id: 2,
@@ -1122,14 +1150,28 @@ export const defaultEDMSCirculations: EDMSCirculationItem[] = [
     doc_number: 'IPT-FNG-DWG-002',
     doc_title: 'نقشه و دیاگرام سیم‌بندی پنل اعلام حریق و لوپ‌های آدرس‌پذیر',
     revision: 'A',
-    step: 'discipline_lead',
-    assigned_to: 'مهندس حسینی',
-    assigned_role: 'Lead Engineer',
+    step: 'inter_discipline',
+    assigned_to: 'manager',
+    assigned_by: 'admin',
+    assigned_role: 'Project Manager',
+    action_type: 'هماهنگی بین‌رشته‌ای IDC',
+    priority: 'normal',
     start_date: '1405/05/01',
     due_date: '1405/05/08',
     status: 'in_progress',
-    comments: 'بررسی تطابق اینترلاک‌های کارت‌های شبکه F&G با سیستم اتوماسیون مرکزی',
-    man_hours_spent: 24
+    comments: 'بررسی تطابق اینترلاک‌های کارت‌های شبکه F&G با سیستم اتوماسیون مرکزی برق و کنترل',
+    man_hours_spent: 24,
+    history: [
+      {
+        id: 'h-2',
+        from: 'admin',
+        to: 'manager',
+        action_type: 'هماهنگی بین‌رشته‌ای IDC',
+        note: 'لطفاً هماهنگی با دیسیپلین کنترل و تلکام را بررسی و تایید بفرمایید.',
+        date: '1405/05/01',
+        status: 'in_progress'
+      }
+    ]
   },
   {
     id: 3,
@@ -1138,13 +1180,27 @@ export const defaultEDMSCirculations: EDMSCirculationItem[] = [
     doc_title: 'دفترچه محاسبات هیدرولیک و سایزینگ سیلندرهای گاز اطفاء FM-200',
     revision: 'A',
     step: 'drafting',
-    assigned_to: 'مهندس محمدی',
+    assigned_to: 'user',
+    assigned_by: 'manager',
     assigned_role: 'Designer',
+    action_type: 'اعمال کامنت‌ها و اصلاح مدارک',
+    priority: 'urgent',
     start_date: '1405/05/02',
     due_date: '1405/05/10',
     status: 'in_progress',
     comments: 'اصلاح افت فشار نازل‌های اطفاء بر اساس کامنت‌های کارفرما جهت صدور رویژن B',
-    man_hours_spent: 18
+    man_hours_spent: 18,
+    history: [
+      {
+        id: 'h-3',
+        from: 'manager',
+        to: 'user',
+        action_type: 'اعمال کامنت‌ها و اصلاح مدارک',
+        note: 'محاسبات پایپینگ اتاق سرور طبق کامنت مشاور آپدیت شود.',
+        date: '1405/05/02',
+        status: 'in_progress'
+      }
+    ]
   },
   {
     id: 4,
@@ -1153,14 +1209,28 @@ export const defaultEDMSCirculations: EDMSCirculationItem[] = [
     doc_title: 'ماتریس علت و معلول سیستم F&G و اینترلاک‌های ایمنی',
     revision: '0',
     step: 'completed',
-    assigned_to: 'مهندس کریمی',
+    assigned_to: 'admin',
+    assigned_by: 'manager',
     assigned_role: 'DCC Controller',
+    action_type: 'کنترل فرمت و صدور نهایی DCC',
+    priority: 'immediate',
     start_date: '1405/03/01',
     due_date: '1405/03/08',
     completed_date: '1405/03/08',
     status: 'approved',
     comments: 'تایید نهایی و صدور رسمی نسخه IFC برای کارفرما',
-    man_hours_spent: 40
+    man_hours_spent: 40,
+    history: [
+      {
+        id: 'h-4',
+        from: 'manager',
+        to: 'admin',
+        action_type: 'کنترل فرمت و صدور نهایی DCC',
+        note: 'مدرک نهایی مورد تایید است، ترانزمیتال صادر شود.',
+        date: '1405/03/08',
+        status: 'approved'
+      }
+    ]
   }
 ];
 
@@ -1368,6 +1438,22 @@ const defaultDatabase: DatabaseSchema = {
       role: 'admin',
       system_access: 'both',
       price_access: 1,
+    },
+    {
+      id: 2,
+      username: 'manager',
+      passwordHash: hashPassword('12345'),
+      role: 'manager',
+      system_access: 'both',
+      price_access: 1,
+    },
+    {
+      id: 3,
+      username: 'expert',
+      passwordHash: hashPassword('12345'),
+      role: 'user',
+      system_access: 'both',
+      price_access: 1,
     }
   ],
   equipment: [
@@ -1461,8 +1547,8 @@ const defaultDatabase: DatabaseSchema = {
   email_logs: [],
   ai_config: {
     api_key: '',
-    base_url: 'https://openrouter.ai/api/v1',
-    model_name: 'gemini-3.5-flash'
+    base_url: 'https://generativelanguage.googleapis.com',
+    model_name: 'gemini-3.8-flash'
   },
   edms_documents: defaultEDMSDocuments,
   edms_revisions: defaultEDMSRevisions,
@@ -1493,6 +1579,26 @@ class FileDatabase {
         this.data = JSON.parse(fileContent);
         // Ensure standard structure is always present
         if (!this.data.users) this.data.users = [...defaultDatabase.users];
+        if (!this.data.users.some(u => u.role === 'manager')) {
+          this.data.users.push({
+            id: Math.max(0, ...this.data.users.map(u => u.id)) + 1,
+            username: 'manager',
+            passwordHash: hashPassword('12345'),
+            role: 'manager',
+            system_access: 'both',
+            price_access: 1
+          });
+        }
+        if (!this.data.users.some(u => u.username === 'expert')) {
+          this.data.users.push({
+            id: Math.max(0, ...this.data.users.map(u => u.id)) + 1,
+            username: 'expert',
+            passwordHash: hashPassword('12345'),
+            role: 'user',
+            system_access: 'both',
+            price_access: 1
+          });
+        }
         if (!this.data.equipment) this.data.equipment = [...defaultDatabase.equipment];
         if (!this.data.knowledge_base) this.data.knowledge_base = [...defaultDatabase.knowledge_base];
         if (!this.data.document_corpus) this.data.document_corpus = [];
@@ -1548,7 +1654,9 @@ class FileDatabase {
       if (!fs.existsSync(DATA_DIR)) {
         fs.mkdirSync(DATA_DIR, { recursive: true });
       }
-      fs.writeFileSync(DB_FILE, JSON.stringify(this.data, null, 2), 'utf-8');
+      const tmpFile = `${DB_FILE}.tmp`;
+      fs.writeFileSync(tmpFile, JSON.stringify(this.data, null, 2), 'utf-8');
+      fs.renameSync(tmpFile, DB_FILE);
     } catch (error) {
       console.error('Error saving database', error);
     }
@@ -2339,13 +2447,26 @@ class FileDatabase {
   // ==================== Afam EDMS Extended Helpers ====================
 
   // Circulation / Workflow
-  public getEDMSCirculations(filters?: { doc_id?: number; step?: string; status?: string }): EDMSCirculationItem[] {
+  public getEDMSCirculationById(id: number): EDMSCirculationItem | null {
+    if (!this.data.edms_circulations) this.data.edms_circulations = [...defaultEDMSCirculations];
+    return this.data.edms_circulations.find(c => c.id === id) || null;
+  }
+
+  public getEDMSCirculations(filters?: { doc_id?: number; step?: string; status?: string; assigned_to?: string; assigned_by?: string }): EDMSCirculationItem[] {
     if (!this.data.edms_circulations) this.data.edms_circulations = [...defaultEDMSCirculations];
     let list = [...this.data.edms_circulations];
     if (filters) {
       if (filters.doc_id) list = list.filter(c => c.doc_id === filters.doc_id);
       if (filters.step && filters.step !== 'all') list = list.filter(c => c.step === filters.step);
       if (filters.status && filters.status !== 'all') list = list.filter(c => c.status === filters.status);
+      if (filters.assigned_to) {
+        const target = filters.assigned_to.toLowerCase();
+        list = list.filter(c => c.assigned_to?.toLowerCase() === target || c.assigned_to?.toLowerCase().includes(target));
+      }
+      if (filters.assigned_by) {
+        const target = filters.assigned_by.toLowerCase();
+        list = list.filter(c => c.assigned_by?.toLowerCase() === target || c.assigned_by?.toLowerCase().includes(target));
+      }
     }
     return list;
   }

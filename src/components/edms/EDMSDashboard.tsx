@@ -16,7 +16,7 @@ import { EDMSStats, EDMSDocument } from '../../types';
 interface EDMSDashboardProps {
   stats: EDMSStats | null;
   documents: EDMSDocument[];
-  onSelectTab: (tab: 'mdr' | 'transmittals' | 'crs') => void;
+  onSelectTab: (tab: 'mdr' | 'transmittals' | 'crs' | 'circulation' | 'scurve') => void;
   lang: 'fa' | 'en';
 }
 
@@ -302,12 +302,20 @@ export const EDMSDashboard: React.FC<EDMSDashboardProps> = ({
                 </p>
               </div>
             </div>
-            <button
-              onClick={() => onSelectTab('mdr')}
-              className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shrink-0 shadow-xs"
-            >
-              {lang === 'fa' ? 'ورود به جدول MDR' : 'Open MDR'}
-            </button>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => onSelectTab('circulation')}
+                className="px-3.5 py-1.5 bg-white hover:bg-slate-50 text-blue-700 border border-blue-200 text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-2xs"
+              >
+                {lang === 'fa' ? 'کارتابل و ارجاعات' : 'Cartable'}
+              </button>
+              <button
+                onClick={() => onSelectTab('mdr')}
+                className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs"
+              >
+                {lang === 'fa' ? 'ورود به جدول MDR' : 'Open MDR'}
+              </button>
+            </div>
           </div>
         </div>
       </div>

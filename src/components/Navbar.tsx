@@ -231,10 +231,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               ? 'bg-blue-50 border-blue-200 text-blue-700' 
               : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
           }`}
-          title={lang === 'fa' ? 'پنل آرشیو و کاتالوگ‌خوان' : 'Archives & Catalog Feeder'}
+          title={lang === 'fa' ? 'پنل ارتقاء دیتابیس از طریق فایل' : 'Database Upgrade via File'}
         >
           <Archive className="w-4 h-4 text-blue-600 shrink-0" />
-          <span className="hidden md:inline">{lang === 'fa' ? 'پنل آرشیو' : 'Archives'}</span>
+          <span className="hidden md:inline">{lang === 'fa' ? 'ارتقاء دیتابیس با فایل' : 'Upgrade DB'}</span>
         </button>
 
         {/* Change Password modal button (Desktop) */}
@@ -500,7 +500,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <div className="flex items-center gap-3">
                       <Archive className="w-4 h-4 text-blue-600" />
-                      <span>{lang === 'fa' ? 'پنل آرشیو و استخراج کاتالوگ' : 'Archives & Catalog Feeder'}</span>
+                      <span>{lang === 'fa' ? 'پنل ارتقاء دیتابیس از طریق فایل' : 'Database Upgrade via File'}</span>
                     </div>
                     {lang === 'fa' ? <ChevronLeft className="w-4 h-4 text-slate-400" /> : <ChevronRight className="w-4 h-4 text-slate-400" />}
                   </button>

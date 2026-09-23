@@ -784,20 +784,24 @@ export const LettersView: React.FC<LettersViewProps> = ({ currentUser, lang }) =
                           >
                             <Printer className="w-4 h-4" />
                           </button>
-                          <button
-                            onClick={() => handleOpenEdit(letter)}
-                            className="p-1.5 bg-slate-100 hover:bg-slate-800 text-slate-600 hover:text-white rounded-lg transition-all cursor-pointer"
-                            title={isFa ? 'ویرایش' : 'Edit'}
-                          >
-                            <Edit className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(letter.id)}
-                            className="p-1.5 bg-rose-50 hover:bg-rose-600 text-rose-600 hover:text-white rounded-lg transition-all cursor-pointer"
-                            title={isFa ? 'حذف' : 'Delete'}
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                          {(currentUser.role === 'admin' || currentUser.role === 'manager') && (
+                            <button
+                              onClick={() => handleOpenEdit(letter)}
+                              className="p-1.5 bg-slate-100 hover:bg-slate-800 text-slate-600 hover:text-white rounded-lg transition-all cursor-pointer"
+                              title={isFa ? 'ویرایش نامه' : 'Edit'}
+                            >
+                              <Edit className="w-4 h-4" />
+                            </button>
+                          )}
+                          {currentUser.role === 'admin' && (
+                            <button
+                              onClick={() => handleDelete(letter.id)}
+                              className="p-1.5 bg-rose-50 hover:bg-rose-600 text-rose-600 hover:text-white rounded-lg transition-all cursor-pointer"
+                              title={isFa ? 'حذف نامه (ادمین)' : 'Delete (Admin)'}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>

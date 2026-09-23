@@ -20,7 +20,7 @@ interface UsersViewProps {
   usersList: User[];
   onAddUser: (u: Partial<User> & { password?: string }) => Promise<void>;
   onDeleteUser: (id: number) => Promise<void>;
-  onToggleUserPermission: (userId: number, field: 'system_access' | 'price_access', value: any) => Promise<void>;
+  onToggleUserPermission: (userId: number, field: 'system_access' | 'price_access' | 'role', value: any) => Promise<void>;
   userFormMsg: { type: 'success' | 'error'; text: string } | null;
   lang: 'fa' | 'en';
 }
@@ -35,7 +35,7 @@ export const UsersView: React.FC<UsersViewProps> = ({
 }) => {
   const [newUsername, setNewUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const [newRole, setNewRole] = useState<'admin' | 'user'>('user');
+  const [newRole, setNewRole] = useState<'admin' | 'manager' | 'user'>('user');
   const [newSystemAccess, setNewSystemAccess] = useState<'alarm' | 'fighting' | 'both'>('both');
   const [newPriceAccess, setNewPriceAccess] = useState<number>(1);
 
@@ -115,16 +115,31 @@ export const UsersView: React.FC<UsersViewProps> = ({
 
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
-                {lang === 'fa' ? 'نقش کاربری' : 'Role'}
+                {lang === 'fa' ? 'سطح دسترسی و نقش کاربری' : 'Role & Access Level'}
               </label>
               <select
                 value={newRole}
                 onChange={(e) => setNewRole(e.target.value as any)}
                 className="w-full custom-input px-3 py-2 text-xs text-slate-800 cursor-pointer"
               >
-                <option value="user">{lang === 'fa' ? 'کارشناس (User)' : 'Engineer (User)'}</option>
-                <option value="admin">{lang === 'fa' ? 'مدیر ارشد (Admin)' : 'Administrator'}</option>
+                <option value="user">
+                  {lang === 'fa' ? 'کارشناس (صرفاً ورود اطلاعات و خواندن)' : 'Expert (Read & Insert Only)'}
+                </option>
+                <option value="manager">
+                  {lang === 'fa' ? 'مدیر (ورود اطلاعات و تغییر در محتوا)' : 'Manager (Read, Insert & Edit Content)'}
+                </option>
+                <option value="admin">
+                  {lang === 'fa' ? 'ادمین (دسترسی کامل به تمام تنظیمات و مرکز توسعه)' : 'Admin (Full Access & Settings)'}
+                </option>
               </select>
+              <p className="text-[10px] text-slate-500 mt-1">
+                {newRole === 'admin' 
+                  ? (lang === 'fa' ? 'دسترسی کامل به تمام تنظیمات، کنسول توسعه و مدیریت کاربران.' : 'Full access to all settings, Dev Console, and user management.')
+                  : newRole === 'manager'
+                    ? (lang === 'fa' ? 'مجاز به ورود اطلاعات، ویرایش و تغییر در محتوا بدون دسترسی به تنظیمات ادمین.' : 'Authorized to input, edit and modify content without access to admin settings.')
+                    : (lang === 'fa' ? 'صرفاً مجاز به مشاهده و ورود اطلاعات جدید بدون امکان ویرایش محتوا یا تنظیمات ادمین.' : 'Strictly authorized to read and enter new data without content modification or admin settings.')
+                }
+              </p>
             </div>
 
             <div>
@@ -207,13 +222,28 @@ export const UsersView: React.FC<UsersViewProps> = ({
                     <td className="p-3 text-slate-400 font-bold">{idx + 1}</td>
                     <td className="p-3 font-bold text-slate-900">{user.username}</td>
                     <td className="p-3">
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                        user.role === 'admin' 
-                          ? 'bg-blue-50 text-blue-700 border border-blue-200' 
-                          : 'bg-slate-100 text-slate-700 border border-slate-200'
-                      }`}>
-                        {user.role === 'admin' ? (lang === 'fa' ? 'مدیر' : 'Admin') : (lang === 'fa' ? 'کارشناس' : 'User')}
-                      </span>
+                      {user.username === 'admin' ? (
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200 inline-flex items-center gap-1">
+                          <ShieldCheck className="w-3 h-3 text-purple-600" />
+                          <span>{lang === 'fa' ? 'ادمین ارشد' : 'Super Admin'}</span>
+                        </span>
+                      ) : (
+                        <select
+                          value={user.role}
+                          onChange={(e) => onToggleUserPermission(user.id, 'role', e.target.value)}
+                          className={`rounded-lg px-2 py-1 text-xs font-bold border cursor-pointer ${
+                            user.role === 'admin'
+                              ? 'bg-purple-50 text-purple-700 border-purple-200'
+                              : user.role === 'manager'
+                                ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                : 'bg-slate-50 text-slate-700 border-slate-200'
+                          }`}
+                        >
+                          <option value="user">{lang === 'fa' ? 'کارشناس (ورود و خواندن)' : 'Expert'}</option>
+                          <option value="manager">{lang === 'fa' ? 'مدیر (ورود و ویرایش)' : 'Manager'}</option>
+                          <option value="admin">{lang === 'fa' ? 'ادمین (دسترسی کامل)' : 'Admin'}</option>
+                        </select>
+                      )}
                     </td>
                     <td className="p-3">
                       <select
@@ -265,6 +295,46 @@ export const UsersView: React.FC<UsersViewProps> = ({
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* 3-Level RBAC Policy Explanation Box */}
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs space-y-2.5">
+            <h4 className="font-bold text-slate-800 flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-blue-600" />
+              <span>{lang === 'fa' ? 'سیاست سه لایه سطوح دسترسی (RBAC)' : 'Three-Tier Access Control Policy'}</span>
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+              <div className="bg-white p-3 rounded-lg border border-purple-200">
+                <span className="font-bold text-purple-700 block mb-1">
+                  {lang === 'fa' ? '👑 سطح ۱: ادمین (Admin)' : 'Admin (Full Access)'}
+                </span>
+                <p className="text-slate-600 text-[11px] leading-relaxed">
+                  {lang === 'fa' 
+                    ? 'دسترسی کامل به کلیه تنظیمات، مرکز کنترل و توسعه، لاگ‌های امنیتی، مدیریت کاربران و پایگاه‌داده.' 
+                    : 'Full access to all system settings, Dev Console, audit logs, and user management.'}
+                </p>
+              </div>
+              <div className="bg-white p-3 rounded-lg border border-amber-200">
+                <span className="font-bold text-amber-800 block mb-1">
+                  {lang === 'fa' ? '💼 سطح ۲: مدیر (Manager)' : 'Manager'}
+                </span>
+                <p className="text-slate-600 text-[11px] leading-relaxed">
+                  {lang === 'fa'
+                    ? 'دسترسی به خواندن، ورود اطلاعات و ویرایش/تغییر در کلیه محتوا و اسناد. بدون دسترسی به تنظیمات ادمین یا حذف نهایی.'
+                    : 'Authorized to read, input, and edit/update all project and engineering content. No access to admin settings.'}
+                </p>
+              </div>
+              <div className="bg-white p-3 rounded-lg border border-slate-200">
+                <span className="font-bold text-slate-700 block mb-1">
+                  {lang === 'fa' ? '👤 سطح ۳: کارشناس (Expert / User)' : 'Expert (Engineer)'}
+                </span>
+                <p className="text-slate-600 text-[11px] leading-relaxed">
+                  {lang === 'fa'
+                    ? 'صرفاً مجاز به خواندن اطلاعات و ورود اطلاعات و اسناد جدید. فاقد امکان تغییر محتوا، ویرایش اطلاعات پایه، حذف یا تنظیمات ادمین.'
+                    : 'Strictly authorized to read and submit new items. Prohibited from editing existing content or accessing admin settings.'}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

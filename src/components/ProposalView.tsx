@@ -457,45 +457,40 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
   return (
     <div className="space-y-6 pb-12" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
       {/* Top Banner Header */}
-      <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 rounded-3xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden">
+      <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 rounded-3xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden space-y-6">
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold">
-              <FileCheck className="w-3.5 h-3.5" />
-              <span>{lang === 'fa' ? 'مولد پروپوزال فنی و مالی + آنالیز قیمت' : 'Technical & Commercial Proposal Engine'}</span>
-            </div>
-            <h1 className="text-xl md:text-2xl font-black text-white tracking-tight">
-              {lang === 'fa' ? 'تنظیم پیشنهاد فنی، استعلام و آنالیز ضرایب قیمت' : 'Proposal Builder & Price Multiplier Analyzer'}
-            </h1>
-            <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
-              {lang === 'fa' 
-                ? 'جستجوی تجهیزات، افزودن اقلام به اقلام پیشنهاد، اعمال ضرایب قیمت‌گذاری خرید/فروش، آنالیز سود و دریافت خروجی استاندارد Word (.docx) و PDF.' 
-                : 'Select equipment, customize pricing multipliers, generate detailed price analysis, and export ready-to-sign Word (.docx) and PDF proposals.'}
-            </p>
+        
+        {/* Title & Description Section */}
+        <div className="relative z-10 space-y-2.5 max-w-4xl">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold whitespace-nowrap">
+            <FileCheck className="w-4 h-4 text-blue-400 shrink-0" />
+            <span>{lang === 'fa' ? 'مولد پروپوزال فنی و مالی + آنالیز قیمت' : 'Technical & Commercial Proposal Engine'}</span>
           </div>
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-black text-white tracking-tight leading-tight">
+            {lang === 'fa' ? 'تنظیم پیشنهاد فنی، استعلام و آنالیز ضرایب قیمت' : 'Proposal Builder & Price Multiplier Analyzer'}
+          </h1>
+          <p className="text-xs md:text-sm text-slate-300 leading-relaxed">
+            {lang === 'fa' 
+              ? 'جستجوی تجهیزات، افزودن اقلام به اقلام پیشنهاد، اعمال ضرایب قیمت‌گذاری خرید/فروش، آنالیز سود و دریافت خروجی استاندارد Word (.docx) و PDF.' 
+              : 'Select equipment, customize pricing multipliers, generate detailed price analysis, and export ready-to-sign Word (.docx) and PDF proposals.'}
+          </p>
+        </div>
 
-          <div className="flex flex-wrap items-center gap-2 shrink-0">
+        {/* Action Toolbar Section */}
+        <div className="relative z-10 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+          {/* Group 1: Workspace & Templates */}
+          <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => setIsPreviewOpen(true)}
-              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-100 text-xs font-bold border border-slate-700 transition-all cursor-pointer flex items-center gap-2"
+              className="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-100 text-xs font-bold border border-slate-700/80 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap shadow-xs"
             >
               <Eye className="w-4 h-4 text-blue-400" />
               <span>{lang === 'fa' ? 'پیش‌نمایش زنده' : 'Live Preview'}</span>
             </button>
 
             <button
-              onClick={handleSaveToDatabase}
-              disabled={isSavingToDb || proposalItems.length === 0}
-              className="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 disabled:opacity-50 text-white text-xs font-bold shadow-lg shadow-amber-600/30 transition-all cursor-pointer flex items-center gap-2"
-            >
-              <Save className="w-4 h-4 text-amber-200" />
-              <span>{isSavingToDb ? (lang === 'fa' ? 'در حال ذخیره‌سازی...' : 'Saving...') : (lang === 'fa' ? 'ذخیره در دیتابیس' : 'Save to DB')}</span>
-            </button>
-
-            <button
               onClick={() => setIsTemplateModalOpen(true)}
-              className="px-4 py-2.5 rounded-xl bg-purple-700 hover:bg-purple-600 text-white text-xs font-bold shadow-lg shadow-purple-700/30 transition-all cursor-pointer flex items-center gap-2"
+              className="px-3.5 py-2 rounded-xl bg-purple-700/90 hover:bg-purple-600 text-white text-xs font-bold shadow-md shadow-purple-900/30 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap"
             >
               <FileCode2 className="w-4 h-4 text-purple-200" />
               <span>{lang === 'fa' ? `قالب‌های سازمانی (${templates.length})` : `Templates (${templates.length})`}</span>
@@ -503,16 +498,28 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
 
             <button
               onClick={() => { fetchSavedProposals(); setIsArchiveOpen(true); }}
-              className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all cursor-pointer flex items-center gap-2"
+              className="px-3.5 py-2 rounded-xl bg-indigo-600/90 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-900/30 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap"
             >
               <FolderArchive className="w-4 h-4 text-indigo-200" />
               <span>{lang === 'fa' ? `آرشیو دیتابیس (${savedProposals.length})` : `Saved DB (${savedProposals.length})`}</span>
             </button>
 
             <button
+              onClick={handleSaveToDatabase}
+              disabled={isSavingToDb || proposalItems.length === 0}
+              className="px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 disabled:opacity-50 text-white text-xs font-bold shadow-md shadow-amber-900/30 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap"
+            >
+              <Save className="w-4 h-4 text-amber-200" />
+              <span>{isSavingToDb ? (lang === 'fa' ? 'در حال ذخیره‌سازی...' : 'Saving...') : (lang === 'fa' ? 'ذخیره در دیتابیس' : 'Save to DB')}</span>
+            </button>
+          </div>
+
+          {/* Group 2: Dispatch & Export */}
+          <div className="flex flex-wrap items-center gap-2">
+            <button
               onClick={() => setIsEmailModalOpen(true)}
               disabled={proposalItems.length === 0}
-              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 disabled:opacity-50 text-white text-xs font-bold shadow-lg shadow-sky-600/30 transition-all cursor-pointer flex items-center gap-2"
+              className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 disabled:opacity-50 text-white text-xs font-bold shadow-md shadow-sky-900/30 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap"
               title={lang === 'fa' ? 'ارسال پروپوزال با ایمیل' : 'Send via Email'}
             >
               <Mail className="w-4 h-4 text-sky-200" />
@@ -521,17 +528,17 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
 
             <button
               onClick={() => setIsEmailHistoryOpen(true)}
-              className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5"
+              className="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/80 text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap"
               title={lang === 'fa' ? 'آرشیو ایمیل‌های ارسالی' : 'Email History'}
             >
               <Mail className="w-4 h-4 text-slate-400" />
-              <span className="hidden sm:inline">{lang === 'fa' ? 'سوابق ایمیل' : 'Email Logs'}</span>
+              <span>{lang === 'fa' ? 'سوابق ایمیل' : 'Email Logs'}</span>
             </button>
 
             <button
               onClick={() => exportProposalToDocx(config, proposalItems, activeTemplate)}
               disabled={proposalItems.length === 0}
-              className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white text-xs font-bold shadow-lg shadow-blue-600/30 transition-all cursor-pointer flex items-center gap-2"
+              className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white text-xs font-bold shadow-md shadow-blue-900/30 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap"
             >
               <Download className="w-4 h-4" />
               <span>{lang === 'fa' ? 'دانلود Word' : 'Export Word'}</span>
@@ -540,7 +547,7 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
             <button
               onClick={handleExportPdf}
               disabled={proposalItems.length === 0 || isExportingPdf}
-              className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 transition-all cursor-pointer flex items-center gap-2"
+              className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-xs font-bold shadow-md shadow-emerald-900/30 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap"
             >
               <Download className="w-4 h-4" />
               <span>{isExportingPdf ? (lang === 'fa' ? 'در حال ایجاد PDF...' : 'Generating PDF...') : (lang === 'fa' ? 'دانلود PDF' : 'Export PDF')}</span>
@@ -1524,6 +1531,7 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
         activeTemplateId={config.templateId}
         onSelectTemplate={(tmpl) => handleApplyTemplate(tmpl)}
         onRefreshTemplates={fetchTemplates}
+        currentUser={currentUser}
         lang={lang}
       />
 
@@ -1608,13 +1616,15 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
                             <span>{lang === 'fa' ? 'بارگذاری مجدد در فرم' : 'Load to Form'}</span>
                           </button>
 
-                          <button
-                            onClick={() => handleDeleteSavedProposal(prop.id)}
-                            className="p-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold transition-all cursor-pointer"
-                            title={lang === 'fa' ? 'حذف از دیتابیس' : 'Delete from DB'}
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                          {currentUser.role === 'admin' && (
+                            <button
+                              onClick={() => handleDeleteSavedProposal(prop.id)}
+                              className="p-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold transition-all cursor-pointer"
+                              title={lang === 'fa' ? 'حذف از دیتابیس (ادمین)' : 'Delete from DB (Admin)'}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          )}
                         </div>
                       </div>
                     ))}

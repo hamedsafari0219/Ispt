@@ -17,13 +17,14 @@ import {
   ChevronRight,
   AlertCircle
 } from 'lucide-react';
-import { EDMSTransmittal, EDMSDocument, EDMSTransmittalDocItem } from '../../types';
+import { EDMSTransmittal, EDMSDocument, EDMSTransmittalDocItem, User } from '../../types';
 import { authenticatedFetch } from '../../utils/api';
 import { TransparentLogo } from '../TransparentLogo';
 
 interface TransmittalManagerProps {
   transmittals: EDMSTransmittal[];
   documents: EDMSDocument[];
+  currentUser: User;
   onRefresh: () => void;
   lang: 'fa' | 'en';
 }
@@ -31,6 +32,7 @@ interface TransmittalManagerProps {
 export const TransmittalManager: React.FC<TransmittalManagerProps> = ({
   transmittals,
   documents,
+  currentUser,
   onRefresh,
   lang
 }) => {
@@ -362,13 +364,15 @@ export const TransmittalManager: React.FC<TransmittalManagerProps> = ({
                   </button>
                 </div>
 
-                <button
-                  onClick={() => handleDeleteTransmittal(t.id, t.transmittal_number)}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
-                  title="حذف ترانزمیتال"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+                {currentUser.role === 'admin' && (
+                  <button
+                    onClick={() => handleDeleteTransmittal(t.id, t.transmittal_number)}
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                    title="حذف ترانزمیتال (ادمین)"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                )}
               </div>
             </div>
           ))

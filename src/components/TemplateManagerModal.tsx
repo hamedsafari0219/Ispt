@@ -19,7 +19,7 @@ import {
   HelpCircle,
   CheckCircle2
 } from 'lucide-react';
-import { ProposalTemplate } from '../types';
+import { ProposalTemplate, User } from '../types';
 import { authenticatedFetch } from '../utils/api';
 
 interface TemplateManagerModalProps {
@@ -29,6 +29,7 @@ interface TemplateManagerModalProps {
   activeTemplateId?: number;
   onSelectTemplate: (template: ProposalTemplate) => void;
   onRefreshTemplates: () => Promise<void>;
+  currentUser?: User;
   lang: 'fa' | 'en';
 }
 
@@ -39,9 +40,13 @@ export const TemplateManagerModal: React.FC<TemplateManagerModalProps> = ({
   activeTemplateId,
   onSelectTemplate,
   onRefreshTemplates,
+  currentUser,
   lang
 }) => {
   const isFa = lang === 'fa';
+  const canManageTemplates = currentUser?.role === 'admin' || currentUser?.role === 'manager';
+  const canDeleteTemplates = currentUser?.role === 'admin';
+
   const [activeTab, setActiveTab] = useState<'list' | 'ai_extract' | 'editor'>('list');
   const [selectedTemplateForEdit, setSelectedTemplateForEdit] = useState<Partial<ProposalTemplate> | null>(null);
 
@@ -301,28 +306,32 @@ export const TemplateManagerModal: React.FC<TemplateManagerModalProps> = ({
               <Layers className="w-4 h-4" />
               کتابخانه قالب‌ها ({templates.length})
             </button>
-            <button
-              onClick={() => setActiveTab('ai_extract')}
-              className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${
-                activeTab === 'ai_extract' 
-                  ? 'bg-indigo-600 text-white shadow-sm' 
-                  : 'bg-white text-indigo-700 hover:bg-indigo-50 border border-indigo-200'
-              }`}
-            >
-              <Sparkles className="w-4 h-4 text-indigo-300 animate-pulse" />
-              استخراج هوشمند قالب با هوش مصنوعی
-            </button>
-            <button
-              onClick={handleCreateNew}
-              className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${
-                activeTab === 'editor' && !selectedTemplateForEdit?.id
-                  ? 'bg-emerald-600 text-white shadow-sm' 
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-              }`}
-            >
-              <Plus className="w-4 h-4" />
-              طراحی قالب دستی جدید
-            </button>
+            {canManageTemplates && (
+              <>
+                <button
+                  onClick={() => setActiveTab('ai_extract')}
+                  className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${
+                    activeTab === 'ai_extract' 
+                      ? 'bg-indigo-600 text-white shadow-sm' 
+                      : 'bg-white text-indigo-700 hover:bg-indigo-50 border border-indigo-200'
+                  }`}
+                >
+                  <Sparkles className="w-4 h-4 text-indigo-300 animate-pulse" />
+                  استخراج هوشمند قالب با هوش مصنوعی
+                </button>
+                <button
+                  onClick={handleCreateNew}
+                  className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 ${
+                    activeTab === 'editor' && !selectedTemplateForEdit?.id
+                      ? 'bg-emerald-600 text-white shadow-sm' 
+                      : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  }`}
+                >
+                  <Plus className="w-4 h-4" />
+                  طراحی قالب دستی جدید
+                </button>
+              </>
+            )}
           </div>
 
           {activeTab === 'editor' && selectedTemplateForEdit?.id && (
@@ -410,7 +419,7 @@ export const TemplateManagerModal: React.FC<TemplateManagerModalProps> = ({
                         </button>
 
                         <div className="flex items-center gap-1">
-                          {!tmpl.is_default && (
+                          {canManageTemplates && !tmpl.is_default && (
                             <button
                               onClick={() => handleSetDefault(tmpl)}
                               title="تنظیم به عنوان قالب پیش‌فرض"
@@ -419,17 +428,19 @@ export const TemplateManagerModal: React.FC<TemplateManagerModalProps> = ({
                               <Star className="w-4 h-4" />
                             </button>
                           )}
-                          <button
-                            onClick={() => handleEditTemplate(tmpl)}
-                            title="ویرایش مشخصات قالب"
-                            className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                          >
-                            <Edit3 className="w-4 h-4" />
-                          </button>
-                          {tmpl.category === 'custom' && (
+                          {canManageTemplates && (
+                            <button
+                              onClick={() => handleEditTemplate(tmpl)}
+                              title="ویرایش مشخصات قالب"
+                              className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                            >
+                              <Edit3 className="w-4 h-4" />
+                            </button>
+                          )}
+                          {canDeleteTemplates && tmpl.category === 'custom' && (
                             <button
                               onClick={() => handleDeleteTemplate(tmpl)}
-                              title="حذف قالب سفارشی"
+                              title="حذف قالب سفارشی (ادمین)"
                               className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-md transition-colors"
                             >
                               <Trash2 className="w-4 h-4" />
